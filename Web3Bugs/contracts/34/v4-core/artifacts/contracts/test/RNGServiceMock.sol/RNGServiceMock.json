@@ -1,0 +1,167 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "RNGServiceMock",
+  "sourceName": "contracts/test/RNGServiceMock.sol",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint32",
+          "name": "requestId",
+          "type": "uint32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "randomNumber",
+          "type": "uint256"
+        }
+      ],
+      "name": "RandomNumberCompleted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint32",
+          "name": "requestId",
+          "type": "uint32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "RandomNumberRequested",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "getLastRequestId",
+      "outputs": [
+        {
+          "internalType": "uint32",
+          "name": "requestId",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getRequestFee",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "_feeToken",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_requestFee",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint32",
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "name": "isRequestComplete",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint32",
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "name": "randomNumber",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "requestRandomNumber",
+      "outputs": [
+        {
+          "internalType": "uint32",
+          "name": "",
+          "type": "uint32"
+        },
+        {
+          "internalType": "uint32",
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_random",
+          "type": "uint256"
+        }
+      ],
+      "name": "setRandomNumber",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_feeToken",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_requestFee",
+          "type": "uint256"
+        }
+      ],
+      "name": "setRequestFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b50610270806100206000396000f3fe608060405234801561001057600080fd5b506004361061007d5760003560e01c80638678a7b21161005b5780638678a7b21461010a5780639d2a5f981461011e578063d6bfea2814610141578063de1760fd1461015657600080fd5b80630d37b5371461008257806319c2b4c3146100d75780633a19b9bc146100e6575b600080fd5b6100a660015460025473ffffffffffffffffffffffffffffffffffffffff90911691565b6040805173ffffffffffffffffffffffffffffffffffffffff90931683526020830191909152015b60405180910390f35b604051600181526020016100ce565b6100fa6100f436600461020d565b50600190565b60405190151581526020016100ce565b6040805160018082526020820152016100ce565b61013361012c36600461020d565b5060005490565b6040519081526020016100ce565b61015461014f3660046101f4565b600055565b005b6101546101643660046101af565b600180547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff9390931692909217909155600255565b600080604083850312156101c257600080fd5b823573ffffffffffffffffffffffffffffffffffffffff811681146101e657600080fd5b946020939093013593505050565b60006020828403121561020657600080fd5b5035919050565b60006020828403121561021f57600080fd5b813563ffffffff8116811461023357600080fd5b939250505056fea264697066735822122013f4912d99e7cea055ec8d779110c30a89d46cb7944f7553cf570d44d77bba2864736f6c63430008060033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061007d5760003560e01c80638678a7b21161005b5780638678a7b21461010a5780639d2a5f981461011e578063d6bfea2814610141578063de1760fd1461015657600080fd5b80630d37b5371461008257806319c2b4c3146100d75780633a19b9bc146100e6575b600080fd5b6100a660015460025473ffffffffffffffffffffffffffffffffffffffff90911691565b6040805173ffffffffffffffffffffffffffffffffffffffff90931683526020830191909152015b60405180910390f35b604051600181526020016100ce565b6100fa6100f436600461020d565b50600190565b60405190151581526020016100ce565b6040805160018082526020820152016100ce565b61013361012c36600461020d565b5060005490565b6040519081526020016100ce565b61015461014f3660046101f4565b600055565b005b6101546101643660046101af565b600180547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff9390931692909217909155600255565b600080604083850312156101c257600080fd5b823573ffffffffffffffffffffffffffffffffffffffff811681146101e657600080fd5b946020939093013593505050565b60006020828403121561020657600080fd5b5035919050565b60006020828403121561021f57600080fd5b813563ffffffff8116811461023357600080fd5b939250505056fea264697066735822122013f4912d99e7cea055ec8d779110c30a89d46cb7944f7553cf570d44d77bba2864736f6c63430008060033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

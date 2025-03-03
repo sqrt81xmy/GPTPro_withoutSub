@@ -1,0 +1,1930 @@
+{
+  "contractName": "UniswapSwapHelper",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "contract IUniswapV2Router",
+          "name": "_router",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"contract IUniswapV2Router\",\"name\":\"_router\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/test/UniswapSwapHelper.sol\":\"UniswapSwapHelper\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x5f02220344881ce43204ae4a6281145a67bc52c2bb1290a791857df3d19d78f5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://24427744bd3e6cb73c17010119af12a318289c0253a4d9acb8576c9fb3797b08\",\"dweb:/ipfs/QmTLDqpKRBuxGxRAmjgXt9AkXyACW3MtKzi7PYjm5iMfGC\"]},\"project:/contracts/test/IUniswapV2Router.sol\":{\"keccak256\":\"0xb9fd16d32e3b7cff9ac54c803e11de1ae786d400747bea7a40a368425c1fa30d\",\"license\":\"BUSL-1.1\",\"urls\":[\"bzz-raw://436b73757c1ca031e2c39095dfbd4392ccf9831ef26bd9dcefb1575b8837351d\",\"dweb:/ipfs/QmV1mNVKKYNcuu9ngw8dPVvnvPm8ZauDUFYU8xjYYR67Nn\"]},\"project:/contracts/test/UniswapSwapHelper.sol\":{\"keccak256\":\"0x878d9fe9165f8f4cbe889e501f0e07162f5167b52419e987740354278f7361a3\",\"license\":\"BUSL-1.1\",\"urls\":[\"bzz-raw://097f5a65ad07e6df7c0cadda6196fbad3562f89d8060b423dbdb904e8146e4fb\",\"dweb:/ipfs/QmdgQBsTGur1MBCZxZMBeSHrFcXJaeZkaH7BcRk15Jwc5Z\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50604051609e380380609e83398181016040526020811015602f57600080fd5b5051600080546001600160a01b039092166001600160a01b0319909216919091179055603f80605f6000396000f3fe6080604052600080fdfea2646970667358221220f7ec919a14d69b752fa5c87a15ad3fd977e9c93a7245f6c85b662c71036cb4b464736f6c63430007060033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220f7ec919a14d69b752fa5c87a15ad3fd977e9c93a7245f6c85b662c71036cb4b464736f6c63430007060033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "153:421:98:-:0;;;215:72;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;215:72:98;264:6;:16;;-1:-1:-1;;;;;264:16:98;;;-1:-1:-1;;;;;;264:16:98;;;;;;;;;153:421;;;;;;",
+  "deployedSourceMap": "153:421:98:-:0;;;;;",
+  "source": "// SPDX-License-Identifier: BUSL-1.1\npragma solidity 0.7.6;\n\n\nimport \"./IUniswapV2Router.sol\";\nimport \"@openzeppelin/contracts/token/ERC20/IERC20.sol\";\n\ncontract UniswapSwapHelper {\n    IUniswapV2Router router;\n    constructor (IUniswapV2Router _router) {\n        router = _router;\n    }\n\n    function swap(address[] memory path) internal {\n        uint balance = IERC20(path[0]).balanceOf(address(this));\n        IERC20(path[0]).approve(address(router), balance);\n        router.swapExactTokensForTokens(balance, 0, path, address(this), block.timestamp + 12 hours);\n    }\n}\n",
+  "sourcePath": "/home/mingyue/Smartian/Web3Bugs/contracts/72/openleverage-contracts/contracts/test/UniswapSwapHelper.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/test/UniswapSwapHelper.sol",
+    "exportedSymbols": {
+      "IERC20": [
+        1189
+      ],
+      "IUniswapV2Router": [
+        34592
+      ],
+      "UniswapSwapHelper": [
+        40809
+      ]
+    },
+    "id": 40810,
+    "license": "BUSL-1.1",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 40744,
+        "literals": [
+          "solidity",
+          "0.7",
+          ".6"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "37:22:98"
+      },
+      {
+        "absolutePath": "project:/contracts/test/IUniswapV2Router.sol",
+        "file": "./IUniswapV2Router.sol",
+        "id": 40745,
+        "nodeType": "ImportDirective",
+        "scope": 40810,
+        "sourceUnit": 34593,
+        "src": "62:32:98",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 40746,
+        "nodeType": "ImportDirective",
+        "scope": 40810,
+        "sourceUnit": 1190,
+        "src": "95:56:98",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 40809,
+        "linearizedBaseContracts": [
+          40809
+        ],
+        "name": "UniswapSwapHelper",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 40748,
+            "mutability": "mutable",
+            "name": "router",
+            "nodeType": "VariableDeclaration",
+            "scope": 40809,
+            "src": "186:23:98",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_IUniswapV2Router_$34592",
+              "typeString": "contract IUniswapV2Router"
+            },
+            "typeName": {
+              "id": 40747,
+              "name": "IUniswapV2Router",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 34592,
+              "src": "186:16:98",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IUniswapV2Router_$34592",
+                "typeString": "contract IUniswapV2Router"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 40757,
+              "nodeType": "Block",
+              "src": "254:33:98",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 40755,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 40753,
+                      "name": "router",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 40748,
+                      "src": "264:6:98",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IUniswapV2Router_$34592",
+                        "typeString": "contract IUniswapV2Router"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 40754,
+                      "name": "_router",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 40750,
+                      "src": "273:7:98",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IUniswapV2Router_$34592",
+                        "typeString": "contract IUniswapV2Router"
+                      }
+                    },
+                    "src": "264:16:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IUniswapV2Router_$34592",
+                      "typeString": "contract IUniswapV2Router"
+                    }
+                  },
+                  "id": 40756,
+                  "nodeType": "ExpressionStatement",
+                  "src": "264:16:98"
+                }
+              ]
+            },
+            "id": 40758,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 40751,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 40750,
+                  "mutability": "mutable",
+                  "name": "_router",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 40758,
+                  "src": "228:24:98",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IUniswapV2Router_$34592",
+                    "typeString": "contract IUniswapV2Router"
+                  },
+                  "typeName": {
+                    "id": 40749,
+                    "name": "IUniswapV2Router",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 34592,
+                    "src": "228:16:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IUniswapV2Router_$34592",
+                      "typeString": "contract IUniswapV2Router"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "227:26:98"
+            },
+            "returnParameters": {
+              "id": 40752,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "254:0:98"
+            },
+            "scope": 40809,
+            "src": "215:72:98",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 40807,
+              "nodeType": "Block",
+              "src": "339:233:98",
+              "statements": [
+                {
+                  "assignments": [
+                    40765
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 40765,
+                      "mutability": "mutable",
+                      "name": "balance",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 40807,
+                      "src": "349:12:98",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 40764,
+                        "name": "uint",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "349:4:98",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 40777,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "id": 40774,
+                            "name": "this",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967268,
+                            "src": "398:4:98",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_UniswapSwapHelper_$40809",
+                              "typeString": "contract UniswapSwapHelper"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_contract$_UniswapSwapHelper_$40809",
+                              "typeString": "contract UniswapSwapHelper"
+                            }
+                          ],
+                          "id": 40773,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "390:7:98",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_address_$",
+                            "typeString": "type(address)"
+                          },
+                          "typeName": {
+                            "id": 40772,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "390:7:98",
+                            "typeDescriptions": {}
+                          }
+                        },
+                        "id": 40775,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "390:13:98",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "arguments": [
+                          {
+                            "baseExpression": {
+                              "id": 40767,
+                              "name": "path",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 40761,
+                              "src": "371:4:98",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                                "typeString": "address[] memory"
+                              }
+                            },
+                            "id": 40769,
+                            "indexExpression": {
+                              "hexValue": "30",
+                              "id": 40768,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "376:1:98",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "371:7:98",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 40766,
+                          "name": "IERC20",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1189,
+                          "src": "364:6:98",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_contract$_IERC20_$1189_$",
+                            "typeString": "type(contract IERC20)"
+                          }
+                        },
+                        "id": 40770,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "364:15:98",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IERC20_$1189",
+                          "typeString": "contract IERC20"
+                        }
+                      },
+                      "id": 40771,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "balanceOf",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 1128,
+                      "src": "364:25:98",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_uint256_$",
+                        "typeString": "function (address) view external returns (uint256)"
+                      }
+                    },
+                    "id": 40776,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "364:40:98",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "349:55:98"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "id": 40786,
+                            "name": "router",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 40748,
+                            "src": "446:6:98",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_IUniswapV2Router_$34592",
+                              "typeString": "contract IUniswapV2Router"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_contract$_IUniswapV2Router_$34592",
+                              "typeString": "contract IUniswapV2Router"
+                            }
+                          ],
+                          "id": 40785,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "438:7:98",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_address_$",
+                            "typeString": "type(address)"
+                          },
+                          "typeName": {
+                            "id": 40784,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "438:7:98",
+                            "typeDescriptions": {}
+                          }
+                        },
+                        "id": 40787,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "438:15:98",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 40788,
+                        "name": "balance",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 40765,
+                        "src": "455:7:98",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "arguments": [
+                          {
+                            "baseExpression": {
+                              "id": 40779,
+                              "name": "path",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 40761,
+                              "src": "421:4:98",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                                "typeString": "address[] memory"
+                              }
+                            },
+                            "id": 40781,
+                            "indexExpression": {
+                              "hexValue": "30",
+                              "id": 40780,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "426:1:98",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "421:7:98",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 40778,
+                          "name": "IERC20",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1189,
+                          "src": "414:6:98",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_contract$_IERC20_$1189_$",
+                            "typeString": "type(contract IERC20)"
+                          }
+                        },
+                        "id": 40782,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "414:15:98",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IERC20_$1189",
+                          "typeString": "contract IERC20"
+                        }
+                      },
+                      "id": 40783,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "approve",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 1158,
+                      "src": "414:23:98",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
+                        "typeString": "function (address,uint256) external returns (bool)"
+                      }
+                    },
+                    "id": 40789,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "414:49:98",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 40790,
+                  "nodeType": "ExpressionStatement",
+                  "src": "414:49:98"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 40794,
+                        "name": "balance",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 40765,
+                        "src": "505:7:98",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "hexValue": "30",
+                        "id": 40795,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "514:1:98",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_0_by_1",
+                          "typeString": "int_const 0"
+                        },
+                        "value": "0"
+                      },
+                      {
+                        "id": 40796,
+                        "name": "path",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 40761,
+                        "src": "517:4:98",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                          "typeString": "address[] memory"
+                        }
+                      },
+                      {
+                        "arguments": [
+                          {
+                            "id": 40799,
+                            "name": "this",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967268,
+                            "src": "531:4:98",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_UniswapSwapHelper_$40809",
+                              "typeString": "contract UniswapSwapHelper"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_contract$_UniswapSwapHelper_$40809",
+                              "typeString": "contract UniswapSwapHelper"
+                            }
+                          ],
+                          "id": 40798,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "523:7:98",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_address_$",
+                            "typeString": "type(address)"
+                          },
+                          "typeName": {
+                            "id": 40797,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "523:7:98",
+                            "typeDescriptions": {}
+                          }
+                        },
+                        "id": 40800,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "523:13:98",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 40804,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "id": 40801,
+                            "name": "block",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967292,
+                            "src": "538:5:98",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_block",
+                              "typeString": "block"
+                            }
+                          },
+                          "id": 40802,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "timestamp",
+                          "nodeType": "MemberAccess",
+                          "src": "538:15:98",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "+",
+                        "rightExpression": {
+                          "hexValue": "3132",
+                          "id": 40803,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "556:8:98",
+                          "subdenomination": "hours",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_43200_by_1",
+                            "typeString": "int_const 43200"
+                          },
+                          "value": "12"
+                        },
+                        "src": "538:26:98",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_rational_0_by_1",
+                          "typeString": "int_const 0"
+                        },
+                        {
+                          "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                          "typeString": "address[] memory"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "id": 40791,
+                        "name": "router",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 40748,
+                        "src": "473:6:98",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IUniswapV2Router_$34592",
+                          "typeString": "contract IUniswapV2Router"
+                        }
+                      },
+                      "id": 40793,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "swapExactTokensForTokens",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 34591,
+                      "src": "473:31:98",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_uint256_$_t_uint256_$_t_array$_t_address_$dyn_memory_ptr_$_t_address_$_t_uint256_$returns$_t_array$_t_uint256_$dyn_memory_ptr_$",
+                        "typeString": "function (uint256,uint256,address[] memory,address,uint256) external returns (uint256[] memory)"
+                      }
+                    },
+                    "id": 40805,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "473:92:98",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                      "typeString": "uint256[] memory"
+                    }
+                  },
+                  "id": 40806,
+                  "nodeType": "ExpressionStatement",
+                  "src": "473:92:98"
+                }
+              ]
+            },
+            "id": 40808,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "swap",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 40762,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 40761,
+                  "mutability": "mutable",
+                  "name": "path",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 40808,
+                  "src": "307:21:98",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 40759,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "307:7:98",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 40760,
+                    "nodeType": "ArrayTypeName",
+                    "src": "307:9:98",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "306:23:98"
+            },
+            "returnParameters": {
+              "id": 40763,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "339:0:98"
+            },
+            "scope": 40809,
+            "src": "293:279:98",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 40810,
+        "src": "153:421:98"
+      }
+    ],
+    "src": "37:538:98"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/test/UniswapSwapHelper.sol",
+      "exportedSymbols": {
+        "IERC20": [
+          1189
+        ],
+        "IUniswapV2Router": [
+          34592
+        ],
+        "UniswapSwapHelper": [
+          40809
+        ]
+      },
+      "license": "BUSL-1.1"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.7",
+            ".6"
+          ]
+        },
+        "id": 40744,
+        "name": "PragmaDirective",
+        "src": "37:22:98"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 34593,
+          "absolutePath": "project:/contracts/test/IUniswapV2Router.sol",
+          "file": "./IUniswapV2Router.sol",
+          "scope": 40810,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 40745,
+        "name": "ImportDirective",
+        "src": "62:32:98"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 1190,
+          "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+          "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+          "scope": 40810,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 40746,
+        "name": "ImportDirective",
+        "src": "95:56:98"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            40809
+          ],
+          "name": "UniswapSwapHelper",
+          "scope": 40810
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "mutability": "mutable",
+              "name": "router",
+              "scope": 40809,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "contract IUniswapV2Router",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "IUniswapV2Router",
+                  "referencedDeclaration": 34592,
+                  "type": "contract IUniswapV2Router"
+                },
+                "id": 40747,
+                "name": "UserDefinedTypeName",
+                "src": "186:16:98"
+              }
+            ],
+            "id": 40748,
+            "name": "VariableDeclaration",
+            "src": "186:23:98"
+          },
+          {
+            "attributes": {
+              "implemented": true,
+              "isConstructor": true,
+              "kind": "constructor",
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "scope": 40809,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_router",
+                      "scope": 40758,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract IUniswapV2Router",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "IUniswapV2Router",
+                          "referencedDeclaration": 34592,
+                          "type": "contract IUniswapV2Router"
+                        },
+                        "id": 40749,
+                        "name": "UserDefinedTypeName",
+                        "src": "228:16:98"
+                      }
+                    ],
+                    "id": 40750,
+                    "name": "VariableDeclaration",
+                    "src": "228:24:98"
+                  }
+                ],
+                "id": 40751,
+                "name": "ParameterList",
+                "src": "227:26:98"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 40752,
+                "name": "ParameterList",
+                "src": "254:0:98"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "contract IUniswapV2Router"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 40748,
+                              "type": "contract IUniswapV2Router",
+                              "value": "router"
+                            },
+                            "id": 40753,
+                            "name": "Identifier",
+                            "src": "264:6:98"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 40750,
+                              "type": "contract IUniswapV2Router",
+                              "value": "_router"
+                            },
+                            "id": 40754,
+                            "name": "Identifier",
+                            "src": "273:7:98"
+                          }
+                        ],
+                        "id": 40755,
+                        "name": "Assignment",
+                        "src": "264:16:98"
+                      }
+                    ],
+                    "id": 40756,
+                    "name": "ExpressionStatement",
+                    "src": "264:16:98"
+                  }
+                ],
+                "id": 40757,
+                "name": "Block",
+                "src": "254:33:98"
+              }
+            ],
+            "id": 40758,
+            "name": "FunctionDefinition",
+            "src": "215:72:98"
+          },
+          {
+            "attributes": {
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "swap",
+              "scope": 40809,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "path",
+                      "scope": 40808,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "address[]",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "type": "address[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "address",
+                              "stateMutability": "nonpayable",
+                              "type": "address"
+                            },
+                            "id": 40759,
+                            "name": "ElementaryTypeName",
+                            "src": "307:7:98"
+                          }
+                        ],
+                        "id": 40760,
+                        "name": "ArrayTypeName",
+                        "src": "307:9:98"
+                      }
+                    ],
+                    "id": 40761,
+                    "name": "VariableDeclaration",
+                    "src": "307:21:98"
+                  }
+                ],
+                "id": 40762,
+                "name": "ParameterList",
+                "src": "306:23:98"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 40763,
+                "name": "ParameterList",
+                "src": "339:0:98"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        40765
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "mutability": "mutable",
+                          "name": "balance",
+                          "scope": 40807,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "uint256",
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint",
+                              "type": "uint256"
+                            },
+                            "id": 40764,
+                            "name": "ElementaryTypeName",
+                            "src": "349:4:98"
+                          }
+                        ],
+                        "id": 40765,
+                        "name": "VariableDeclaration",
+                        "src": "349:12:98"
+                      },
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "uint256",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "balanceOf",
+                              "referencedDeclaration": 1128,
+                              "type": "function (address) view external returns (uint256)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "tryCall": false,
+                                  "type": "contract IERC20",
+                                  "type_conversion": true
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_address",
+                                          "typeString": "address"
+                                        }
+                                      ],
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 1189,
+                                      "type": "type(contract IERC20)",
+                                      "value": "IERC20"
+                                    },
+                                    "id": 40766,
+                                    "name": "Identifier",
+                                    "src": "364:6:98"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "type": "address"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 40761,
+                                          "type": "address[] memory",
+                                          "value": "path"
+                                        },
+                                        "id": 40767,
+                                        "name": "Identifier",
+                                        "src": "371:4:98"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "hexvalue": "30",
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": true,
+                                          "lValueRequested": false,
+                                          "token": "number",
+                                          "type": "int_const 0",
+                                          "value": "0"
+                                        },
+                                        "id": 40768,
+                                        "name": "Literal",
+                                        "src": "376:1:98"
+                                      }
+                                    ],
+                                    "id": 40769,
+                                    "name": "IndexAccess",
+                                    "src": "371:7:98"
+                                  }
+                                ],
+                                "id": 40770,
+                                "name": "FunctionCall",
+                                "src": "364:15:98"
+                              }
+                            ],
+                            "id": 40771,
+                            "name": "MemberAccess",
+                            "src": "364:25:98"
+                          },
+                          {
+                            "attributes": {
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "tryCall": false,
+                              "type": "address",
+                              "type_conversion": true
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_contract$_UniswapSwapHelper_$40809",
+                                      "typeString": "contract UniswapSwapHelper"
+                                    }
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "type": "type(address)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "name": "address"
+                                    },
+                                    "id": 40772,
+                                    "name": "ElementaryTypeName",
+                                    "src": "390:7:98"
+                                  }
+                                ],
+                                "id": 40773,
+                                "name": "ElementaryTypeNameExpression",
+                                "src": "390:7:98"
+                              },
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 4294967268,
+                                  "type": "contract UniswapSwapHelper",
+                                  "value": "this"
+                                },
+                                "id": 40774,
+                                "name": "Identifier",
+                                "src": "398:4:98"
+                              }
+                            ],
+                            "id": 40775,
+                            "name": "FunctionCall",
+                            "src": "390:13:98"
+                          }
+                        ],
+                        "id": 40776,
+                        "name": "FunctionCall",
+                        "src": "364:40:98"
+                      }
+                    ],
+                    "id": 40777,
+                    "name": "VariableDeclarationStatement",
+                    "src": "349:55:98"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "bool",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "approve",
+                              "referencedDeclaration": 1158,
+                              "type": "function (address,uint256) external returns (bool)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "tryCall": false,
+                                  "type": "contract IERC20",
+                                  "type_conversion": true
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_address",
+                                          "typeString": "address"
+                                        }
+                                      ],
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 1189,
+                                      "type": "type(contract IERC20)",
+                                      "value": "IERC20"
+                                    },
+                                    "id": 40778,
+                                    "name": "Identifier",
+                                    "src": "414:6:98"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "type": "address"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 40761,
+                                          "type": "address[] memory",
+                                          "value": "path"
+                                        },
+                                        "id": 40779,
+                                        "name": "Identifier",
+                                        "src": "421:4:98"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "hexvalue": "30",
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": true,
+                                          "lValueRequested": false,
+                                          "token": "number",
+                                          "type": "int_const 0",
+                                          "value": "0"
+                                        },
+                                        "id": 40780,
+                                        "name": "Literal",
+                                        "src": "426:1:98"
+                                      }
+                                    ],
+                                    "id": 40781,
+                                    "name": "IndexAccess",
+                                    "src": "421:7:98"
+                                  }
+                                ],
+                                "id": 40782,
+                                "name": "FunctionCall",
+                                "src": "414:15:98"
+                              }
+                            ],
+                            "id": 40783,
+                            "name": "MemberAccess",
+                            "src": "414:23:98"
+                          },
+                          {
+                            "attributes": {
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "tryCall": false,
+                              "type": "address",
+                              "type_conversion": true
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_contract$_IUniswapV2Router_$34592",
+                                      "typeString": "contract IUniswapV2Router"
+                                    }
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "type": "type(address)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "name": "address"
+                                    },
+                                    "id": 40784,
+                                    "name": "ElementaryTypeName",
+                                    "src": "438:7:98"
+                                  }
+                                ],
+                                "id": 40785,
+                                "name": "ElementaryTypeNameExpression",
+                                "src": "438:7:98"
+                              },
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 40748,
+                                  "type": "contract IUniswapV2Router",
+                                  "value": "router"
+                                },
+                                "id": 40786,
+                                "name": "Identifier",
+                                "src": "446:6:98"
+                              }
+                            ],
+                            "id": 40787,
+                            "name": "FunctionCall",
+                            "src": "438:15:98"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 40765,
+                              "type": "uint256",
+                              "value": "balance"
+                            },
+                            "id": 40788,
+                            "name": "Identifier",
+                            "src": "455:7:98"
+                          }
+                        ],
+                        "id": 40789,
+                        "name": "FunctionCall",
+                        "src": "414:49:98"
+                      }
+                    ],
+                    "id": 40790,
+                    "name": "ExpressionStatement",
+                    "src": "414:49:98"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "uint256[] memory",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_rational_0_by_1",
+                                  "typeString": "int_const 0"
+                                },
+                                {
+                                  "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                                  "typeString": "address[] memory"
+                                },
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "swapExactTokensForTokens",
+                              "referencedDeclaration": 34591,
+                              "type": "function (uint256,uint256,address[] memory,address,uint256) external returns (uint256[] memory)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 40748,
+                                  "type": "contract IUniswapV2Router",
+                                  "value": "router"
+                                },
+                                "id": 40791,
+                                "name": "Identifier",
+                                "src": "473:6:98"
+                              }
+                            ],
+                            "id": 40793,
+                            "name": "MemberAccess",
+                            "src": "473:31:98"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 40765,
+                              "type": "uint256",
+                              "value": "balance"
+                            },
+                            "id": 40794,
+                            "name": "Identifier",
+                            "src": "505:7:98"
+                          },
+                          {
+                            "attributes": {
+                              "hexvalue": "30",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "token": "number",
+                              "type": "int_const 0",
+                              "value": "0"
+                            },
+                            "id": 40795,
+                            "name": "Literal",
+                            "src": "514:1:98"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 40761,
+                              "type": "address[] memory",
+                              "value": "path"
+                            },
+                            "id": 40796,
+                            "name": "Identifier",
+                            "src": "517:4:98"
+                          },
+                          {
+                            "attributes": {
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "tryCall": false,
+                              "type": "address",
+                              "type_conversion": true
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_contract$_UniswapSwapHelper_$40809",
+                                      "typeString": "contract UniswapSwapHelper"
+                                    }
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "type": "type(address)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "name": "address"
+                                    },
+                                    "id": 40797,
+                                    "name": "ElementaryTypeName",
+                                    "src": "523:7:98"
+                                  }
+                                ],
+                                "id": 40798,
+                                "name": "ElementaryTypeNameExpression",
+                                "src": "523:7:98"
+                              },
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 4294967268,
+                                  "type": "contract UniswapSwapHelper",
+                                  "value": "this"
+                                },
+                                "id": 40799,
+                                "name": "Identifier",
+                                "src": "531:4:98"
+                              }
+                            ],
+                            "id": 40800,
+                            "name": "FunctionCall",
+                            "src": "523:13:98"
+                          },
+                          {
+                            "attributes": {
+                              "commonType": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "+",
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "timestamp",
+                                  "type": "uint256"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 4294967292,
+                                      "type": "block",
+                                      "value": "block"
+                                    },
+                                    "id": 40801,
+                                    "name": "Identifier",
+                                    "src": "538:5:98"
+                                  }
+                                ],
+                                "id": 40802,
+                                "name": "MemberAccess",
+                                "src": "538:15:98"
+                              },
+                              {
+                                "attributes": {
+                                  "hexvalue": "3132",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": "hours",
+                                  "token": "number",
+                                  "type": "int_const 43200",
+                                  "value": "12"
+                                },
+                                "id": 40803,
+                                "name": "Literal",
+                                "src": "556:8:98"
+                              }
+                            ],
+                            "id": 40804,
+                            "name": "BinaryOperation",
+                            "src": "538:26:98"
+                          }
+                        ],
+                        "id": 40805,
+                        "name": "FunctionCall",
+                        "src": "473:92:98"
+                      }
+                    ],
+                    "id": 40806,
+                    "name": "ExpressionStatement",
+                    "src": "473:92:98"
+                  }
+                ],
+                "id": 40807,
+                "name": "Block",
+                "src": "339:233:98"
+              }
+            ],
+            "id": 40808,
+            "name": "FunctionDefinition",
+            "src": "293:279:98"
+          }
+        ],
+        "id": 40809,
+        "name": "ContractDefinition",
+        "src": "153:421:98"
+      }
+    ],
+    "id": 40810,
+    "name": "SourceUnit",
+    "src": "37:538:98"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.7.6+commit.7338295f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2025-02-26T03:48:01.345Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

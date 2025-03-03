@@ -1,0 +1,175 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "LadleStorage",
+  "sourceName": "contracts/LadleStorage.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "contract ICauldron",
+          "name": "cauldron_",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "fee",
+          "type": "uint256"
+        }
+      ],
+      "name": "FeeSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes6",
+          "name": "assetId",
+          "type": "bytes6"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "join",
+          "type": "address"
+        }
+      ],
+      "name": "JoinAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "module",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "bool",
+          "name": "set",
+          "type": "bool"
+        }
+      ],
+      "name": "ModuleSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes6",
+          "name": "seriesId",
+          "type": "bytes6"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "pool",
+          "type": "address"
+        }
+      ],
+      "name": "PoolAdded",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "borrowingFee",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "cauldron",
+      "outputs": [
+        {
+          "internalType": "contract ICauldron",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes6",
+          "name": "",
+          "type": "bytes6"
+        }
+      ],
+      "name": "joins",
+      "outputs": [
+        {
+          "internalType": "contract IJoin",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "modules",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes6",
+          "name": "",
+          "type": "bytes6"
+        }
+      ],
+      "name": "pools",
+      "outputs": [
+        {
+          "internalType": "contract IPool",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x60a060405234801561001057600080fd5b506040516102ea3803806102ea83398101604081905261002f91610044565b60601b6001600160601b031916608052610072565b600060208284031215610055578081fd5b81516001600160a01b038116811461006b578182fd5b9392505050565b60805160601c61025a6100906000396000610115015261025a6000f3fe608060405234801561001057600080fd5b50600436106100675760003560e01c806397ff6a041161005057806397ff6a04146100aa578063a8ee49fe146100b2578063bf1025f3146100d257610067565b806360e0b6361461006c5780638377be5014610095575b600080fd5b61007f61007a3660046101af565b6100e5565b60405161008c91906101fa565b60405180910390f35b61009d61010d565b60405161008c919061021b565b61007f610113565b6100c56100c0366004610174565b610137565b60405161008c91906101ef565b61007f6100e03660046101af565b61014c565b60016020526000908152604090205473ffffffffffffffffffffffffffffffffffffffff1681565b60005481565b7f000000000000000000000000000000000000000000000000000000000000000081565b60036020526000908152604090205460ff1681565b60026020526000908152604090205473ffffffffffffffffffffffffffffffffffffffff1681565b600060208284031215610185578081fd5b813573ffffffffffffffffffffffffffffffffffffffff811681146101a8578182fd5b9392505050565b6000602082840312156101c0578081fd5b81357fffffffffffff0000000000000000000000000000000000000000000000000000811681146101a8578182fd5b901515815260200190565b73ffffffffffffffffffffffffffffffffffffffff91909116815260200190565b9081526020019056fea26469706673582212204dac27e2851205649a539b2f8bccfaf4d6956221986536241e9ad21c2bfa9bed64736f6c63430008010033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100675760003560e01c806397ff6a041161005057806397ff6a04146100aa578063a8ee49fe146100b2578063bf1025f3146100d257610067565b806360e0b6361461006c5780638377be5014610095575b600080fd5b61007f61007a3660046101af565b6100e5565b60405161008c91906101fa565b60405180910390f35b61009d61010d565b60405161008c919061021b565b61007f610113565b6100c56100c0366004610174565b610137565b60405161008c91906101ef565b61007f6100e03660046101af565b61014c565b60016020526000908152604090205473ffffffffffffffffffffffffffffffffffffffff1681565b60005481565b7f000000000000000000000000000000000000000000000000000000000000000081565b60036020526000908152604090205460ff1681565b60026020526000908152604090205473ffffffffffffffffffffffffffffffffffffffff1681565b600060208284031215610185578081fd5b813573ffffffffffffffffffffffffffffffffffffffff811681146101a8578182fd5b9392505050565b6000602082840312156101c0578081fd5b81357fffffffffffff0000000000000000000000000000000000000000000000000000811681146101a8578182fd5b901515815260200190565b73ffffffffffffffffffffffffffffffffffffffff91909116815260200190565b9081526020019056fea26469706673582212204dac27e2851205649a539b2f8bccfaf4d6956221986536241e9ad21c2bfa9bed64736f6c63430008010033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

@@ -1,0 +1,44 @@
+This contract file makes external calls to {external_contracts}. I need your help to check how these contracts are deployed and how I should complete the deployment.
+Is the address of each external contract hardcoded in the file, or can it be passed as a parameter?
+
+If the addresses are hardcoded, I need you to provide me with the corresponding contract addresses and contract names.
+
+If the addresses can be passed as parameters, I need you to design an address and an account for me, and design how the function can pass the parameters (which could be addresses/accounts) you designed.
+Note that address and account should be in hexadecimal format starting with 0x, such as 0x33b808a5ae24c410e8739b5ca2d5ef3931d3e09f, with a length of 40 characters.
+
+In either case, you need to return a command to me in the following format:
+`--deploy_contract contract1 contract2 --deploy_address address1 address2 --deploy_account account1 account2`,
+where contract1 is the name of the externally called contract, address1 is the deployment address of contract1, and account1 is the actual account of contract1.
+This command includes the contract names, deployment addresses, and deployment accounts of all externally called contracts.
+Note that this is just a command format. Assuming iUTILS and iFACTORY are externally called contracts, the actual result you should return is:
+`--deploy_contract iUTILS iFACTORY --deploy_address 0xa1a2 0xb2b3 --deploy_account 0x0123 0x234`.
+
+Please return the result to me in JSON format as follows:
+
+If the addresses are hardcoded, return:
+ 
+{
+  "type": 1,
+  "res": [
+    {"name": "name1", "address": "address1"},
+    {"name": "name2", "address": "address2"}
+  ],
+  "deploy": "--deploy_contract contract1 contract2 --deploy_address address1 address2 --deploy_account account1 account2"
+}
+Here, name1/name2 represent the contract names, and address1/address2 represent the contract addresses (hardcoded).
+
+If the addresses are not hardcoded, return:
+
+{
+  "type": 2,
+  "res": [
+    {"name": ["name1"], "call": "func1(param1, param2)", "is_constructor": true},
+    {"name": ["name2"], "call": "func2(param1)", "is_constructor": false}
+  ],
+  "deploy": "--deploy_contract contract1 contract2 --deploy_address address1 address2 --deploy_account account1 account2"
+}
+
+Here, `name` is an array of contract names; `call` is the function call to pass parameters, used to set the deployment addresses of the contracts; and `is_constructor` indicates whether the function call is a constructor of the solidityFile(true if it is, otherwise false),when it is the constructor of the external call contract, you should set the `is_constructor` false.
+Notive: you should only call the functions in the main contract in the solidity file.
+Note that your call function should be able to deploy all contracts corresponding to the name field. You should cover all external contracts called by this contract by finding the function calls. The parameters of the function can be designed by you.
+I will call the call field you return to me in Solidity. For example, if the function header looks like transfer(address recipient, uint amount), the value of the call field you return should be transfer(0x1234, 10). So please carefully design the parameters and write them in a format that matches the parameter types.

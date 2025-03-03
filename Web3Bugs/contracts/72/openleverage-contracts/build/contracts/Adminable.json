@@ -1,0 +1,3253 @@
+{
+  "contractName": "Adminable",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "oldAdmin",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "newAdmin",
+          "type": "address"
+        }
+      ],
+      "name": "NewAdmin",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "oldPendingAdmin",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "newPendingAdmin",
+          "type": "address"
+        }
+      ],
+      "name": "NewPendingAdmin",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "admin",
+      "outputs": [
+        {
+          "internalType": "address payable",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "developer",
+      "outputs": [
+        {
+          "internalType": "address payable",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "pendingAdmin",
+      "outputs": [
+        {
+          "internalType": "address payable",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address payable",
+          "name": "newPendingAdmin",
+          "type": "address"
+        }
+      ],
+      "name": "setPendingAdmin",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "acceptAdmin",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oldAdmin\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"NewAdmin\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oldPendingAdmin\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newPendingAdmin\",\"type\":\"address\"}],\"name\":\"NewPendingAdmin\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"acceptAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"developer\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pendingAdmin\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address payable\",\"name\":\"newPendingAdmin\",\"type\":\"address\"}],\"name\":\"setPendingAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Adminable.sol\":\"Adminable\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Adminable.sol\":{\"keccak256\":\"0x3dd0dd0cff74f8dda0a7acdf78e9f7ddc37fc1d047576649c10d584d975841a9\",\"license\":\"BUSL-1.1\",\"urls\":[\"bzz-raw://7fd0c17341ec12980687983c2656ed0a196f95cb9207f02c7458fd555fad9f4d\",\"dweb:/ipfs/QmRRvnSUgtezg9oQrDnguguP1HLwbuQa8Q5ZfBqyL2VSnG\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: BUSL-1.1\n\n\npragma solidity 0.7.6;\n\nabstract contract Adminable {\n    address payable public admin;\n    address payable public pendingAdmin;\n    address payable public developer;\n\n    event NewPendingAdmin(address oldPendingAdmin, address newPendingAdmin);\n\n    event NewAdmin(address oldAdmin, address newAdmin);\n    constructor () {\n        developer = msg.sender;\n    }\n\n    modifier onlyAdmin() {\n        require(msg.sender == admin, \"caller must be admin\");\n        _;\n    }\n    modifier onlyAdminOrDeveloper() {\n        require(msg.sender == admin || msg.sender == developer, \"caller must be admin or developer\");\n        _;\n    }\n\n    function setPendingAdmin(address payable newPendingAdmin) external virtual onlyAdmin {\n        // Save current value, if any, for inclusion in log\n        address oldPendingAdmin = pendingAdmin;\n        // Store pendingAdmin with value newPendingAdmin\n        pendingAdmin = newPendingAdmin;\n        // Emit NewPendingAdmin(oldPendingAdmin, newPendingAdmin)\n        emit NewPendingAdmin(oldPendingAdmin, newPendingAdmin);\n    }\n\n    function acceptAdmin() external virtual {\n        require(msg.sender == pendingAdmin, \"only pendingAdmin can accept admin\");\n        // Save current values for inclusion in log\n        address oldAdmin = admin;\n        address oldPendingAdmin = pendingAdmin;\n        // Store admin with value pendingAdmin\n        admin = pendingAdmin;\n        // Clear the pending value\n        pendingAdmin = address(0);\n        emit NewAdmin(oldAdmin, admin);\n        emit NewPendingAdmin(oldPendingAdmin, pendingAdmin);\n    }\n\n}\n",
+  "sourcePath": "/home/mingyue/Smartian/Web3Bugs/contracts/72/openleverage-contracts/contracts/Adminable.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/Adminable.sol",
+    "exportedSymbols": {
+      "Adminable": [
+        7062
+      ]
+    },
+    "id": 7063,
+    "license": "BUSL-1.1",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 6943,
+        "literals": [
+          "solidity",
+          "0.7",
+          ".6"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:22:45"
+      },
+      {
+        "abstract": true,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 7062,
+        "linearizedBaseContracts": [
+          7062
+        ],
+        "name": "Adminable",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "f851a440",
+            "id": 6945,
+            "mutability": "mutable",
+            "name": "admin",
+            "nodeType": "VariableDeclaration",
+            "scope": 7062,
+            "src": "97:28:45",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address_payable",
+              "typeString": "address payable"
+            },
+            "typeName": {
+              "id": 6944,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "97:15:45",
+              "stateMutability": "payable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address_payable",
+                "typeString": "address payable"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "26782247",
+            "id": 6947,
+            "mutability": "mutable",
+            "name": "pendingAdmin",
+            "nodeType": "VariableDeclaration",
+            "scope": 7062,
+            "src": "131:35:45",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address_payable",
+              "typeString": "address payable"
+            },
+            "typeName": {
+              "id": 6946,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "131:15:45",
+              "stateMutability": "payable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address_payable",
+                "typeString": "address payable"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "ca4b208b",
+            "id": 6949,
+            "mutability": "mutable",
+            "name": "developer",
+            "nodeType": "VariableDeclaration",
+            "scope": 7062,
+            "src": "172:32:45",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address_payable",
+              "typeString": "address payable"
+            },
+            "typeName": {
+              "id": 6948,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "172:15:45",
+              "stateMutability": "payable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address_payable",
+                "typeString": "address payable"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "id": 6955,
+            "name": "NewPendingAdmin",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 6954,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6951,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "oldPendingAdmin",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6955,
+                  "src": "233:23:45",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6950,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "233:7:45",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6953,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "newPendingAdmin",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6955,
+                  "src": "258:23:45",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6952,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "258:7:45",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "232:50:45"
+            },
+            "src": "211:72:45"
+          },
+          {
+            "anonymous": false,
+            "id": 6961,
+            "name": "NewAdmin",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 6960,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6957,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "oldAdmin",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6961,
+                  "src": "304:16:45",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6956,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "304:7:45",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6959,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "newAdmin",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6961,
+                  "src": "322:16:45",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6958,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "322:7:45",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "303:36:45"
+            },
+            "src": "289:51:45"
+          },
+          {
+            "body": {
+              "id": 6969,
+              "nodeType": "Block",
+              "src": "360:39:45",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 6967,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 6964,
+                      "name": "developer",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 6949,
+                      "src": "370:9:45",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "expression": {
+                        "id": 6965,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4294967281,
+                        "src": "382:3:45",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 6966,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "src": "382:10:45",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
+                      }
+                    },
+                    "src": "370:22:45",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "id": 6968,
+                  "nodeType": "ExpressionStatement",
+                  "src": "370:22:45"
+                }
+              ]
+            },
+            "id": 6970,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6962,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "357:2:45"
+            },
+            "returnParameters": {
+              "id": 6963,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "360:0:45"
+            },
+            "scope": 7062,
+            "src": "345:54:45",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 6981,
+              "nodeType": "Block",
+              "src": "426:80:45",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        },
+                        "id": 6976,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "id": 6973,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "444:3:45",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 6974,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "src": "444:10:45",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "id": 6975,
+                          "name": "admin",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 6945,
+                          "src": "458:5:45",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        "src": "444:19:45",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "63616c6c6572206d7573742062652061646d696e",
+                        "id": 6977,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "465:22:45",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_ff41a4e323d827d2d31bd7ec489a4cbc089a30e766fbba87597dc02e66123b78",
+                          "typeString": "literal_string \"caller must be admin\""
+                        },
+                        "value": "caller must be admin"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_ff41a4e323d827d2d31bd7ec489a4cbc089a30e766fbba87597dc02e66123b78",
+                          "typeString": "literal_string \"caller must be admin\""
+                        }
+                      ],
+                      "id": 6972,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "436:7:45",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 6978,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "436:52:45",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 6979,
+                  "nodeType": "ExpressionStatement",
+                  "src": "436:52:45"
+                },
+                {
+                  "id": 6980,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "498:1:45"
+                }
+              ]
+            },
+            "id": 6982,
+            "name": "onlyAdmin",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 6971,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "423:2:45"
+            },
+            "src": "405:101:45",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 6998,
+              "nodeType": "Block",
+              "src": "543:120:45",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        "id": 6993,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "commonType": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          },
+                          "id": 6988,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "expression": {
+                              "id": 6985,
+                              "name": "msg",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4294967281,
+                              "src": "561:3:45",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_message",
+                                "typeString": "msg"
+                              }
+                            },
+                            "id": 6986,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "sender",
+                            "nodeType": "MemberAccess",
+                            "src": "561:10:45",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address_payable",
+                              "typeString": "address payable"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "==",
+                          "rightExpression": {
+                            "id": 6987,
+                            "name": "admin",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 6945,
+                            "src": "575:5:45",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address_payable",
+                              "typeString": "address payable"
+                            }
+                          },
+                          "src": "561:19:45",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "||",
+                        "rightExpression": {
+                          "commonType": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          },
+                          "id": 6992,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "expression": {
+                              "id": 6989,
+                              "name": "msg",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4294967281,
+                              "src": "584:3:45",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_message",
+                                "typeString": "msg"
+                              }
+                            },
+                            "id": 6990,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "sender",
+                            "nodeType": "MemberAccess",
+                            "src": "584:10:45",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address_payable",
+                              "typeString": "address payable"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "==",
+                          "rightExpression": {
+                            "id": 6991,
+                            "name": "developer",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 6949,
+                            "src": "598:9:45",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address_payable",
+                              "typeString": "address payable"
+                            }
+                          },
+                          "src": "584:23:45",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "src": "561:46:45",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "63616c6c6572206d7573742062652061646d696e206f7220646576656c6f706572",
+                        "id": 6994,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "609:35:45",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_beb641275ed0747c1caecf64c9952b231dd6a91e2ffc7ae910ecdab9b6df823d",
+                          "typeString": "literal_string \"caller must be admin or developer\""
+                        },
+                        "value": "caller must be admin or developer"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_beb641275ed0747c1caecf64c9952b231dd6a91e2ffc7ae910ecdab9b6df823d",
+                          "typeString": "literal_string \"caller must be admin or developer\""
+                        }
+                      ],
+                      "id": 6984,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "553:7:45",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 6995,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "553:92:45",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 6996,
+                  "nodeType": "ExpressionStatement",
+                  "src": "553:92:45"
+                },
+                {
+                  "id": 6997,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "655:1:45"
+                }
+              ]
+            },
+            "id": 6999,
+            "name": "onlyAdminOrDeveloper",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 6983,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "540:2:45"
+            },
+            "src": "511:152:45",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 7019,
+              "nodeType": "Block",
+              "src": "754:342:45",
+              "statements": [
+                {
+                  "assignments": [
+                    7007
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 7007,
+                      "mutability": "mutable",
+                      "name": "oldPendingAdmin",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 7019,
+                      "src": "824:23:45",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "typeName": {
+                        "id": 7006,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "824:7:45",
+                        "stateMutability": "nonpayable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 7009,
+                  "initialValue": {
+                    "id": 7008,
+                    "name": "pendingAdmin",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 6947,
+                    "src": "850:12:45",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "824:38:45"
+                },
+                {
+                  "expression": {
+                    "id": 7012,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 7010,
+                      "name": "pendingAdmin",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 6947,
+                      "src": "929:12:45",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 7011,
+                      "name": "newPendingAdmin",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 7001,
+                      "src": "944:15:45",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
+                      }
+                    },
+                    "src": "929:30:45",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "id": 7013,
+                  "nodeType": "ExpressionStatement",
+                  "src": "929:30:45"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 7015,
+                        "name": "oldPendingAdmin",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7007,
+                        "src": "1056:15:45",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 7016,
+                        "name": "newPendingAdmin",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7001,
+                        "src": "1073:15:45",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      ],
+                      "id": 7014,
+                      "name": "NewPendingAdmin",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 6955,
+                      "src": "1040:15:45",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$returns$__$",
+                        "typeString": "function (address,address)"
+                      }
+                    },
+                    "id": 7017,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1040:49:45",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7018,
+                  "nodeType": "EmitStatement",
+                  "src": "1035:54:45"
+                }
+              ]
+            },
+            "functionSelector": "4dd18bf5",
+            "id": 7020,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 7004,
+                "modifierName": {
+                  "id": 7003,
+                  "name": "onlyAdmin",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 6982,
+                  "src": "744:9:45",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "744:9:45"
+              }
+            ],
+            "name": "setPendingAdmin",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7002,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7001,
+                  "mutability": "mutable",
+                  "name": "newPendingAdmin",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7020,
+                  "src": "694:31:45",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address_payable",
+                    "typeString": "address payable"
+                  },
+                  "typeName": {
+                    "id": 7000,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "694:15:45",
+                    "stateMutability": "payable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "693:33:45"
+            },
+            "returnParameters": {
+              "id": 7005,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "754:0:45"
+            },
+            "scope": 7062,
+            "src": "669:427:45",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7060,
+              "nodeType": "Block",
+              "src": "1142:472:45",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        },
+                        "id": 7027,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "id": 7024,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "1160:3:45",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 7025,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "src": "1160:10:45",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "id": 7026,
+                          "name": "pendingAdmin",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 6947,
+                          "src": "1174:12:45",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        "src": "1160:26:45",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "6f6e6c792070656e64696e6741646d696e2063616e206163636570742061646d696e",
+                        "id": 7028,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1188:36:45",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_51f86bfc29c42128c8465cf3e47848b6ab08b3a55b54f201294b60a1d4ed3ec3",
+                          "typeString": "literal_string \"only pendingAdmin can accept admin\""
+                        },
+                        "value": "only pendingAdmin can accept admin"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_51f86bfc29c42128c8465cf3e47848b6ab08b3a55b54f201294b60a1d4ed3ec3",
+                          "typeString": "literal_string \"only pendingAdmin can accept admin\""
+                        }
+                      ],
+                      "id": 7023,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1152:7:45",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 7029,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1152:73:45",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7030,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1152:73:45"
+                },
+                {
+                  "assignments": [
+                    7032
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 7032,
+                      "mutability": "mutable",
+                      "name": "oldAdmin",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 7060,
+                      "src": "1287:16:45",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "typeName": {
+                        "id": 7031,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1287:7:45",
+                        "stateMutability": "nonpayable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 7034,
+                  "initialValue": {
+                    "id": 7033,
+                    "name": "admin",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 6945,
+                    "src": "1306:5:45",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1287:24:45"
+                },
+                {
+                  "assignments": [
+                    7036
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 7036,
+                      "mutability": "mutable",
+                      "name": "oldPendingAdmin",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 7060,
+                      "src": "1321:23:45",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "typeName": {
+                        "id": 7035,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1321:7:45",
+                        "stateMutability": "nonpayable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 7038,
+                  "initialValue": {
+                    "id": 7037,
+                    "name": "pendingAdmin",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 6947,
+                    "src": "1347:12:45",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1321:38:45"
+                },
+                {
+                  "expression": {
+                    "id": 7041,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 7039,
+                      "name": "admin",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 6945,
+                      "src": "1416:5:45",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 7040,
+                      "name": "pendingAdmin",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 6947,
+                      "src": "1424:12:45",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
+                      }
+                    },
+                    "src": "1416:20:45",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "id": 7042,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1416:20:45"
+                },
+                {
+                  "expression": {
+                    "id": 7048,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 7043,
+                      "name": "pendingAdmin",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 6947,
+                      "src": "1481:12:45",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "hexValue": "30",
+                          "id": 7046,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1504:1:45",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          }
+                        ],
+                        "id": 7045,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "ElementaryTypeNameExpression",
+                        "src": "1496:7:45",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_address_$",
+                          "typeString": "type(address)"
+                        },
+                        "typeName": {
+                          "id": 7044,
+                          "name": "address",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "1496:7:45",
+                          "typeDescriptions": {}
+                        }
+                      },
+                      "id": 7047,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1496:10:45",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
+                      }
+                    },
+                    "src": "1481:25:45",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "id": 7049,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1481:25:45"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 7051,
+                        "name": "oldAdmin",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7032,
+                        "src": "1530:8:45",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 7052,
+                        "name": "admin",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 6945,
+                        "src": "1540:5:45",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      ],
+                      "id": 7050,
+                      "name": "NewAdmin",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 6961,
+                      "src": "1521:8:45",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$returns$__$",
+                        "typeString": "function (address,address)"
+                      }
+                    },
+                    "id": 7053,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1521:25:45",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7054,
+                  "nodeType": "EmitStatement",
+                  "src": "1516:30:45"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 7056,
+                        "name": "oldPendingAdmin",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7036,
+                        "src": "1577:15:45",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 7057,
+                        "name": "pendingAdmin",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 6947,
+                        "src": "1594:12:45",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      ],
+                      "id": 7055,
+                      "name": "NewPendingAdmin",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 6955,
+                      "src": "1561:15:45",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$returns$__$",
+                        "typeString": "function (address,address)"
+                      }
+                    },
+                    "id": 7058,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1561:46:45",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7059,
+                  "nodeType": "EmitStatement",
+                  "src": "1556:51:45"
+                }
+              ]
+            },
+            "functionSelector": "0e18b681",
+            "id": 7061,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "acceptAdmin",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7021,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1122:2:45"
+            },
+            "returnParameters": {
+              "id": 7022,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1142:0:45"
+            },
+            "scope": 7062,
+            "src": "1102:512:45",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "external"
+          }
+        ],
+        "scope": 7063,
+        "src": "63:1554:45"
+      }
+    ],
+    "src": "39:1579:45"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/Adminable.sol",
+      "exportedSymbols": {
+        "Adminable": [
+          7062
+        ]
+      },
+      "license": "BUSL-1.1"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.7",
+            ".6"
+          ]
+        },
+        "id": 6943,
+        "name": "PragmaDirective",
+        "src": "39:22:45"
+      },
+      {
+        "attributes": {
+          "abstract": true,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            7062
+          ],
+          "name": "Adminable",
+          "scope": 7063
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "functionSelector": "f851a440",
+              "mutability": "mutable",
+              "name": "admin",
+              "scope": 7062,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "address payable",
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "address",
+                  "stateMutability": "payable",
+                  "type": "address payable"
+                },
+                "id": 6944,
+                "name": "ElementaryTypeName",
+                "src": "97:15:45"
+              }
+            ],
+            "id": 6945,
+            "name": "VariableDeclaration",
+            "src": "97:28:45"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "functionSelector": "26782247",
+              "mutability": "mutable",
+              "name": "pendingAdmin",
+              "scope": 7062,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "address payable",
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "address",
+                  "stateMutability": "payable",
+                  "type": "address payable"
+                },
+                "id": 6946,
+                "name": "ElementaryTypeName",
+                "src": "131:15:45"
+              }
+            ],
+            "id": 6947,
+            "name": "VariableDeclaration",
+            "src": "131:35:45"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "functionSelector": "ca4b208b",
+              "mutability": "mutable",
+              "name": "developer",
+              "scope": 7062,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "address payable",
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "address",
+                  "stateMutability": "payable",
+                  "type": "address payable"
+                },
+                "id": 6948,
+                "name": "ElementaryTypeName",
+                "src": "172:15:45"
+              }
+            ],
+            "id": 6949,
+            "name": "VariableDeclaration",
+            "src": "172:32:45"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "name": "NewPendingAdmin"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "oldPendingAdmin",
+                      "scope": 6955,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 6950,
+                        "name": "ElementaryTypeName",
+                        "src": "233:7:45"
+                      }
+                    ],
+                    "id": 6951,
+                    "name": "VariableDeclaration",
+                    "src": "233:23:45"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "newPendingAdmin",
+                      "scope": 6955,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 6952,
+                        "name": "ElementaryTypeName",
+                        "src": "258:7:45"
+                      }
+                    ],
+                    "id": 6953,
+                    "name": "VariableDeclaration",
+                    "src": "258:23:45"
+                  }
+                ],
+                "id": 6954,
+                "name": "ParameterList",
+                "src": "232:50:45"
+              }
+            ],
+            "id": 6955,
+            "name": "EventDefinition",
+            "src": "211:72:45"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "name": "NewAdmin"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "oldAdmin",
+                      "scope": 6961,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 6956,
+                        "name": "ElementaryTypeName",
+                        "src": "304:7:45"
+                      }
+                    ],
+                    "id": 6957,
+                    "name": "VariableDeclaration",
+                    "src": "304:16:45"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "newAdmin",
+                      "scope": 6961,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 6958,
+                        "name": "ElementaryTypeName",
+                        "src": "322:7:45"
+                      }
+                    ],
+                    "id": 6959,
+                    "name": "VariableDeclaration",
+                    "src": "322:16:45"
+                  }
+                ],
+                "id": 6960,
+                "name": "ParameterList",
+                "src": "303:36:45"
+              }
+            ],
+            "id": 6961,
+            "name": "EventDefinition",
+            "src": "289:51:45"
+          },
+          {
+            "attributes": {
+              "implemented": true,
+              "isConstructor": true,
+              "kind": "constructor",
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "scope": 7062,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 6962,
+                "name": "ParameterList",
+                "src": "357:2:45"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 6963,
+                "name": "ParameterList",
+                "src": "360:0:45"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address payable"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 6949,
+                              "type": "address payable",
+                              "value": "developer"
+                            },
+                            "id": 6964,
+                            "name": "Identifier",
+                            "src": "370:9:45"
+                          },
+                          {
+                            "attributes": {
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "sender",
+                              "type": "address payable"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 4294967281,
+                                  "type": "msg",
+                                  "value": "msg"
+                                },
+                                "id": 6965,
+                                "name": "Identifier",
+                                "src": "382:3:45"
+                              }
+                            ],
+                            "id": 6966,
+                            "name": "MemberAccess",
+                            "src": "382:10:45"
+                          }
+                        ],
+                        "id": 6967,
+                        "name": "Assignment",
+                        "src": "370:22:45"
+                      }
+                    ],
+                    "id": 6968,
+                    "name": "ExpressionStatement",
+                    "src": "370:22:45"
+                  }
+                ],
+                "id": 6969,
+                "name": "Block",
+                "src": "360:39:45"
+              }
+            ],
+            "id": 6970,
+            "name": "FunctionDefinition",
+            "src": "345:54:45"
+          },
+          {
+            "attributes": {
+              "name": "onlyAdmin",
+              "virtual": false,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 6971,
+                "name": "ParameterList",
+                "src": "423:2:45"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_ff41a4e323d827d2d31bd7ec489a4cbc089a30e766fbba87597dc02e66123b78",
+                                  "typeString": "literal_string \"caller must be admin\""
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                4294967278,
+                                4294967278
+                              ],
+                              "referencedDeclaration": 4294967278,
+                              "type": "function (bool,string memory) pure",
+                              "value": "require"
+                            },
+                            "id": 6972,
+                            "name": "Identifier",
+                            "src": "436:7:45"
+                          },
+                          {
+                            "attributes": {
+                              "commonType": {
+                                "typeIdentifier": "t_address_payable",
+                                "typeString": "address payable"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "==",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "sender",
+                                  "type": "address payable"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 4294967281,
+                                      "type": "msg",
+                                      "value": "msg"
+                                    },
+                                    "id": 6973,
+                                    "name": "Identifier",
+                                    "src": "444:3:45"
+                                  }
+                                ],
+                                "id": 6974,
+                                "name": "MemberAccess",
+                                "src": "444:10:45"
+                              },
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 6945,
+                                  "type": "address payable",
+                                  "value": "admin"
+                                },
+                                "id": 6975,
+                                "name": "Identifier",
+                                "src": "458:5:45"
+                              }
+                            ],
+                            "id": 6976,
+                            "name": "BinaryOperation",
+                            "src": "444:19:45"
+                          },
+                          {
+                            "attributes": {
+                              "hexvalue": "63616c6c6572206d7573742062652061646d696e",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "token": "string",
+                              "type": "literal_string \"caller must be admin\"",
+                              "value": "caller must be admin"
+                            },
+                            "id": 6977,
+                            "name": "Literal",
+                            "src": "465:22:45"
+                          }
+                        ],
+                        "id": 6978,
+                        "name": "FunctionCall",
+                        "src": "436:52:45"
+                      }
+                    ],
+                    "id": 6979,
+                    "name": "ExpressionStatement",
+                    "src": "436:52:45"
+                  },
+                  {
+                    "id": 6980,
+                    "name": "PlaceholderStatement",
+                    "src": "498:1:45"
+                  }
+                ],
+                "id": 6981,
+                "name": "Block",
+                "src": "426:80:45"
+              }
+            ],
+            "id": 6982,
+            "name": "ModifierDefinition",
+            "src": "405:101:45"
+          },
+          {
+            "attributes": {
+              "name": "onlyAdminOrDeveloper",
+              "virtual": false,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 6983,
+                "name": "ParameterList",
+                "src": "540:2:45"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_beb641275ed0747c1caecf64c9952b231dd6a91e2ffc7ae910ecdab9b6df823d",
+                                  "typeString": "literal_string \"caller must be admin or developer\""
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                4294967278,
+                                4294967278
+                              ],
+                              "referencedDeclaration": 4294967278,
+                              "type": "function (bool,string memory) pure",
+                              "value": "require"
+                            },
+                            "id": 6984,
+                            "name": "Identifier",
+                            "src": "553:7:45"
+                          },
+                          {
+                            "attributes": {
+                              "commonType": {
+                                "typeIdentifier": "t_bool",
+                                "typeString": "bool"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "||",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "commonType": {
+                                    "typeIdentifier": "t_address_payable",
+                                    "typeString": "address payable"
+                                  },
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "operator": "==",
+                                  "type": "bool"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "sender",
+                                      "type": "address payable"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 4294967281,
+                                          "type": "msg",
+                                          "value": "msg"
+                                        },
+                                        "id": 6985,
+                                        "name": "Identifier",
+                                        "src": "561:3:45"
+                                      }
+                                    ],
+                                    "id": 6986,
+                                    "name": "MemberAccess",
+                                    "src": "561:10:45"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 6945,
+                                      "type": "address payable",
+                                      "value": "admin"
+                                    },
+                                    "id": 6987,
+                                    "name": "Identifier",
+                                    "src": "575:5:45"
+                                  }
+                                ],
+                                "id": 6988,
+                                "name": "BinaryOperation",
+                                "src": "561:19:45"
+                              },
+                              {
+                                "attributes": {
+                                  "commonType": {
+                                    "typeIdentifier": "t_address_payable",
+                                    "typeString": "address payable"
+                                  },
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "operator": "==",
+                                  "type": "bool"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "sender",
+                                      "type": "address payable"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 4294967281,
+                                          "type": "msg",
+                                          "value": "msg"
+                                        },
+                                        "id": 6989,
+                                        "name": "Identifier",
+                                        "src": "584:3:45"
+                                      }
+                                    ],
+                                    "id": 6990,
+                                    "name": "MemberAccess",
+                                    "src": "584:10:45"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 6949,
+                                      "type": "address payable",
+                                      "value": "developer"
+                                    },
+                                    "id": 6991,
+                                    "name": "Identifier",
+                                    "src": "598:9:45"
+                                  }
+                                ],
+                                "id": 6992,
+                                "name": "BinaryOperation",
+                                "src": "584:23:45"
+                              }
+                            ],
+                            "id": 6993,
+                            "name": "BinaryOperation",
+                            "src": "561:46:45"
+                          },
+                          {
+                            "attributes": {
+                              "hexvalue": "63616c6c6572206d7573742062652061646d696e206f7220646576656c6f706572",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "token": "string",
+                              "type": "literal_string \"caller must be admin or developer\"",
+                              "value": "caller must be admin or developer"
+                            },
+                            "id": 6994,
+                            "name": "Literal",
+                            "src": "609:35:45"
+                          }
+                        ],
+                        "id": 6995,
+                        "name": "FunctionCall",
+                        "src": "553:92:45"
+                      }
+                    ],
+                    "id": 6996,
+                    "name": "ExpressionStatement",
+                    "src": "553:92:45"
+                  },
+                  {
+                    "id": 6997,
+                    "name": "PlaceholderStatement",
+                    "src": "655:1:45"
+                  }
+                ],
+                "id": 6998,
+                "name": "Block",
+                "src": "543:120:45"
+              }
+            ],
+            "id": 6999,
+            "name": "ModifierDefinition",
+            "src": "511:152:45"
+          },
+          {
+            "attributes": {
+              "functionSelector": "4dd18bf5",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "name": "setPendingAdmin",
+              "scope": 7062,
+              "stateMutability": "nonpayable",
+              "virtual": true,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "newPendingAdmin",
+                      "scope": 7020,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address payable",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "payable",
+                          "type": "address payable"
+                        },
+                        "id": 7000,
+                        "name": "ElementaryTypeName",
+                        "src": "694:15:45"
+                      }
+                    ],
+                    "id": 7001,
+                    "name": "VariableDeclaration",
+                    "src": "694:31:45"
+                  }
+                ],
+                "id": 7002,
+                "name": "ParameterList",
+                "src": "693:33:45"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7005,
+                "name": "ParameterList",
+                "src": "754:0:45"
+              },
+              {
+                "attributes": {},
+                "children": [
+                  {
+                    "attributes": {
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 6982,
+                      "type": "modifier ()",
+                      "value": "onlyAdmin"
+                    },
+                    "id": 7003,
+                    "name": "Identifier",
+                    "src": "744:9:45"
+                  }
+                ],
+                "id": 7004,
+                "name": "ModifierInvocation",
+                "src": "744:9:45"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        7007
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "mutability": "mutable",
+                          "name": "oldPendingAdmin",
+                          "scope": 7019,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "address",
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "address",
+                              "stateMutability": "nonpayable",
+                              "type": "address"
+                            },
+                            "id": 7006,
+                            "name": "ElementaryTypeName",
+                            "src": "824:7:45"
+                          }
+                        ],
+                        "id": 7007,
+                        "name": "VariableDeclaration",
+                        "src": "824:23:45"
+                      },
+                      {
+                        "attributes": {
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 6947,
+                          "type": "address payable",
+                          "value": "pendingAdmin"
+                        },
+                        "id": 7008,
+                        "name": "Identifier",
+                        "src": "850:12:45"
+                      }
+                    ],
+                    "id": 7009,
+                    "name": "VariableDeclarationStatement",
+                    "src": "824:38:45"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address payable"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 6947,
+                              "type": "address payable",
+                              "value": "pendingAdmin"
+                            },
+                            "id": 7010,
+                            "name": "Identifier",
+                            "src": "929:12:45"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 7001,
+                              "type": "address payable",
+                              "value": "newPendingAdmin"
+                            },
+                            "id": 7011,
+                            "name": "Identifier",
+                            "src": "944:15:45"
+                          }
+                        ],
+                        "id": 7012,
+                        "name": "Assignment",
+                        "src": "929:30:45"
+                      }
+                    ],
+                    "id": 7013,
+                    "name": "ExpressionStatement",
+                    "src": "929:30:45"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_address_payable",
+                                  "typeString": "address payable"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 6955,
+                              "type": "function (address,address)",
+                              "value": "NewPendingAdmin"
+                            },
+                            "id": 7014,
+                            "name": "Identifier",
+                            "src": "1040:15:45"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 7007,
+                              "type": "address",
+                              "value": "oldPendingAdmin"
+                            },
+                            "id": 7015,
+                            "name": "Identifier",
+                            "src": "1056:15:45"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 7001,
+                              "type": "address payable",
+                              "value": "newPendingAdmin"
+                            },
+                            "id": 7016,
+                            "name": "Identifier",
+                            "src": "1073:15:45"
+                          }
+                        ],
+                        "id": 7017,
+                        "name": "FunctionCall",
+                        "src": "1040:49:45"
+                      }
+                    ],
+                    "id": 7018,
+                    "name": "EmitStatement",
+                    "src": "1035:54:45"
+                  }
+                ],
+                "id": 7019,
+                "name": "Block",
+                "src": "754:342:45"
+              }
+            ],
+            "id": 7020,
+            "name": "FunctionDefinition",
+            "src": "669:427:45"
+          },
+          {
+            "attributes": {
+              "functionSelector": "0e18b681",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "acceptAdmin",
+              "scope": 7062,
+              "stateMutability": "nonpayable",
+              "virtual": true,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7021,
+                "name": "ParameterList",
+                "src": "1122:2:45"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7022,
+                "name": "ParameterList",
+                "src": "1142:0:45"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_51f86bfc29c42128c8465cf3e47848b6ab08b3a55b54f201294b60a1d4ed3ec3",
+                                  "typeString": "literal_string \"only pendingAdmin can accept admin\""
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                4294967278,
+                                4294967278
+                              ],
+                              "referencedDeclaration": 4294967278,
+                              "type": "function (bool,string memory) pure",
+                              "value": "require"
+                            },
+                            "id": 7023,
+                            "name": "Identifier",
+                            "src": "1152:7:45"
+                          },
+                          {
+                            "attributes": {
+                              "commonType": {
+                                "typeIdentifier": "t_address_payable",
+                                "typeString": "address payable"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "==",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "sender",
+                                  "type": "address payable"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 4294967281,
+                                      "type": "msg",
+                                      "value": "msg"
+                                    },
+                                    "id": 7024,
+                                    "name": "Identifier",
+                                    "src": "1160:3:45"
+                                  }
+                                ],
+                                "id": 7025,
+                                "name": "MemberAccess",
+                                "src": "1160:10:45"
+                              },
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 6947,
+                                  "type": "address payable",
+                                  "value": "pendingAdmin"
+                                },
+                                "id": 7026,
+                                "name": "Identifier",
+                                "src": "1174:12:45"
+                              }
+                            ],
+                            "id": 7027,
+                            "name": "BinaryOperation",
+                            "src": "1160:26:45"
+                          },
+                          {
+                            "attributes": {
+                              "hexvalue": "6f6e6c792070656e64696e6741646d696e2063616e206163636570742061646d696e",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "token": "string",
+                              "type": "literal_string \"only pendingAdmin can accept admin\"",
+                              "value": "only pendingAdmin can accept admin"
+                            },
+                            "id": 7028,
+                            "name": "Literal",
+                            "src": "1188:36:45"
+                          }
+                        ],
+                        "id": 7029,
+                        "name": "FunctionCall",
+                        "src": "1152:73:45"
+                      }
+                    ],
+                    "id": 7030,
+                    "name": "ExpressionStatement",
+                    "src": "1152:73:45"
+                  },
+                  {
+                    "attributes": {
+                      "assignments": [
+                        7032
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "mutability": "mutable",
+                          "name": "oldAdmin",
+                          "scope": 7060,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "address",
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "address",
+                              "stateMutability": "nonpayable",
+                              "type": "address"
+                            },
+                            "id": 7031,
+                            "name": "ElementaryTypeName",
+                            "src": "1287:7:45"
+                          }
+                        ],
+                        "id": 7032,
+                        "name": "VariableDeclaration",
+                        "src": "1287:16:45"
+                      },
+                      {
+                        "attributes": {
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 6945,
+                          "type": "address payable",
+                          "value": "admin"
+                        },
+                        "id": 7033,
+                        "name": "Identifier",
+                        "src": "1306:5:45"
+                      }
+                    ],
+                    "id": 7034,
+                    "name": "VariableDeclarationStatement",
+                    "src": "1287:24:45"
+                  },
+                  {
+                    "attributes": {
+                      "assignments": [
+                        7036
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "mutability": "mutable",
+                          "name": "oldPendingAdmin",
+                          "scope": 7060,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "address",
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "address",
+                              "stateMutability": "nonpayable",
+                              "type": "address"
+                            },
+                            "id": 7035,
+                            "name": "ElementaryTypeName",
+                            "src": "1321:7:45"
+                          }
+                        ],
+                        "id": 7036,
+                        "name": "VariableDeclaration",
+                        "src": "1321:23:45"
+                      },
+                      {
+                        "attributes": {
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 6947,
+                          "type": "address payable",
+                          "value": "pendingAdmin"
+                        },
+                        "id": 7037,
+                        "name": "Identifier",
+                        "src": "1347:12:45"
+                      }
+                    ],
+                    "id": 7038,
+                    "name": "VariableDeclarationStatement",
+                    "src": "1321:38:45"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address payable"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 6945,
+                              "type": "address payable",
+                              "value": "admin"
+                            },
+                            "id": 7039,
+                            "name": "Identifier",
+                            "src": "1416:5:45"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 6947,
+                              "type": "address payable",
+                              "value": "pendingAdmin"
+                            },
+                            "id": 7040,
+                            "name": "Identifier",
+                            "src": "1424:12:45"
+                          }
+                        ],
+                        "id": 7041,
+                        "name": "Assignment",
+                        "src": "1416:20:45"
+                      }
+                    ],
+                    "id": 7042,
+                    "name": "ExpressionStatement",
+                    "src": "1416:20:45"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address payable"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 6947,
+                              "type": "address payable",
+                              "value": "pendingAdmin"
+                            },
+                            "id": 7043,
+                            "name": "Identifier",
+                            "src": "1481:12:45"
+                          },
+                          {
+                            "attributes": {
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "tryCall": false,
+                              "type": "address payable",
+                              "type_conversion": true
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_rational_0_by_1",
+                                      "typeString": "int_const 0"
+                                    }
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "type": "type(address)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "name": "address"
+                                    },
+                                    "id": 7044,
+                                    "name": "ElementaryTypeName",
+                                    "src": "1496:7:45"
+                                  }
+                                ],
+                                "id": 7045,
+                                "name": "ElementaryTypeNameExpression",
+                                "src": "1496:7:45"
+                              },
+                              {
+                                "attributes": {
+                                  "hexvalue": "30",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "token": "number",
+                                  "type": "int_const 0",
+                                  "value": "0"
+                                },
+                                "id": 7046,
+                                "name": "Literal",
+                                "src": "1504:1:45"
+                              }
+                            ],
+                            "id": 7047,
+                            "name": "FunctionCall",
+                            "src": "1496:10:45"
+                          }
+                        ],
+                        "id": 7048,
+                        "name": "Assignment",
+                        "src": "1481:25:45"
+                      }
+                    ],
+                    "id": 7049,
+                    "name": "ExpressionStatement",
+                    "src": "1481:25:45"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_address_payable",
+                                  "typeString": "address payable"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 6961,
+                              "type": "function (address,address)",
+                              "value": "NewAdmin"
+                            },
+                            "id": 7050,
+                            "name": "Identifier",
+                            "src": "1521:8:45"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 7032,
+                              "type": "address",
+                              "value": "oldAdmin"
+                            },
+                            "id": 7051,
+                            "name": "Identifier",
+                            "src": "1530:8:45"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 6945,
+                              "type": "address payable",
+                              "value": "admin"
+                            },
+                            "id": 7052,
+                            "name": "Identifier",
+                            "src": "1540:5:45"
+                          }
+                        ],
+                        "id": 7053,
+                        "name": "FunctionCall",
+                        "src": "1521:25:45"
+                      }
+                    ],
+                    "id": 7054,
+                    "name": "EmitStatement",
+                    "src": "1516:30:45"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_address_payable",
+                                  "typeString": "address payable"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 6955,
+                              "type": "function (address,address)",
+                              "value": "NewPendingAdmin"
+                            },
+                            "id": 7055,
+                            "name": "Identifier",
+                            "src": "1561:15:45"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 7036,
+                              "type": "address",
+                              "value": "oldPendingAdmin"
+                            },
+                            "id": 7056,
+                            "name": "Identifier",
+                            "src": "1577:15:45"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 6947,
+                              "type": "address payable",
+                              "value": "pendingAdmin"
+                            },
+                            "id": 7057,
+                            "name": "Identifier",
+                            "src": "1594:12:45"
+                          }
+                        ],
+                        "id": 7058,
+                        "name": "FunctionCall",
+                        "src": "1561:46:45"
+                      }
+                    ],
+                    "id": 7059,
+                    "name": "EmitStatement",
+                    "src": "1556:51:45"
+                  }
+                ],
+                "id": 7060,
+                "name": "Block",
+                "src": "1142:472:45"
+              }
+            ],
+            "id": 7061,
+            "name": "FunctionDefinition",
+            "src": "1102:512:45"
+          }
+        ],
+        "id": 7062,
+        "name": "ContractDefinition",
+        "src": "63:1554:45"
+      }
+    ],
+    "id": 7063,
+    "name": "SourceUnit",
+    "src": "39:1579:45"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.7.6+commit.7338295f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2025-02-26T03:47:59.353Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

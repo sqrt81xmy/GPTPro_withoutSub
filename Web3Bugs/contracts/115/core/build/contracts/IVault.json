@@ -1,0 +1,1325 @@
+{
+  "contractName": "IVault",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "bytes32",
+              "name": "poolId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "enum IVault.SwapKind",
+              "name": "kind",
+              "type": "uint8"
+            },
+            {
+              "internalType": "contract IAsset",
+              "name": "assetIn",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IAsset",
+              "name": "assetOut",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes",
+              "name": "userData",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct IVault.SingleSwap",
+          "name": "singleSwap",
+          "type": "tuple"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "sender",
+              "type": "address"
+            },
+            {
+              "internalType": "bool",
+              "name": "fromInternalBalance",
+              "type": "bool"
+            },
+            {
+              "internalType": "address payable",
+              "name": "recipient",
+              "type": "address"
+            },
+            {
+              "internalType": "bool",
+              "name": "toInternalBalance",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct IVault.FundManagement",
+          "name": "funds",
+          "type": "tuple"
+        },
+        {
+          "internalType": "uint256",
+          "name": "limit",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        }
+      ],
+      "name": "swap",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"poolId\",\"type\":\"bytes32\"},{\"internalType\":\"enum IVault.SwapKind\",\"name\":\"kind\",\"type\":\"uint8\"},{\"internalType\":\"contract IAsset\",\"name\":\"assetIn\",\"type\":\"address\"},{\"internalType\":\"contract IAsset\",\"name\":\"assetOut\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"userData\",\"type\":\"bytes\"}],\"internalType\":\"struct IVault.SingleSwap\",\"name\":\"singleSwap\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"fromInternalBalance\",\"type\":\"bool\"},{\"internalType\":\"address payable\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"toInternalBalance\",\"type\":\"bool\"}],\"internalType\":\"struct IVault.FundManagement\",\"name\":\"funds\",\"type\":\"tuple\"},{\"internalType\":\"uint256\",\"name\":\"limit\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"}],\"name\":\"swap\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"swap((bytes32,uint8,address,address,uint256,bytes),(address,bool,address,bool),uint256,uint256)\":{\"details\":\"Performs a swap with a single Pool. If the swap is 'given in' (the number of tokens to send to the Pool is known), it returns the amount of tokens taken from the Pool, which must be greater than or equal to `limit`. If the swap is 'given out' (the number of tokens to take from the Pool is known), it returns the amount of tokens sent to the Pool, which must be less than or equal to `limit`. Internal Balance usage and the recipient are determined by the `funds` struct. Emits a `Swap` event.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/libraries/interfaces/IVault.sol\":\"IVault\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/libraries/interfaces/IVault.sol\":{\"keccak256\":\"0x55ebf3e3367c0a1e3cb7fd73011211b1c85dbb839c05e1e601c2fe01d4afad94\",\"license\":\"AGPL-3.0\",\"urls\":[\"bzz-raw://77f7aba92d0f5bc565901326a4997f36f920915763cd02c4d8d4a95fa4b81cea\",\"dweb:/ipfs/QmceybcHQYc6W3QrwD8nHUxPo8QQDP6ck3Z3xJMjQanqtQ\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: AGPL-3.0\n\npragma solidity 0.6.12;\npragma experimental ABIEncoderV2;\n\ninterface IAsset {\n  // solhint-disable-previous-line no-empty-blocks\n}\n\ninterface IVault {\n  enum SwapKind { GIVEN_IN, GIVEN_OUT }\n\n  /**\n   * @dev Data for a single swap executed by `swap`. `amount` is either `amountIn` or `amountOut` depending on\n   * the `kind` value.\n   *\n   * `assetIn` and `assetOut` are either token addresses, or the IAsset sentinel value for ETH (the zero address).\n   * Note that Pools never interact with ETH directly: it will be wrapped to or unwrapped from WETH by the Vault.\n   *\n   * The `userData` field is ignored by the Vault, but forwarded to the Pool in the `onSwap` hook, and may be\n   * used to extend swap behavior.\n   */\n  struct SingleSwap {\n    bytes32 poolId;\n    SwapKind kind;\n    IAsset assetIn;\n    IAsset assetOut;\n    uint256 amount;\n    bytes userData;\n  }\n\n  /**\n   * @dev All tokens in a swap are either sent from the `sender` account to the Vault, or from the Vault to the\n   * `recipient` account.\n   *\n   * If the caller is not `sender`, it must be an authorized relayer for them.\n   *\n   * If `fromInternalBalance` is true, the `sender`'s Internal Balance will be preferred, performing an ERC20\n   * transfer for the difference between the requested amount and the User's Internal Balance (if any). The `sender`\n   * must have allowed the Vault to use their tokens via `IERC20.approve()`. This matches the behavior of\n   * `joinPool`.\n   *\n   * If `toInternalBalance` is true, tokens will be deposited to `recipient`'s internal balance instead of\n   * transferred. This matches the behavior of `exitPool`.\n   *\n   * Note that ETH cannot be deposited to or withdrawn from Internal Balance: attempting to do so will trigger a\n   * revert.\n   */\n  struct FundManagement {\n    address sender;\n    bool fromInternalBalance;\n    address payable recipient;\n    bool toInternalBalance;\n  }\n\n  /**\n   * @dev Performs a swap with a single Pool.\n   *\n   * If the swap is 'given in' (the number of tokens to send to the Pool is known), it returns the amount of tokens\n   * taken from the Pool, which must be greater than or equal to `limit`.\n   *\n   * If the swap is 'given out' (the number of tokens to take from the Pool is known), it returns the amount of tokens\n   * sent to the Pool, which must be less than or equal to `limit`.\n   *\n   * Internal Balance usage and the recipient are determined by the `funds` struct.\n   *\n   * Emits a `Swap` event.\n   */\n  function swap(\n    SingleSwap memory singleSwap,\n    FundManagement memory funds,\n    uint256 limit,\n    uint256 deadline\n  ) external payable returns (uint256);\n}\n",
+  "sourcePath": "/home/mingyue/sub_contract_content/Web3Bugs/contracts/115/core/contracts/libraries/interfaces/IVault.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/libraries/interfaces/IVault.sol",
+    "exportedSymbols": {
+      "IAsset": [
+        19424
+      ],
+      "IVault": [
+        19464
+      ]
+    },
+    "id": 19465,
+    "license": "AGPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 19422,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:23:72"
+      },
+      {
+        "id": 19423,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "62:33:72"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 19424,
+        "linearizedBaseContracts": [
+          19424
+        ],
+        "name": "IAsset",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 19465,
+        "src": "97:71:72"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 19464,
+        "linearizedBaseContracts": [
+          19464
+        ],
+        "name": "IVault",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IVault.SwapKind",
+            "id": 19427,
+            "members": [
+              {
+                "id": 19425,
+                "name": "GIVEN_IN",
+                "nodeType": "EnumValue",
+                "src": "207:8:72"
+              },
+              {
+                "id": 19426,
+                "name": "GIVEN_OUT",
+                "nodeType": "EnumValue",
+                "src": "217:9:72"
+              }
+            ],
+            "name": "SwapKind",
+            "nodeType": "EnumDefinition",
+            "src": "191:37:72"
+          },
+          {
+            "canonicalName": "IVault.SingleSwap",
+            "id": 19440,
+            "members": [
+              {
+                "constant": false,
+                "id": 19429,
+                "mutability": "mutable",
+                "name": "poolId",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 19440,
+                "src": "786:14:72",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 19428,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "786:7:72",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 19431,
+                "mutability": "mutable",
+                "name": "kind",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 19440,
+                "src": "806:13:72",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_SwapKind_$19427",
+                  "typeString": "enum IVault.SwapKind"
+                },
+                "typeName": {
+                  "contractScope": null,
+                  "id": 19430,
+                  "name": "SwapKind",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 19427,
+                  "src": "806:8:72",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_SwapKind_$19427",
+                    "typeString": "enum IVault.SwapKind"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 19433,
+                "mutability": "mutable",
+                "name": "assetIn",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 19440,
+                "src": "825:14:72",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_IAsset_$19424",
+                  "typeString": "contract IAsset"
+                },
+                "typeName": {
+                  "contractScope": null,
+                  "id": 19432,
+                  "name": "IAsset",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 19424,
+                  "src": "825:6:72",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IAsset_$19424",
+                    "typeString": "contract IAsset"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 19435,
+                "mutability": "mutable",
+                "name": "assetOut",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 19440,
+                "src": "845:15:72",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_IAsset_$19424",
+                  "typeString": "contract IAsset"
+                },
+                "typeName": {
+                  "contractScope": null,
+                  "id": 19434,
+                  "name": "IAsset",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 19424,
+                  "src": "845:6:72",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IAsset_$19424",
+                    "typeString": "contract IAsset"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 19437,
+                "mutability": "mutable",
+                "name": "amount",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 19440,
+                "src": "866:14:72",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 19436,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "866:7:72",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 19439,
+                "mutability": "mutable",
+                "name": "userData",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 19440,
+                "src": "886:14:72",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes_storage_ptr",
+                  "typeString": "bytes"
+                },
+                "typeName": {
+                  "id": 19438,
+                  "name": "bytes",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "886:5:72",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_storage_ptr",
+                    "typeString": "bytes"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "SingleSwap",
+            "nodeType": "StructDefinition",
+            "scope": 19464,
+            "src": "762:143:72",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "IVault.FundManagement",
+            "id": 19449,
+            "members": [
+              {
+                "constant": false,
+                "id": 19442,
+                "mutability": "mutable",
+                "name": "sender",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 19449,
+                "src": "1828:14:72",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 19441,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1828:7:72",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 19444,
+                "mutability": "mutable",
+                "name": "fromInternalBalance",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 19449,
+                "src": "1848:24:72",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 19443,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1848:4:72",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 19446,
+                "mutability": "mutable",
+                "name": "recipient",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 19449,
+                "src": "1878:25:72",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address_payable",
+                  "typeString": "address payable"
+                },
+                "typeName": {
+                  "id": 19445,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1878:15:72",
+                  "stateMutability": "payable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address_payable",
+                    "typeString": "address payable"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 19448,
+                "mutability": "mutable",
+                "name": "toInternalBalance",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 19449,
+                "src": "1909:22:72",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 19447,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1909:4:72",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "FundManagement",
+            "nodeType": "StructDefinition",
+            "scope": 19464,
+            "src": "1800:136:72",
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 19450,
+              "nodeType": "StructuredDocumentation",
+              "src": "1940:563:72",
+              "text": " @dev Performs a swap with a single Pool.\n If the swap is 'given in' (the number of tokens to send to the Pool is known), it returns the amount of tokens\n taken from the Pool, which must be greater than or equal to `limit`.\n If the swap is 'given out' (the number of tokens to take from the Pool is known), it returns the amount of tokens\n sent to the Pool, which must be less than or equal to `limit`.\n Internal Balance usage and the recipient are determined by the `funds` struct.\n Emits a `Swap` event."
+            },
+            "functionSelector": "52bbbe29",
+            "id": 19463,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "swap",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 19459,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19452,
+                  "mutability": "mutable",
+                  "name": "singleSwap",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 19463,
+                  "src": "2525:28:72",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_SingleSwap_$19440_memory_ptr",
+                    "typeString": "struct IVault.SingleSwap"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19451,
+                    "name": "SingleSwap",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19440,
+                    "src": "2525:10:72",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_SingleSwap_$19440_storage_ptr",
+                      "typeString": "struct IVault.SingleSwap"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 19454,
+                  "mutability": "mutable",
+                  "name": "funds",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 19463,
+                  "src": "2559:27:72",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_FundManagement_$19449_memory_ptr",
+                    "typeString": "struct IVault.FundManagement"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19453,
+                    "name": "FundManagement",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19449,
+                    "src": "2559:14:72",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_FundManagement_$19449_storage_ptr",
+                      "typeString": "struct IVault.FundManagement"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 19456,
+                  "mutability": "mutable",
+                  "name": "limit",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 19463,
+                  "src": "2592:13:72",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 19455,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2592:7:72",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 19458,
+                  "mutability": "mutable",
+                  "name": "deadline",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 19463,
+                  "src": "2611:16:72",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 19457,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2611:7:72",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2519:112:72"
+            },
+            "returnParameters": {
+              "id": 19462,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19461,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 19463,
+                  "src": "2658:7:72",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 19460,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2658:7:72",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2657:9:72"
+            },
+            "scope": 19464,
+            "src": "2506:161:72",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 19465,
+        "src": "170:2499:72"
+      }
+    ],
+    "src": "38:2632:72"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/libraries/interfaces/IVault.sol",
+      "exportedSymbols": {
+        "IAsset": [
+          19424
+        ],
+        "IVault": [
+          19464
+        ]
+      },
+      "license": "AGPL-3.0"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.6",
+            ".12"
+          ]
+        },
+        "id": 19422,
+        "name": "PragmaDirective",
+        "src": "38:23:72"
+      },
+      {
+        "attributes": {
+          "literals": [
+            "experimental",
+            "ABIEncoderV2"
+          ]
+        },
+        "id": 19423,
+        "name": "PragmaDirective",
+        "src": "62:33:72"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            19424
+          ],
+          "name": "IAsset",
+          "nodes": [
+            null
+          ],
+          "scope": 19465
+        },
+        "id": 19424,
+        "name": "ContractDefinition",
+        "src": "97:71:72"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            19464
+          ],
+          "name": "IVault",
+          "scope": 19465
+        },
+        "children": [
+          {
+            "attributes": {
+              "canonicalName": "IVault.SwapKind",
+              "name": "SwapKind"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "GIVEN_IN"
+                },
+                "id": 19425,
+                "name": "EnumValue",
+                "src": "207:8:72"
+              },
+              {
+                "attributes": {
+                  "name": "GIVEN_OUT"
+                },
+                "id": 19426,
+                "name": "EnumValue",
+                "src": "217:9:72"
+              }
+            ],
+            "id": 19427,
+            "name": "EnumDefinition",
+            "src": "191:37:72"
+          },
+          {
+            "attributes": {
+              "canonicalName": "IVault.SingleSwap",
+              "name": "SingleSwap",
+              "scope": 19464,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "poolId",
+                  "overrides": null,
+                  "scope": 19440,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bytes32",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes32",
+                      "type": "bytes32"
+                    },
+                    "id": 19428,
+                    "name": "ElementaryTypeName",
+                    "src": "786:7:72"
+                  }
+                ],
+                "id": 19429,
+                "name": "VariableDeclaration",
+                "src": "786:14:72"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "kind",
+                  "overrides": null,
+                  "scope": 19440,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "enum IVault.SwapKind",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "SwapKind",
+                      "referencedDeclaration": 19427,
+                      "type": "enum IVault.SwapKind"
+                    },
+                    "id": 19430,
+                    "name": "UserDefinedTypeName",
+                    "src": "806:8:72"
+                  }
+                ],
+                "id": 19431,
+                "name": "VariableDeclaration",
+                "src": "806:13:72"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "assetIn",
+                  "overrides": null,
+                  "scope": 19440,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "contract IAsset",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "IAsset",
+                      "referencedDeclaration": 19424,
+                      "type": "contract IAsset"
+                    },
+                    "id": 19432,
+                    "name": "UserDefinedTypeName",
+                    "src": "825:6:72"
+                  }
+                ],
+                "id": 19433,
+                "name": "VariableDeclaration",
+                "src": "825:14:72"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "assetOut",
+                  "overrides": null,
+                  "scope": 19440,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "contract IAsset",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "IAsset",
+                      "referencedDeclaration": 19424,
+                      "type": "contract IAsset"
+                    },
+                    "id": 19434,
+                    "name": "UserDefinedTypeName",
+                    "src": "845:6:72"
+                  }
+                ],
+                "id": 19435,
+                "name": "VariableDeclaration",
+                "src": "845:15:72"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "overrides": null,
+                  "scope": 19440,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 19436,
+                    "name": "ElementaryTypeName",
+                    "src": "866:7:72"
+                  }
+                ],
+                "id": 19437,
+                "name": "VariableDeclaration",
+                "src": "866:14:72"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "userData",
+                  "overrides": null,
+                  "scope": 19440,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bytes",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes",
+                      "type": "bytes"
+                    },
+                    "id": 19438,
+                    "name": "ElementaryTypeName",
+                    "src": "886:5:72"
+                  }
+                ],
+                "id": 19439,
+                "name": "VariableDeclaration",
+                "src": "886:14:72"
+              }
+            ],
+            "id": 19440,
+            "name": "StructDefinition",
+            "src": "762:143:72"
+          },
+          {
+            "attributes": {
+              "canonicalName": "IVault.FundManagement",
+              "name": "FundManagement",
+              "scope": 19464,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "sender",
+                  "overrides": null,
+                  "scope": 19449,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "address",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "stateMutability": "nonpayable",
+                      "type": "address"
+                    },
+                    "id": 19441,
+                    "name": "ElementaryTypeName",
+                    "src": "1828:7:72"
+                  }
+                ],
+                "id": 19442,
+                "name": "VariableDeclaration",
+                "src": "1828:14:72"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "fromInternalBalance",
+                  "overrides": null,
+                  "scope": 19449,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bool",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bool",
+                      "type": "bool"
+                    },
+                    "id": 19443,
+                    "name": "ElementaryTypeName",
+                    "src": "1848:4:72"
+                  }
+                ],
+                "id": 19444,
+                "name": "VariableDeclaration",
+                "src": "1848:24:72"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "recipient",
+                  "overrides": null,
+                  "scope": 19449,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "address payable",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "stateMutability": "payable",
+                      "type": "address payable"
+                    },
+                    "id": 19445,
+                    "name": "ElementaryTypeName",
+                    "src": "1878:15:72"
+                  }
+                ],
+                "id": 19446,
+                "name": "VariableDeclaration",
+                "src": "1878:25:72"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "toInternalBalance",
+                  "overrides": null,
+                  "scope": 19449,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bool",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bool",
+                      "type": "bool"
+                    },
+                    "id": 19447,
+                    "name": "ElementaryTypeName",
+                    "src": "1909:4:72"
+                  }
+                ],
+                "id": 19448,
+                "name": "VariableDeclaration",
+                "src": "1909:22:72"
+              }
+            ],
+            "id": 19449,
+            "name": "StructDefinition",
+            "src": "1800:136:72"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "52bbbe29",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "swap",
+              "overrides": null,
+              "scope": 19464,
+              "stateMutability": "payable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": " @dev Performs a swap with a single Pool.\n If the swap is 'given in' (the number of tokens to send to the Pool is known), it returns the amount of tokens\n taken from the Pool, which must be greater than or equal to `limit`.\n If the swap is 'given out' (the number of tokens to take from the Pool is known), it returns the amount of tokens\n sent to the Pool, which must be less than or equal to `limit`.\n Internal Balance usage and the recipient are determined by the `funds` struct.\n Emits a `Swap` event."
+                },
+                "id": 19450,
+                "name": "StructuredDocumentation",
+                "src": "1940:563:72"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "singleSwap",
+                      "overrides": null,
+                      "scope": 19463,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "struct IVault.SingleSwap",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "SingleSwap",
+                          "referencedDeclaration": 19440,
+                          "type": "struct IVault.SingleSwap"
+                        },
+                        "id": 19451,
+                        "name": "UserDefinedTypeName",
+                        "src": "2525:10:72"
+                      }
+                    ],
+                    "id": 19452,
+                    "name": "VariableDeclaration",
+                    "src": "2525:28:72"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "funds",
+                      "overrides": null,
+                      "scope": 19463,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "struct IVault.FundManagement",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "FundManagement",
+                          "referencedDeclaration": 19449,
+                          "type": "struct IVault.FundManagement"
+                        },
+                        "id": 19453,
+                        "name": "UserDefinedTypeName",
+                        "src": "2559:14:72"
+                      }
+                    ],
+                    "id": 19454,
+                    "name": "VariableDeclaration",
+                    "src": "2559:27:72"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "limit",
+                      "overrides": null,
+                      "scope": 19463,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 19455,
+                        "name": "ElementaryTypeName",
+                        "src": "2592:7:72"
+                      }
+                    ],
+                    "id": 19456,
+                    "name": "VariableDeclaration",
+                    "src": "2592:13:72"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "deadline",
+                      "overrides": null,
+                      "scope": 19463,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 19457,
+                        "name": "ElementaryTypeName",
+                        "src": "2611:7:72"
+                      }
+                    ],
+                    "id": 19458,
+                    "name": "VariableDeclaration",
+                    "src": "2611:16:72"
+                  }
+                ],
+                "id": 19459,
+                "name": "ParameterList",
+                "src": "2519:112:72"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 19463,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 19460,
+                        "name": "ElementaryTypeName",
+                        "src": "2658:7:72"
+                      }
+                    ],
+                    "id": 19461,
+                    "name": "VariableDeclaration",
+                    "src": "2658:7:72"
+                  }
+                ],
+                "id": 19462,
+                "name": "ParameterList",
+                "src": "2657:9:72"
+              }
+            ],
+            "id": 19463,
+            "name": "FunctionDefinition",
+            "src": "2506:161:72"
+          }
+        ],
+        "id": 19464,
+        "name": "ContractDefinition",
+        "src": "170:2499:72"
+      }
+    ],
+    "id": 19465,
+    "name": "SourceUnit",
+    "src": "38:2632:72"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.7",
+  "updatedAt": "2025-02-28T14:09:34.642Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "swap((bytes32,uint8,address,address,uint256,bytes),(address,bool,address,bool),uint256,uint256)": {
+        "details": "Performs a swap with a single Pool. If the swap is 'given in' (the number of tokens to send to the Pool is known), it returns the amount of tokens taken from the Pool, which must be greater than or equal to `limit`. If the swap is 'given out' (the number of tokens to take from the Pool is known), it returns the amount of tokens sent to the Pool, which must be less than or equal to `limit`. Internal Balance usage and the recipient are determined by the `funds` struct. Emits a `Swap` event."
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

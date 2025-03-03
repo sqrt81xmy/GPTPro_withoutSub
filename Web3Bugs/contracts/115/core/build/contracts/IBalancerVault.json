@@ -1,0 +1,850 @@
+{
+  "contractName": "IBalancerVault",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "poolId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getPool",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "enum IBalancerVault.PoolSpecialization",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "poolId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getPoolTokens",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "tokens",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "balances",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256",
+          "name": "lastChangeBlock",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"poolId\",\"type\":\"bytes32\"}],\"name\":\"getPool\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"enum IBalancerVault.PoolSpecialization\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"poolId\",\"type\":\"bytes32\"}],\"name\":\"getPoolTokens\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"tokens\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"balances\",\"type\":\"uint256[]\"},{\"internalType\":\"uint256\",\"name\":\"lastChangeBlock\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"getPool(bytes32)\":{\"details\":\"Returns a Pool's contract address and specialization setting.\"},\"getPoolTokens(bytes32)\":{\"details\":\"Returns a Pool's registered tokens, the total balance for each, and the latest block when *any* of the tokens' `balances` changed. The order of the `tokens` array is the same order that will be used in `joinPool`, `exitPool`, as well as in all Pool hooks (where applicable). Calls to `registerTokens` and `deregisterTokens` may change this order. If a Pool only registers tokens once, and these are sorted in ascending order, they will be stored in the same order as passed to `registerTokens`. Total balances include both tokens held by the Vault and those withdrawn by the Pool's Asset Managers. These are the amounts used by joins, exits and swaps. For a detailed breakdown of token balances, use `getPoolTokenInfo` instead.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/interfaces/IBalancerVault.sol\":\"IBalancerVault\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/interfaces/IBalancerVault.sol\":{\"keccak256\":\"0x1e5f98a92f9ef321d8bba44fc7cd2d17e95a75603d32ecd5eb3ff27d6c66f5d8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0e467a005e45cbfc09891cbee64b5afa2ef236d51aacd8daddf6fb0cc7491a84\",\"dweb:/ipfs/QmePs1JEWhSWe1JzKbw4EQ1wciDvjjBJiKPKdAaTtzECsW\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\n\npragma solidity 0.6.12;\n\ninterface IBalancerVault {\n  enum PoolSpecialization { GENERAL, MINIMAL_SWAP_INFO, TWO_TOKEN }\n\n  /**\n   * @dev Returns a Pool's contract address and specialization setting.\n   */\n  function getPool(bytes32 poolId) external view returns (address, PoolSpecialization);\n\n  /**\n   * @dev Returns a Pool's registered tokens, the total balance for each, and the latest block when *any* of\n   * the tokens' `balances` changed.\n   *\n   * The order of the `tokens` array is the same order that will be used in `joinPool`, `exitPool`, as well as in all\n   * Pool hooks (where applicable). Calls to `registerTokens` and `deregisterTokens` may change this order.\n   *\n   * If a Pool only registers tokens once, and these are sorted in ascending order, they will be stored in the same\n   * order as passed to `registerTokens`.\n   *\n   * Total balances include both tokens held by the Vault and those withdrawn by the Pool's Asset Managers. These are\n   * the amounts used by joins, exits and swaps. For a detailed breakdown of token balances, use `getPoolTokenInfo`\n   * instead.\n   */\n  function getPoolTokens(bytes32 poolId)\n    external\n    view\n    returns (\n      address[] memory tokens,\n      uint256[] memory balances,\n      uint256 lastChangeBlock\n    );\n}\n",
+  "sourcePath": "/home/mingyue/sub_contract_content/Web3Bugs/contracts/115/core/contracts/interfaces/IBalancerVault.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/interfaces/IBalancerVault.sol",
+    "exportedSymbols": {
+      "IBalancerVault": [
+        14066
+      ]
+    },
+    "id": 14067,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 14037,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:23:50"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 14066,
+        "linearizedBaseContracts": [
+          14066
+        ],
+        "name": "IBalancerVault",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IBalancerVault.PoolSpecialization",
+            "id": 14041,
+            "members": [
+              {
+                "id": 14038,
+                "name": "GENERAL",
+                "nodeType": "EnumValue",
+                "src": "113:7:50"
+              },
+              {
+                "id": 14039,
+                "name": "MINIMAL_SWAP_INFO",
+                "nodeType": "EnumValue",
+                "src": "122:17:50"
+              },
+              {
+                "id": 14040,
+                "name": "TWO_TOKEN",
+                "nodeType": "EnumValue",
+                "src": "141:9:50"
+              }
+            ],
+            "name": "PoolSpecialization",
+            "nodeType": "EnumDefinition",
+            "src": "87:65:50"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 14042,
+              "nodeType": "StructuredDocumentation",
+              "src": "156:81:50",
+              "text": " @dev Returns a Pool's contract address and specialization setting."
+            },
+            "functionSelector": "f6c00927",
+            "id": 14051,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPool",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 14045,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14044,
+                  "mutability": "mutable",
+                  "name": "poolId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 14051,
+                  "src": "257:14:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 14043,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "257:7:50",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "256:16:50"
+            },
+            "returnParameters": {
+              "id": 14050,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14047,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 14051,
+                  "src": "296:7:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 14046,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "296:7:50",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 14049,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 14051,
+                  "src": "305:18:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_PoolSpecialization_$14041",
+                    "typeString": "enum IBalancerVault.PoolSpecialization"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 14048,
+                    "name": "PoolSpecialization",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 14041,
+                    "src": "305:18:50",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_PoolSpecialization_$14041",
+                      "typeString": "enum IBalancerVault.PoolSpecialization"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "295:29:50"
+            },
+            "scope": 14066,
+            "src": "240:85:50",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 14052,
+              "nodeType": "StructuredDocumentation",
+              "src": "329:802:50",
+              "text": " @dev Returns a Pool's registered tokens, the total balance for each, and the latest block when *any* of\n the tokens' `balances` changed.\n The order of the `tokens` array is the same order that will be used in `joinPool`, `exitPool`, as well as in all\n Pool hooks (where applicable). Calls to `registerTokens` and `deregisterTokens` may change this order.\n If a Pool only registers tokens once, and these are sorted in ascending order, they will be stored in the same\n order as passed to `registerTokens`.\n Total balances include both tokens held by the Vault and those withdrawn by the Pool's Asset Managers. These are\n the amounts used by joins, exits and swaps. For a detailed breakdown of token balances, use `getPoolTokenInfo`\n instead."
+            },
+            "functionSelector": "f94d4668",
+            "id": 14065,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPoolTokens",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 14055,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14054,
+                  "mutability": "mutable",
+                  "name": "poolId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 14065,
+                  "src": "1157:14:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 14053,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1157:7:50",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1156:16:50"
+            },
+            "returnParameters": {
+              "id": 14064,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14058,
+                  "mutability": "mutable",
+                  "name": "tokens",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 14065,
+                  "src": "1215:23:50",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 14056,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1215:7:50",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 14057,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1215:9:50",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 14061,
+                  "mutability": "mutable",
+                  "name": "balances",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 14065,
+                  "src": "1246:25:50",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 14059,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1246:7:50",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 14060,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1246:9:50",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 14063,
+                  "mutability": "mutable",
+                  "name": "lastChangeBlock",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 14065,
+                  "src": "1279:23:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 14062,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1279:7:50",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1207:101:50"
+            },
+            "scope": 14066,
+            "src": "1134:175:50",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 14067,
+        "src": "58:1253:50"
+      }
+    ],
+    "src": "33:1279:50"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/interfaces/IBalancerVault.sol",
+      "exportedSymbols": {
+        "IBalancerVault": [
+          14066
+        ]
+      },
+      "license": "MIT"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.6",
+            ".12"
+          ]
+        },
+        "id": 14037,
+        "name": "PragmaDirective",
+        "src": "33:23:50"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            14066
+          ],
+          "name": "IBalancerVault",
+          "scope": 14067
+        },
+        "children": [
+          {
+            "attributes": {
+              "canonicalName": "IBalancerVault.PoolSpecialization",
+              "name": "PoolSpecialization"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "GENERAL"
+                },
+                "id": 14038,
+                "name": "EnumValue",
+                "src": "113:7:50"
+              },
+              {
+                "attributes": {
+                  "name": "MINIMAL_SWAP_INFO"
+                },
+                "id": 14039,
+                "name": "EnumValue",
+                "src": "122:17:50"
+              },
+              {
+                "attributes": {
+                  "name": "TWO_TOKEN"
+                },
+                "id": 14040,
+                "name": "EnumValue",
+                "src": "141:9:50"
+              }
+            ],
+            "id": 14041,
+            "name": "EnumDefinition",
+            "src": "87:65:50"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "f6c00927",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getPool",
+              "overrides": null,
+              "scope": 14066,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": " @dev Returns a Pool's contract address and specialization setting."
+                },
+                "id": 14042,
+                "name": "StructuredDocumentation",
+                "src": "156:81:50"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "poolId",
+                      "overrides": null,
+                      "scope": 14051,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 14043,
+                        "name": "ElementaryTypeName",
+                        "src": "257:7:50"
+                      }
+                    ],
+                    "id": 14044,
+                    "name": "VariableDeclaration",
+                    "src": "257:14:50"
+                  }
+                ],
+                "id": 14045,
+                "name": "ParameterList",
+                "src": "256:16:50"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 14051,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 14046,
+                        "name": "ElementaryTypeName",
+                        "src": "296:7:50"
+                      }
+                    ],
+                    "id": 14047,
+                    "name": "VariableDeclaration",
+                    "src": "296:7:50"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 14051,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "enum IBalancerVault.PoolSpecialization",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "PoolSpecialization",
+                          "referencedDeclaration": 14041,
+                          "type": "enum IBalancerVault.PoolSpecialization"
+                        },
+                        "id": 14048,
+                        "name": "UserDefinedTypeName",
+                        "src": "305:18:50"
+                      }
+                    ],
+                    "id": 14049,
+                    "name": "VariableDeclaration",
+                    "src": "305:18:50"
+                  }
+                ],
+                "id": 14050,
+                "name": "ParameterList",
+                "src": "295:29:50"
+              }
+            ],
+            "id": 14051,
+            "name": "FunctionDefinition",
+            "src": "240:85:50"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "f94d4668",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getPoolTokens",
+              "overrides": null,
+              "scope": 14066,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": " @dev Returns a Pool's registered tokens, the total balance for each, and the latest block when *any* of\n the tokens' `balances` changed.\n The order of the `tokens` array is the same order that will be used in `joinPool`, `exitPool`, as well as in all\n Pool hooks (where applicable). Calls to `registerTokens` and `deregisterTokens` may change this order.\n If a Pool only registers tokens once, and these are sorted in ascending order, they will be stored in the same\n order as passed to `registerTokens`.\n Total balances include both tokens held by the Vault and those withdrawn by the Pool's Asset Managers. These are\n the amounts used by joins, exits and swaps. For a detailed breakdown of token balances, use `getPoolTokenInfo`\n instead."
+                },
+                "id": 14052,
+                "name": "StructuredDocumentation",
+                "src": "329:802:50"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "poolId",
+                      "overrides": null,
+                      "scope": 14065,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 14053,
+                        "name": "ElementaryTypeName",
+                        "src": "1157:7:50"
+                      }
+                    ],
+                    "id": 14054,
+                    "name": "VariableDeclaration",
+                    "src": "1157:14:50"
+                  }
+                ],
+                "id": 14055,
+                "name": "ParameterList",
+                "src": "1156:16:50"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokens",
+                      "overrides": null,
+                      "scope": 14065,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "address[]",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "length": null,
+                          "type": "address[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "address",
+                              "stateMutability": "nonpayable",
+                              "type": "address"
+                            },
+                            "id": 14056,
+                            "name": "ElementaryTypeName",
+                            "src": "1215:7:50"
+                          }
+                        ],
+                        "id": 14057,
+                        "name": "ArrayTypeName",
+                        "src": "1215:9:50"
+                      }
+                    ],
+                    "id": 14058,
+                    "name": "VariableDeclaration",
+                    "src": "1215:23:50"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "balances",
+                      "overrides": null,
+                      "scope": 14065,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "uint256[]",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "length": null,
+                          "type": "uint256[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint256",
+                              "type": "uint256"
+                            },
+                            "id": 14059,
+                            "name": "ElementaryTypeName",
+                            "src": "1246:7:50"
+                          }
+                        ],
+                        "id": 14060,
+                        "name": "ArrayTypeName",
+                        "src": "1246:9:50"
+                      }
+                    ],
+                    "id": 14061,
+                    "name": "VariableDeclaration",
+                    "src": "1246:25:50"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "lastChangeBlock",
+                      "overrides": null,
+                      "scope": 14065,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 14062,
+                        "name": "ElementaryTypeName",
+                        "src": "1279:7:50"
+                      }
+                    ],
+                    "id": 14063,
+                    "name": "VariableDeclaration",
+                    "src": "1279:23:50"
+                  }
+                ],
+                "id": 14064,
+                "name": "ParameterList",
+                "src": "1207:101:50"
+              }
+            ],
+            "id": 14065,
+            "name": "FunctionDefinition",
+            "src": "1134:175:50"
+          }
+        ],
+        "id": 14066,
+        "name": "ContractDefinition",
+        "src": "58:1253:50"
+      }
+    ],
+    "id": 14067,
+    "name": "SourceUnit",
+    "src": "33:1279:50"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.7",
+  "updatedAt": "2025-02-28T14:09:34.629Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "getPool(bytes32)": {
+        "details": "Returns a Pool's contract address and specialization setting."
+      },
+      "getPoolTokens(bytes32)": {
+        "details": "Returns a Pool's registered tokens, the total balance for each, and the latest block when *any* of the tokens' `balances` changed. The order of the `tokens` array is the same order that will be used in `joinPool`, `exitPool`, as well as in all Pool hooks (where applicable). Calls to `registerTokens` and `deregisterTokens` may change this order. If a Pool only registers tokens once, and these are sorted in ascending order, they will be stored in the same order as passed to `registerTokens`. Total balances include both tokens held by the Vault and those withdrawn by the Pool's Asset Managers. These are the amounts used by joins, exits and swaps. For a detailed breakdown of token balances, use `getPoolTokenInfo` instead."
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

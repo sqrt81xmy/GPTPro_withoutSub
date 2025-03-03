@@ -1,0 +1,3722 @@
+{
+  "contractName": "IInceptionVaultFactory",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "contract IAdminInceptionVault",
+          "name": "adminInceptionVault",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "contract IInceptionVaultsCore",
+          "name": "inceptionVaultsCore",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "contract IInceptionVaultsDataProvider",
+          "name": "inceptionVaultsDataProvider",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "contract IInceptionVaultPriceFeed",
+          "name": "inceptionVaultPriceFeed",
+          "type": "address"
+        }
+      ],
+      "name": "InceptionVaultDeployed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint16",
+          "name": "_id",
+          "type": "uint16"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
+        }
+      ],
+      "name": "PriceFeedAdded",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "liquidationRatio",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "minCollateralRatio",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "borrowRate",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "originationFee",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "liquidationBonus",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "liquidationFee",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct IInceptionVaultsCore.VaultConfig",
+          "name": "_vaultConfig",
+          "type": "tuple"
+        },
+        {
+          "internalType": "contract IERC20",
+          "name": "_inceptionCollateral",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_inceptionVaultPriceFeed",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_assetOracle",
+          "type": "address"
+        }
+      ],
+      "name": "cloneInceptionVault",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
+        }
+      ],
+      "name": "addPriceFeed",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "a",
+      "outputs": [
+        {
+          "internalType": "contract IAddressProvider",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "debtNotifier",
+      "outputs": [
+        {
+          "internalType": "contract IDebtNotifier",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "weth",
+      "outputs": [
+        {
+          "internalType": "contract IWETH",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "mimo",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "adminInceptionVaultBase",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "inceptionVaultsCoreBase",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "inceptionVaultsDataProviderBase",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "inceptionVaultCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "priceFeedCount",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "inceptionVaults",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IAdminInceptionVault",
+              "name": "adminInceptionVault",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IInceptionVaultsCore",
+              "name": "inceptionVaultsCore",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IInceptionVaultsDataProvider",
+              "name": "inceptionVaultsDataProvider",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IInceptionVaultPriceFeed",
+              "name": "inceptionVaultPriceFeed",
+              "type": "address"
+            },
+            {
+              "internalType": "bool",
+              "name": "isCustomPriceFeed",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct IInceptionVaultFactory.InceptionVault",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint8",
+          "name": "_id",
+          "type": "uint8"
+        }
+      ],
+      "name": "priceFeeds",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_priceFeed",
+          "type": "address"
+        }
+      ],
+      "name": "priceFeedIds",
+      "outputs": [
+        {
+          "internalType": "uint16",
+          "name": "",
+          "type": "uint16"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"contract IAdminInceptionVault\",\"name\":\"adminInceptionVault\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"contract IInceptionVaultsCore\",\"name\":\"inceptionVaultsCore\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"contract IInceptionVaultsDataProvider\",\"name\":\"inceptionVaultsDataProvider\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"contract IInceptionVaultPriceFeed\",\"name\":\"inceptionVaultPriceFeed\",\"type\":\"address\"}],\"name\":\"InceptionVaultDeployed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint16\",\"name\":\"_id\",\"type\":\"uint16\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"_address\",\"type\":\"address\"}],\"name\":\"PriceFeedAdded\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"a\",\"outputs\":[{\"internalType\":\"contract IAddressProvider\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_address\",\"type\":\"address\"}],\"name\":\"addPriceFeed\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"adminInceptionVaultBase\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"liquidationRatio\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"minCollateralRatio\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"borrowRate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"originationFee\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"liquidationBonus\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"liquidationFee\",\"type\":\"uint256\"}],\"internalType\":\"struct IInceptionVaultsCore.VaultConfig\",\"name\":\"_vaultConfig\",\"type\":\"tuple\"},{\"internalType\":\"contract IERC20\",\"name\":\"_inceptionCollateral\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_inceptionVaultPriceFeed\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_assetOracle\",\"type\":\"address\"}],\"name\":\"cloneInceptionVault\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"debtNotifier\",\"outputs\":[{\"internalType\":\"contract IDebtNotifier\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"inceptionVaultCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"inceptionVaults\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"contract IAdminInceptionVault\",\"name\":\"adminInceptionVault\",\"type\":\"address\"},{\"internalType\":\"contract IInceptionVaultsCore\",\"name\":\"inceptionVaultsCore\",\"type\":\"address\"},{\"internalType\":\"contract IInceptionVaultsDataProvider\",\"name\":\"inceptionVaultsDataProvider\",\"type\":\"address\"},{\"internalType\":\"contract IInceptionVaultPriceFeed\",\"name\":\"inceptionVaultPriceFeed\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"isCustomPriceFeed\",\"type\":\"bool\"}],\"internalType\":\"struct IInceptionVaultFactory.InceptionVault\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"inceptionVaultsCoreBase\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"inceptionVaultsDataProviderBase\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"mimo\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"priceFeedCount\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_priceFeed\",\"type\":\"address\"}],\"name\":\"priceFeedIds\",\"outputs\":[{\"internalType\":\"uint16\",\"name\":\"\",\"type\":\"uint16\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"_id\",\"type\":\"uint8\"}],\"name\":\"priceFeeds\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"weth\",\"outputs\":[{\"internalType\":\"contract IWETH\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/inception/interfaces/IInceptionVaultFactory.sol\":\"IInceptionVaultFactory\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0xcc78a17dd88fa5a2edc60c8489e2f405c0913b377216a5b26b35656b2d0dab52\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://526dc85e1f9b9b45830e202568d267d93dde7a4fcccf4ad7798dadcd92304d3c\",\"dweb:/ipfs/QmaoXMB972J3cSDLtBq3xBo4jLwqD2uzXTwujtSPqkYVhR\"]},\"@openzeppelin/contracts/token/ERC20/ERC20.sol\":{\"keccak256\":\"0xca0c2396dbeb3503b51abf4248ebf77a1461edad513c01529df51850a012bee3\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://991b44ff44e0496e8554a90f4c0512c28faed45104d40430019f3c67ea67740e\",\"dweb:/ipfs/Qmc3nRapVbcctELoZS5qe17zLkFB3bETBfwzCTMF1CSuGE\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x5f02220344881ce43204ae4a6281145a67bc52c2bb1290a791857df3d19d78f5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://24427744bd3e6cb73c17010119af12a318289c0253a4d9acb8576c9fb3797b08\",\"dweb:/ipfs/QmTLDqpKRBuxGxRAmjgXt9AkXyACW3MtKzi7PYjm5iMfGC\"]},\"@openzeppelin/contracts/utils/Context.sol\":{\"keccak256\":\"0x8d3cb350f04ff49cfb10aef08d87f19dcbaecc8027b0bed12f3275cd12f38cf0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ded47ec7c96750f9bd04bbbc84f659992d4ba901cb7b532a52cd468272cf378f\",\"dweb:/ipfs/QmfBrGtQP7rZEqEg6Wz6jh2N2Kukpj1z5v3CGWmAqrzm96\"]},\"project:/contracts/chainlink/AggregatorV3Interface.sol\":{\"keccak256\":\"0x0c0d6cd68d8e5d99035491c316bcc4c348f3df1da03d09a7948ef879445b7546\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://1d70c77b85bc876a03d7d918d15686490db87df5535988193cecd0bff3f9eb12\",\"dweb:/ipfs/QmTaEHVucJ6wUSBJxHQMReyCsRai7GZ4YKLFE4TPaVEwkD\"]},\"project:/contracts/governance/interfaces/IGovernanceAddressProvider.sol\":{\"keccak256\":\"0xddec642acfbf56e612164d624b6e89d7d341463897871952c5e6c6b3df9e0290\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a438ed8b1205b5d96d85b47da8f2bd457031e06f9a7ab18aa0454d26a935445c\",\"dweb:/ipfs/QmUJuJ1c8dgyuEzEySUcs2ikJKGB3XLXGDor84BHQv3u8V\"]},\"project:/contracts/governance/interfaces/IGovernorAlpha.sol\":{\"keccak256\":\"0xf8981c4f5e9eb3f000d39835d29c8e76aa4da5882718400b50c7550075616d19\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b6cadf0c19c50a4544806324a7a59bd3bac55f7b19147507cf2de95496f8e1b0\",\"dweb:/ipfs/QmRyhHkMi24HatL3BdoJ6WRSX8Aa4TbJPJ8sPQixZXJ8ib\"]},\"project:/contracts/governance/interfaces/ITimelock.sol\":{\"keccak256\":\"0xf0f0c7745ffb50e2bbd6f5368a89287af561e1345ab27f0e96f47bd3b5f94fa3\",\"license\":\"BSD-3-Clause\",\"urls\":[\"bzz-raw://030e3878a145531230a887fa0ce4a42d6b102cabd105befe1ea20c4b1804b2be\",\"dweb:/ipfs/QmTYdzszrS67wWkpNtsY46FZtCpc7TvmN4uxsA64sq4z7c\"]},\"project:/contracts/governance/interfaces/IVotingEscrow.sol\":{\"keccak256\":\"0xeb4d3820abed3ad175bdcc99ad0347ad4d0f66d5767f3c9dd478a66683378bd6\",\"license\":\"AGPL-3.0\",\"urls\":[\"bzz-raw://155925d8b8a1cfa8760b7d22d555a2b0d06d9b6c6116403e70dfb46947427ab0\",\"dweb:/ipfs/QmbbfF4M3HP6ic6iV8LZLgkQQcWwJyu7sbXPDid9JJH8DX\"]},\"project:/contracts/inception/interfaces/IAdminInceptionVault.sol\":{\"keccak256\":\"0x4f4803fdeeeca08b7f560735eda99f92f287628239d0680b0a01b10a42d85166\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://cd37c5aeb6e8fb2050dc01826660c8be07a39d486cdffe4431b1e557ac618a55\",\"dweb:/ipfs/QmU15x6pyMHe4bQUZZuQEvnW4sDZnsUjXUukGTTYZ3isEL\"]},\"project:/contracts/inception/interfaces/IInceptionVaultFactory.sol\":{\"keccak256\":\"0x3c92dc598e9f09b9c1d419a6d5f3ff3c5d802c58f42d23419ab15a8dec76c58b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://340c42733c174149eb1395078835c478b83fb8aa741c8786869af4bf05ed34c5\",\"dweb:/ipfs/QmRMZLxhrLPGYeYtjtNM3bjUSSF4aB1ZFUp99CfpUzkFAJ\"]},\"project:/contracts/inception/interfaces/IInceptionVaultPriceFeed.sol\":{\"keccak256\":\"0x23b977eba7866f87ea8855d01ef9077d0f46a13341dc2a919f537c44b9f5ec31\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d21b7e1931c7a2628ac37729a27b25422f3e245a996d67002c9fc251afef5f28\",\"dweb:/ipfs/Qmc5S3g4tuU41XPN2KYuCkukaxMkjL5LyoTNuKD8tyrViM\"]},\"project:/contracts/inception/interfaces/IInceptionVaultsCore.sol\":{\"keccak256\":\"0x562175f43b992fdc0f6aa687d61a247bc74d7b8f222358ed2e538f778c26f883\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e6c6ed81f75f94e15d0c191d66ca50e6a93cbe66125f688769222d2c12d442ca\",\"dweb:/ipfs/QmPHDP1KoL8HNiCDMoQkzsevrdF1E9sC71D49tGcbnFvw4\"]},\"project:/contracts/inception/interfaces/IInceptionVaultsDataProvider.sol\":{\"keccak256\":\"0x2d76280bd511cbe0e4e336f70a92b16ca2924d13d3be4624d05eea9c632bd9fc\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://80c11ea7e71ce3e919d7a7c7d175c6fbd8956fe4f07872a136fcbb9a8119c7fe\",\"dweb:/ipfs/QmWmTUdUrxT763ycMcGBUmgLpXSWWkm8mSyN26v4yjJJyJ\"]},\"project:/contracts/interfaces/IAccessController.sol\":{\"keccak256\":\"0x44296736b9049485ccf8aca15e582563cb5387af4cd6070d9e3e887d65f89173\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://cf924c3a8c3519ad2745a5da689001f51549fd6ca0e19c071e18c983d61c7f09\",\"dweb:/ipfs/QmVyMF9i8FWM2c4rR6KVwgBxKZb1XBHCmTB5tL1UWBbQA1\"]},\"project:/contracts/interfaces/IAddressProvider.sol\":{\"keccak256\":\"0xf14b8634f04cf84b38c7d2c5d51e7bf0e8276f4275dc6794a0cf76bcc8d3f8ea\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2f2e1afb47e310670d966e0728414e933c6392b4cbaf17f81505b6c198596f0a\",\"dweb:/ipfs/QmVVqKc7wAYdmDg2yTYgLqEkT9iw5NtdL96KJVuRaeJQ6k\"]},\"project:/contracts/interfaces/IConfigProvider.sol\":{\"keccak256\":\"0x33129128a94bcc86fbb83e7a323ec7bc0a5a290a5f35af1d3c129f5f76827e85\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2e306cff52ced075148b372e662c0d4ff83fa67a61df57eff5867e0b9a03d4f6\",\"dweb:/ipfs/Qmc2RqZvst72RgkWS2FtWPuygjtJmb2NMHJbNxqDc72yQC\"]},\"project:/contracts/interfaces/IFeeDistributor.sol\":{\"keccak256\":\"0x8c45c3ef043b247b5e481839a3a3caf62ae24225cfb85626b3df8f57510de979\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://92de1c240f12c273334e70d8368d789af8fa292ba3553d15cf43c6954e61f91a\",\"dweb:/ipfs/QmWjqiNRLuejFfuVVrKsSTvjb49ubefC7miLUkWJw2HTuF\"]},\"project:/contracts/interfaces/ILiquidationManager.sol\":{\"keccak256\":\"0xde6c43dcc1423b34b85f0d7d9947b3249b94df54225b2758b8bf0e2c425ccb90\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e373ef9231207fb8807f556fc458db38c645a9dfdf5796775e6cc6f1fc726a8d\",\"dweb:/ipfs/QmV8DuEHSp8DnUnkdfAeXVkeyvuFviqtuJH7XxHzAH7eK1\"]},\"project:/contracts/interfaces/IPriceFeed.sol\":{\"keccak256\":\"0x8cc0b8ad6f913b3a8cc62e4a7ffb574b40792c4043ddb0c851a1d832c21e0c70\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e8045418cdcd6fb5907037e6213665491b8fad4501b3aa1bf124840c59762928\",\"dweb:/ipfs/QmeP3huTbkHsBtAxYTzn3UnVk6EqNwWyLJjFntSveWveqi\"]},\"project:/contracts/interfaces/IRatesManager.sol\":{\"keccak256\":\"0x59826e9fc772f479422dbefcdd7a31eb4bc6474ea55dd748a2425b725a2b13f8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://4e788723ff15000db36c3096b17ea1b8e6e1dff8df7623a1815734ea5d89e7c0\",\"dweb:/ipfs/QmazQ165fmWPusYCnj23KupadxDi5Via7W48gWC1THGAgp\"]},\"project:/contracts/interfaces/ISTABLEX.sol\":{\"keccak256\":\"0x6915d210a8867b2c1b5a8e983a3342a41dcc63d71ae5f181185b546e3817aead\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6a031814ad3273c5852ee04c36d75e5cae9b8fd2db74e346c8480f71c27f847a\",\"dweb:/ipfs/QmUTunG1C5fQX9oUKdYshM99GmdSziHbCqYLyFsbD8XcCc\"]},\"project:/contracts/interfaces/IVaultsCore.sol\":{\"keccak256\":\"0x3162cc126f547075e43a816a52bdcf406fc9374a75419f67080c8931d19b790d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6de2594d702d1282a7420cadd0cbe205221b834bfbe6476091dcec6b4330263d\",\"dweb:/ipfs/QmSnTLZRi1NAE4WeW7kpUA7uvER1NK7HsXq4jnZWUuTdae\"]},\"project:/contracts/interfaces/IVaultsCoreState.sol\":{\"keccak256\":\"0x7895dfbbf72f559c4050f9d1c14314dca6ef8b044422c31cf22805fb5e314a82\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0551201124b7644d353fb55a41ae5ee191cf53a5264492cf113343f477056180\",\"dweb:/ipfs/QmfDgJrRUF79QwCrQewXrSNA9kCdvAT6QuLTiMwLPCFkf9\"]},\"project:/contracts/interfaces/IVaultsDataProvider.sol\":{\"keccak256\":\"0x6653e963fc559a8fdf4a021ee79a776525c49dada9653c9ed47cbf248b84c51c\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://77313d5f7f994ed4571ec44e052aa8fa940d0fc8fc1f36d4825effa600280232\",\"dweb:/ipfs/QmcAax4EsynydpCj6J3SSqdxmdSaPfjNXQAeAhqgoYLs3F\"]},\"project:/contracts/interfaces/IWETH.sol\":{\"keccak256\":\"0xfdd7722adff687336662cf3c75449b7d7e0f9029cbe2ce05b75657af99dcb90b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ec6d48d39eaf2b46cbe9c2e9ddd1fe704e82883e7231ca1342ce210807c2d81f\",\"dweb:/ipfs/QmUDTMe2BNrivULxPnv4aZ59CiR45kJcPrhguoB9ok9WDh\"]},\"project:/contracts/liquidityMining/interfaces/IDebtNotifier.sol\":{\"keccak256\":\"0x102e26cf04884ab25e8635fd127ff67e79656a2541f2f4e59bbc37b9cb454eb8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5ccb5f51ff8efd442d06458eba24c7b341beab28dbc78d46bb965650bf38644b\",\"dweb:/ipfs/QmQAeXQKmPiAsHmZszzPcuXkDZhMf1DuEJv8KLwceu2gNe\"]},\"project:/contracts/liquidityMining/interfaces/IGenericMiner.sol\":{\"keccak256\":\"0x0e3499d884736706d4bd00101e4c6a658bf81e550288909e71cff4172d4a729b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7b0ace26847e73a481116e5fc4b604ae3bd7ed312aa8309a4aeb1da99663bdc5\",\"dweb:/ipfs/QmVUuFjzxnzf4ereAZUfddvRaCRCDZCFVn46mGjY9tb9PG\"]},\"project:/contracts/liquidityMining/interfaces/IMIMO.sol\":{\"keccak256\":\"0x828c30f45ca2f30b7a9f429ae6e49629a97eed4cd4b5ba23b29e5af24dedc811\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3326b33f699ca6f67b64111cc8482d428ed59894e4785f2757a064f5887a0e08\",\"dweb:/ipfs/QmWCgwcEK5ZqiWbkkVqSSFMaD7J3LE815YerGQsmzJ2xUN\"]},\"project:/contracts/liquidityMining/interfaces/ISupplyMiner.sol\":{\"keccak256\":\"0xc1f3130c8d6b1b2fa17535d12e5e9bada0b9a751e0af27281207b112c841f98d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e9e7229abf46ac7b75c822203e74766a1addd2382f2a8b072be0ade1a07b77c3\",\"dweb:/ipfs/QmUgt2dxHBqggaaW46yf7pPwmkLPGYMveCnwEcowjXwZ3N\"]},\"project:/contracts/v1/interfaces/IAddressProviderV1.sol\":{\"keccak256\":\"0x8ca0f0f6fe9184013255d19ac7cf605fd0f1fe4b9b6d964e430879302013cae4\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://31c084fc31e6818895b754cfd84c0ad954d95ec91bc4cf36500e2009868cebae\",\"dweb:/ipfs/QmUK8Jb41bkxKcsSkevJDzRb5Tt4nXCy7Jds3TfgGypYVV\"]},\"project:/contracts/v1/interfaces/IConfigProviderV1.sol\":{\"keccak256\":\"0x3367989f6ab1ac32776dbfd6ec303a791048fb30b7c5e5e10eda774b03c7d8d2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://423e9ba2b280a95e1701db6cc1591c1304914c120760365309b32849b0f70a54\",\"dweb:/ipfs/QmTbpimRWoe1Lyg5cR6VC4cbB5mpPoFUrvtAzGKz2KWTqd\"]},\"project:/contracts/v1/interfaces/ILiquidationManagerV1.sol\":{\"keccak256\":\"0x2680a1f246fe7617c3019e04c9e0ebd6dc6512302fbb922e5d5691b6ab8c4da0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://52f157dd2ef3248fc00bf21be4de195bc807d8d91ab513ec40a590a997da9cff\",\"dweb:/ipfs/QmbioUYyZJKMKuXZY828BDueiVDBqVWoBDWS4UKxmcximt\"]},\"project:/contracts/v1/interfaces/IVaultsCoreV1.sol\":{\"keccak256\":\"0x6cf5a137af266b97daa3a0300161a2e1176cd7be1f2fc1db6111e9abc7fdac82\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b9bf7e5e3d42eda478a6db9b067ccd2610c4ec8ee62b4e4a8354bdd56ede7470\",\"dweb:/ipfs/QmWYZajCH2Nsfpb4HdG754YFty76QWtZFc6jWFtZqHjA2K\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "//SPDX-License-Identifier: MIT\npragma solidity 0.6.12;\npragma experimental ABIEncoderV2;\n\nimport \"@openzeppelin/contracts/token/ERC20/IERC20.sol\";\n\nimport \"./IAdminInceptionVault.sol\";\nimport \"./IInceptionVaultsCore.sol\";\nimport \"./IInceptionVaultsDataProvider.sol\";\nimport \"./IInceptionVaultPriceFeed.sol\";\nimport \"../../interfaces/IWETH.sol\";\nimport \"../../interfaces/IAddressProvider.sol\";\nimport \"../../liquidityMining/interfaces/IDebtNotifier.sol\";\n\ninterface IInceptionVaultFactory {\n  struct InceptionVault {\n    address owner;\n    IAdminInceptionVault adminInceptionVault;\n    IInceptionVaultsCore inceptionVaultsCore;\n    IInceptionVaultsDataProvider inceptionVaultsDataProvider;\n    IInceptionVaultPriceFeed inceptionVaultPriceFeed;\n    bool isCustomPriceFeed;\n  }\n\n  event InceptionVaultDeployed(\n    address owner,\n    IAdminInceptionVault adminInceptionVault,\n    IInceptionVaultsCore inceptionVaultsCore,\n    IInceptionVaultsDataProvider inceptionVaultsDataProvider,\n    IInceptionVaultPriceFeed inceptionVaultPriceFeed\n  );\n\n  event PriceFeedAdded(uint16 _id, address _address);\n\n  function cloneInceptionVault(\n    IInceptionVaultsCore.VaultConfig calldata _vaultConfig,\n    IERC20 _inceptionCollateral,\n    address _inceptionVaultPriceFeed,\n    address _assetOracle\n  ) external;\n\n  function addPriceFeed(address _address) external;\n\n  // Read only\n  function a() external view returns (IAddressProvider);\n\n  function debtNotifier() external view returns (IDebtNotifier);\n\n  function weth() external view returns (IWETH);\n\n  function mimo() external view returns (IERC20);\n\n  function adminInceptionVaultBase() external view returns (address);\n\n  function inceptionVaultsCoreBase() external view returns (address);\n\n  function inceptionVaultsDataProviderBase() external view returns (address);\n\n  function inceptionVaultCount() external view returns (uint256);\n\n  function priceFeedCount() external view returns (uint8);\n\n  function inceptionVaults(uint256 _id) external view returns (InceptionVault memory);\n\n  function priceFeeds(uint8 _id) external view returns (address);\n\n  function priceFeedIds(address _priceFeed) external view returns (uint16);\n}\n",
+  "sourcePath": "/home/mingyue/sub_contract_content/Web3Bugs/contracts/115/core/contracts/inception/interfaces/IInceptionVaultFactory.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/inception/interfaces/IInceptionVaultFactory.sol",
+    "exportedSymbols": {
+      "IInceptionVaultFactory": [
+        13132
+      ]
+    },
+    "id": 13133,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 13009,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "31:23:42"
+      },
+      {
+        "id": 13010,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "55:33:42"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 13011,
+        "nodeType": "ImportDirective",
+        "scope": 13133,
+        "sourceUnit": 1549,
+        "src": "90:56:42",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/inception/interfaces/IAdminInceptionVault.sol",
+        "file": "./IAdminInceptionVault.sol",
+        "id": 13012,
+        "nodeType": "ImportDirective",
+        "scope": 13133,
+        "sourceUnit": 13008,
+        "src": "148:36:42",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/inception/interfaces/IInceptionVaultsCore.sol",
+        "file": "./IInceptionVaultsCore.sol",
+        "id": 13013,
+        "nodeType": "ImportDirective",
+        "scope": 13133,
+        "sourceUnit": 13381,
+        "src": "185:36:42",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/inception/interfaces/IInceptionVaultsDataProvider.sol",
+        "file": "./IInceptionVaultsDataProvider.sol",
+        "id": 13014,
+        "nodeType": "ImportDirective",
+        "scope": 13133,
+        "sourceUnit": 13493,
+        "src": "222:44:42",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/inception/interfaces/IInceptionVaultPriceFeed.sol",
+        "file": "./IInceptionVaultPriceFeed.sol",
+        "id": 13015,
+        "nodeType": "ImportDirective",
+        "scope": 13133,
+        "sourceUnit": 13195,
+        "src": "267:40:42",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/interfaces/IWETH.sol",
+        "file": "../../interfaces/IWETH.sol",
+        "id": 13016,
+        "nodeType": "ImportDirective",
+        "scope": 13133,
+        "sourceUnit": 15038,
+        "src": "308:36:42",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/interfaces/IAddressProvider.sol",
+        "file": "../../interfaces/IAddressProvider.sol",
+        "id": 13017,
+        "nodeType": "ImportDirective",
+        "scope": 13133,
+        "sourceUnit": 14022,
+        "src": "345:47:42",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/liquidityMining/interfaces/IDebtNotifier.sol",
+        "file": "../../liquidityMining/interfaces/IDebtNotifier.sol",
+        "id": 13018,
+        "nodeType": "ImportDirective",
+        "scope": 13133,
+        "sourceUnit": 23350,
+        "src": "393:60:42",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 13132,
+        "linearizedBaseContracts": [
+          13132
+        ],
+        "name": "IInceptionVaultFactory",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IInceptionVaultFactory.InceptionVault",
+            "id": 13031,
+            "members": [
+              {
+                "constant": false,
+                "id": 13020,
+                "mutability": "mutable",
+                "name": "owner",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 13031,
+                "src": "520:13:42",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 13019,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "520:7:42",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 13022,
+                "mutability": "mutable",
+                "name": "adminInceptionVault",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 13031,
+                "src": "539:40:42",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_IAdminInceptionVault_$13007",
+                  "typeString": "contract IAdminInceptionVault"
+                },
+                "typeName": {
+                  "contractScope": null,
+                  "id": 13021,
+                  "name": "IAdminInceptionVault",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 13007,
+                  "src": "539:20:42",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IAdminInceptionVault_$13007",
+                    "typeString": "contract IAdminInceptionVault"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 13024,
+                "mutability": "mutable",
+                "name": "inceptionVaultsCore",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 13031,
+                "src": "585:40:42",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_IInceptionVaultsCore_$13380",
+                  "typeString": "contract IInceptionVaultsCore"
+                },
+                "typeName": {
+                  "contractScope": null,
+                  "id": 13023,
+                  "name": "IInceptionVaultsCore",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 13380,
+                  "src": "585:20:42",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IInceptionVaultsCore_$13380",
+                    "typeString": "contract IInceptionVaultsCore"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 13026,
+                "mutability": "mutable",
+                "name": "inceptionVaultsDataProvider",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 13031,
+                "src": "631:56:42",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_IInceptionVaultsDataProvider_$13492",
+                  "typeString": "contract IInceptionVaultsDataProvider"
+                },
+                "typeName": {
+                  "contractScope": null,
+                  "id": 13025,
+                  "name": "IInceptionVaultsDataProvider",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 13492,
+                  "src": "631:28:42",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IInceptionVaultsDataProvider_$13492",
+                    "typeString": "contract IInceptionVaultsDataProvider"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 13028,
+                "mutability": "mutable",
+                "name": "inceptionVaultPriceFeed",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 13031,
+                "src": "693:48:42",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_IInceptionVaultPriceFeed_$13194",
+                  "typeString": "contract IInceptionVaultPriceFeed"
+                },
+                "typeName": {
+                  "contractScope": null,
+                  "id": 13027,
+                  "name": "IInceptionVaultPriceFeed",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 13194,
+                  "src": "693:24:42",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IInceptionVaultPriceFeed_$13194",
+                    "typeString": "contract IInceptionVaultPriceFeed"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 13030,
+                "mutability": "mutable",
+                "name": "isCustomPriceFeed",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 13031,
+                "src": "747:22:42",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 13029,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "747:4:42",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "InceptionVault",
+            "nodeType": "StructDefinition",
+            "scope": 13132,
+            "src": "492:282:42",
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 13043,
+            "name": "InceptionVaultDeployed",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 13042,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13033,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "owner",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13043,
+                  "src": "812:13:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 13032,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "812:7:42",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 13035,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "adminInceptionVault",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13043,
+                  "src": "831:40:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IAdminInceptionVault_$13007",
+                    "typeString": "contract IAdminInceptionVault"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 13034,
+                    "name": "IAdminInceptionVault",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 13007,
+                    "src": "831:20:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IAdminInceptionVault_$13007",
+                      "typeString": "contract IAdminInceptionVault"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 13037,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "inceptionVaultsCore",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13043,
+                  "src": "877:40:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IInceptionVaultsCore_$13380",
+                    "typeString": "contract IInceptionVaultsCore"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 13036,
+                    "name": "IInceptionVaultsCore",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 13380,
+                    "src": "877:20:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IInceptionVaultsCore_$13380",
+                      "typeString": "contract IInceptionVaultsCore"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 13039,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "inceptionVaultsDataProvider",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13043,
+                  "src": "923:56:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IInceptionVaultsDataProvider_$13492",
+                    "typeString": "contract IInceptionVaultsDataProvider"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 13038,
+                    "name": "IInceptionVaultsDataProvider",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 13492,
+                    "src": "923:28:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IInceptionVaultsDataProvider_$13492",
+                      "typeString": "contract IInceptionVaultsDataProvider"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 13041,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "inceptionVaultPriceFeed",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13043,
+                  "src": "985:48:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IInceptionVaultPriceFeed_$13194",
+                    "typeString": "contract IInceptionVaultPriceFeed"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 13040,
+                    "name": "IInceptionVaultPriceFeed",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 13194,
+                    "src": "985:24:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IInceptionVaultPriceFeed_$13194",
+                      "typeString": "contract IInceptionVaultPriceFeed"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "806:231:42"
+            },
+            "src": "778:260:42"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 13049,
+            "name": "PriceFeedAdded",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 13048,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13045,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_id",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13049,
+                  "src": "1063:10:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 13044,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1063:6:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 13047,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_address",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13049,
+                  "src": "1075:16:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 13046,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1075:7:42",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1062:30:42"
+            },
+            "src": "1042:51:42"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "1673d187",
+            "id": 13060,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "cloneInceptionVault",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 13058,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13051,
+                  "mutability": "mutable",
+                  "name": "_vaultConfig",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13060,
+                  "src": "1131:54:42",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_VaultConfig_$13215_calldata_ptr",
+                    "typeString": "struct IInceptionVaultsCore.VaultConfig"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 13050,
+                    "name": "IInceptionVaultsCore.VaultConfig",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 13215,
+                    "src": "1131:32:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_VaultConfig_$13215_storage_ptr",
+                      "typeString": "struct IInceptionVaultsCore.VaultConfig"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 13053,
+                  "mutability": "mutable",
+                  "name": "_inceptionCollateral",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13060,
+                  "src": "1191:27:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$1548",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 13052,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 1548,
+                    "src": "1191:6:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$1548",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 13055,
+                  "mutability": "mutable",
+                  "name": "_inceptionVaultPriceFeed",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13060,
+                  "src": "1224:32:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 13054,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1224:7:42",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 13057,
+                  "mutability": "mutable",
+                  "name": "_assetOracle",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13060,
+                  "src": "1262:20:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 13056,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1262:7:42",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1125:161:42"
+            },
+            "returnParameters": {
+              "id": 13059,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1295:0:42"
+            },
+            "scope": 13132,
+            "src": "1097:199:42",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "0bb6842d",
+            "id": 13065,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addPriceFeed",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 13063,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13062,
+                  "mutability": "mutable",
+                  "name": "_address",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13065,
+                  "src": "1322:16:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 13061,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1322:7:42",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1321:18:42"
+            },
+            "returnParameters": {
+              "id": 13064,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1348:0:42"
+            },
+            "scope": 13132,
+            "src": "1300:49:42",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "0dbe671f",
+            "id": 13070,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "a",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 13066,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1378:2:42"
+            },
+            "returnParameters": {
+              "id": 13069,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13068,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13070,
+                  "src": "1404:16:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IAddressProvider_$14021",
+                    "typeString": "contract IAddressProvider"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 13067,
+                    "name": "IAddressProvider",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 14021,
+                    "src": "1404:16:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IAddressProvider_$14021",
+                      "typeString": "contract IAddressProvider"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1403:18:42"
+            },
+            "scope": 13132,
+            "src": "1368:54:42",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "bd1b7146",
+            "id": 13075,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "debtNotifier",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 13071,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1447:2:42"
+            },
+            "returnParameters": {
+              "id": 13074,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13073,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13075,
+                  "src": "1473:13:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IDebtNotifier_$23349",
+                    "typeString": "contract IDebtNotifier"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 13072,
+                    "name": "IDebtNotifier",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 23349,
+                    "src": "1473:13:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IDebtNotifier_$23349",
+                      "typeString": "contract IDebtNotifier"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1472:15:42"
+            },
+            "scope": 13132,
+            "src": "1426:62:42",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "3fc8cef3",
+            "id": 13080,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "weth",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 13076,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1505:2:42"
+            },
+            "returnParameters": {
+              "id": 13079,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13078,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13080,
+                  "src": "1531:5:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IWETH_$15037",
+                    "typeString": "contract IWETH"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 13077,
+                    "name": "IWETH",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 15037,
+                    "src": "1531:5:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IWETH_$15037",
+                      "typeString": "contract IWETH"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1530:7:42"
+            },
+            "scope": 13132,
+            "src": "1492:46:42",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "6d9b1823",
+            "id": 13085,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "mimo",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 13081,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1555:2:42"
+            },
+            "returnParameters": {
+              "id": 13084,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13083,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13085,
+                  "src": "1581:6:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$1548",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 13082,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 1548,
+                    "src": "1581:6:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$1548",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1580:8:42"
+            },
+            "scope": 13132,
+            "src": "1542:47:42",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "3e9b4a07",
+            "id": 13090,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "adminInceptionVaultBase",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 13086,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1625:2:42"
+            },
+            "returnParameters": {
+              "id": 13089,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13088,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13090,
+                  "src": "1651:7:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 13087,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1651:7:42",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1650:9:42"
+            },
+            "scope": 13132,
+            "src": "1593:67:42",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "396c39f0",
+            "id": 13095,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "inceptionVaultsCoreBase",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 13091,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1696:2:42"
+            },
+            "returnParameters": {
+              "id": 13094,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13093,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13095,
+                  "src": "1722:7:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 13092,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1722:7:42",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1721:9:42"
+            },
+            "scope": 13132,
+            "src": "1664:67:42",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "3902db75",
+            "id": 13100,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "inceptionVaultsDataProviderBase",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 13096,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1775:2:42"
+            },
+            "returnParameters": {
+              "id": 13099,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13098,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13100,
+                  "src": "1801:7:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 13097,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1801:7:42",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1800:9:42"
+            },
+            "scope": 13132,
+            "src": "1735:75:42",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "65586b16",
+            "id": 13105,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "inceptionVaultCount",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 13101,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1842:2:42"
+            },
+            "returnParameters": {
+              "id": 13104,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13103,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13105,
+                  "src": "1868:7:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 13102,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1868:7:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1867:9:42"
+            },
+            "scope": 13132,
+            "src": "1814:63:42",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "36c15ab2",
+            "id": 13110,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "priceFeedCount",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 13106,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1904:2:42"
+            },
+            "returnParameters": {
+              "id": 13109,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13108,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13110,
+                  "src": "1930:5:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 13107,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1930:5:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1929:7:42"
+            },
+            "scope": 13132,
+            "src": "1881:56:42",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "2fe66f94",
+            "id": 13117,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "inceptionVaults",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 13113,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13112,
+                  "mutability": "mutable",
+                  "name": "_id",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13117,
+                  "src": "1966:11:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 13111,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1966:7:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1965:13:42"
+            },
+            "returnParameters": {
+              "id": 13116,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13115,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13117,
+                  "src": "2002:21:42",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_InceptionVault_$13031_memory_ptr",
+                    "typeString": "struct IInceptionVaultFactory.InceptionVault"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 13114,
+                    "name": "InceptionVault",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 13031,
+                    "src": "2002:14:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_InceptionVault_$13031_storage_ptr",
+                      "typeString": "struct IInceptionVaultFactory.InceptionVault"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2001:23:42"
+            },
+            "scope": 13132,
+            "src": "1941:84:42",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "2a6a7a07",
+            "id": 13124,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "priceFeeds",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 13120,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13119,
+                  "mutability": "mutable",
+                  "name": "_id",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13124,
+                  "src": "2049:9:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 13118,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2049:5:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2048:11:42"
+            },
+            "returnParameters": {
+              "id": 13123,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13122,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13124,
+                  "src": "2083:7:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 13121,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2083:7:42",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2082:9:42"
+            },
+            "scope": 13132,
+            "src": "2029:63:42",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "336eb6ae",
+            "id": 13131,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "priceFeedIds",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 13127,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13126,
+                  "mutability": "mutable",
+                  "name": "_priceFeed",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13131,
+                  "src": "2118:18:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 13125,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2118:7:42",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2117:20:42"
+            },
+            "returnParameters": {
+              "id": 13130,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13129,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13131,
+                  "src": "2161:6:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 13128,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2161:6:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2160:8:42"
+            },
+            "scope": 13132,
+            "src": "2096:73:42",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 13133,
+        "src": "455:1716:42"
+      }
+    ],
+    "src": "31:2141:42"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/inception/interfaces/IInceptionVaultFactory.sol",
+      "exportedSymbols": {
+        "IInceptionVaultFactory": [
+          13132
+        ]
+      },
+      "license": "MIT"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.6",
+            ".12"
+          ]
+        },
+        "id": 13009,
+        "name": "PragmaDirective",
+        "src": "31:23:42"
+      },
+      {
+        "attributes": {
+          "literals": [
+            "experimental",
+            "ABIEncoderV2"
+          ]
+        },
+        "id": 13010,
+        "name": "PragmaDirective",
+        "src": "55:33:42"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 1549,
+          "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+          "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+          "scope": 13133,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 13011,
+        "name": "ImportDirective",
+        "src": "90:56:42"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 13008,
+          "absolutePath": "project:/contracts/inception/interfaces/IAdminInceptionVault.sol",
+          "file": "./IAdminInceptionVault.sol",
+          "scope": 13133,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 13012,
+        "name": "ImportDirective",
+        "src": "148:36:42"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 13381,
+          "absolutePath": "project:/contracts/inception/interfaces/IInceptionVaultsCore.sol",
+          "file": "./IInceptionVaultsCore.sol",
+          "scope": 13133,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 13013,
+        "name": "ImportDirective",
+        "src": "185:36:42"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 13493,
+          "absolutePath": "project:/contracts/inception/interfaces/IInceptionVaultsDataProvider.sol",
+          "file": "./IInceptionVaultsDataProvider.sol",
+          "scope": 13133,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 13014,
+        "name": "ImportDirective",
+        "src": "222:44:42"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 13195,
+          "absolutePath": "project:/contracts/inception/interfaces/IInceptionVaultPriceFeed.sol",
+          "file": "./IInceptionVaultPriceFeed.sol",
+          "scope": 13133,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 13015,
+        "name": "ImportDirective",
+        "src": "267:40:42"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 15038,
+          "absolutePath": "project:/contracts/interfaces/IWETH.sol",
+          "file": "../../interfaces/IWETH.sol",
+          "scope": 13133,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 13016,
+        "name": "ImportDirective",
+        "src": "308:36:42"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 14022,
+          "absolutePath": "project:/contracts/interfaces/IAddressProvider.sol",
+          "file": "../../interfaces/IAddressProvider.sol",
+          "scope": 13133,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 13017,
+        "name": "ImportDirective",
+        "src": "345:47:42"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 23350,
+          "absolutePath": "project:/contracts/liquidityMining/interfaces/IDebtNotifier.sol",
+          "file": "../../liquidityMining/interfaces/IDebtNotifier.sol",
+          "scope": 13133,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 13018,
+        "name": "ImportDirective",
+        "src": "393:60:42"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            13132
+          ],
+          "name": "IInceptionVaultFactory",
+          "scope": 13133
+        },
+        "children": [
+          {
+            "attributes": {
+              "canonicalName": "IInceptionVaultFactory.InceptionVault",
+              "name": "InceptionVault",
+              "scope": 13132,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "owner",
+                  "overrides": null,
+                  "scope": 13031,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "address",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "stateMutability": "nonpayable",
+                      "type": "address"
+                    },
+                    "id": 13019,
+                    "name": "ElementaryTypeName",
+                    "src": "520:7:42"
+                  }
+                ],
+                "id": 13020,
+                "name": "VariableDeclaration",
+                "src": "520:13:42"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "adminInceptionVault",
+                  "overrides": null,
+                  "scope": 13031,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "contract IAdminInceptionVault",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "IAdminInceptionVault",
+                      "referencedDeclaration": 13007,
+                      "type": "contract IAdminInceptionVault"
+                    },
+                    "id": 13021,
+                    "name": "UserDefinedTypeName",
+                    "src": "539:20:42"
+                  }
+                ],
+                "id": 13022,
+                "name": "VariableDeclaration",
+                "src": "539:40:42"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "inceptionVaultsCore",
+                  "overrides": null,
+                  "scope": 13031,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "contract IInceptionVaultsCore",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "IInceptionVaultsCore",
+                      "referencedDeclaration": 13380,
+                      "type": "contract IInceptionVaultsCore"
+                    },
+                    "id": 13023,
+                    "name": "UserDefinedTypeName",
+                    "src": "585:20:42"
+                  }
+                ],
+                "id": 13024,
+                "name": "VariableDeclaration",
+                "src": "585:40:42"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "inceptionVaultsDataProvider",
+                  "overrides": null,
+                  "scope": 13031,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "contract IInceptionVaultsDataProvider",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "IInceptionVaultsDataProvider",
+                      "referencedDeclaration": 13492,
+                      "type": "contract IInceptionVaultsDataProvider"
+                    },
+                    "id": 13025,
+                    "name": "UserDefinedTypeName",
+                    "src": "631:28:42"
+                  }
+                ],
+                "id": 13026,
+                "name": "VariableDeclaration",
+                "src": "631:56:42"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "inceptionVaultPriceFeed",
+                  "overrides": null,
+                  "scope": 13031,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "contract IInceptionVaultPriceFeed",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "IInceptionVaultPriceFeed",
+                      "referencedDeclaration": 13194,
+                      "type": "contract IInceptionVaultPriceFeed"
+                    },
+                    "id": 13027,
+                    "name": "UserDefinedTypeName",
+                    "src": "693:24:42"
+                  }
+                ],
+                "id": 13028,
+                "name": "VariableDeclaration",
+                "src": "693:48:42"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "isCustomPriceFeed",
+                  "overrides": null,
+                  "scope": 13031,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bool",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bool",
+                      "type": "bool"
+                    },
+                    "id": 13029,
+                    "name": "ElementaryTypeName",
+                    "src": "747:4:42"
+                  }
+                ],
+                "id": 13030,
+                "name": "VariableDeclaration",
+                "src": "747:22:42"
+              }
+            ],
+            "id": 13031,
+            "name": "StructDefinition",
+            "src": "492:282:42"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "InceptionVaultDeployed"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "owner",
+                      "overrides": null,
+                      "scope": 13043,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 13032,
+                        "name": "ElementaryTypeName",
+                        "src": "812:7:42"
+                      }
+                    ],
+                    "id": 13033,
+                    "name": "VariableDeclaration",
+                    "src": "812:13:42"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "adminInceptionVault",
+                      "overrides": null,
+                      "scope": 13043,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract IAdminInceptionVault",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IAdminInceptionVault",
+                          "referencedDeclaration": 13007,
+                          "type": "contract IAdminInceptionVault"
+                        },
+                        "id": 13034,
+                        "name": "UserDefinedTypeName",
+                        "src": "831:20:42"
+                      }
+                    ],
+                    "id": 13035,
+                    "name": "VariableDeclaration",
+                    "src": "831:40:42"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "inceptionVaultsCore",
+                      "overrides": null,
+                      "scope": 13043,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract IInceptionVaultsCore",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IInceptionVaultsCore",
+                          "referencedDeclaration": 13380,
+                          "type": "contract IInceptionVaultsCore"
+                        },
+                        "id": 13036,
+                        "name": "UserDefinedTypeName",
+                        "src": "877:20:42"
+                      }
+                    ],
+                    "id": 13037,
+                    "name": "VariableDeclaration",
+                    "src": "877:40:42"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "inceptionVaultsDataProvider",
+                      "overrides": null,
+                      "scope": 13043,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract IInceptionVaultsDataProvider",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IInceptionVaultsDataProvider",
+                          "referencedDeclaration": 13492,
+                          "type": "contract IInceptionVaultsDataProvider"
+                        },
+                        "id": 13038,
+                        "name": "UserDefinedTypeName",
+                        "src": "923:28:42"
+                      }
+                    ],
+                    "id": 13039,
+                    "name": "VariableDeclaration",
+                    "src": "923:56:42"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "inceptionVaultPriceFeed",
+                      "overrides": null,
+                      "scope": 13043,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract IInceptionVaultPriceFeed",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IInceptionVaultPriceFeed",
+                          "referencedDeclaration": 13194,
+                          "type": "contract IInceptionVaultPriceFeed"
+                        },
+                        "id": 13040,
+                        "name": "UserDefinedTypeName",
+                        "src": "985:24:42"
+                      }
+                    ],
+                    "id": 13041,
+                    "name": "VariableDeclaration",
+                    "src": "985:48:42"
+                  }
+                ],
+                "id": 13042,
+                "name": "ParameterList",
+                "src": "806:231:42"
+              }
+            ],
+            "id": 13043,
+            "name": "EventDefinition",
+            "src": "778:260:42"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "PriceFeedAdded"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "_id",
+                      "overrides": null,
+                      "scope": 13049,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint16",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint16",
+                          "type": "uint16"
+                        },
+                        "id": 13044,
+                        "name": "ElementaryTypeName",
+                        "src": "1063:6:42"
+                      }
+                    ],
+                    "id": 13045,
+                    "name": "VariableDeclaration",
+                    "src": "1063:10:42"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "_address",
+                      "overrides": null,
+                      "scope": 13049,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 13046,
+                        "name": "ElementaryTypeName",
+                        "src": "1075:7:42"
+                      }
+                    ],
+                    "id": 13047,
+                    "name": "VariableDeclaration",
+                    "src": "1075:16:42"
+                  }
+                ],
+                "id": 13048,
+                "name": "ParameterList",
+                "src": "1062:30:42"
+              }
+            ],
+            "id": 13049,
+            "name": "EventDefinition",
+            "src": "1042:51:42"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "1673d187",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "cloneInceptionVault",
+              "overrides": null,
+              "scope": 13132,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_vaultConfig",
+                      "overrides": null,
+                      "scope": 13060,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "struct IInceptionVaultsCore.VaultConfig",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IInceptionVaultsCore.VaultConfig",
+                          "referencedDeclaration": 13215,
+                          "type": "struct IInceptionVaultsCore.VaultConfig"
+                        },
+                        "id": 13050,
+                        "name": "UserDefinedTypeName",
+                        "src": "1131:32:42"
+                      }
+                    ],
+                    "id": 13051,
+                    "name": "VariableDeclaration",
+                    "src": "1131:54:42"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_inceptionCollateral",
+                      "overrides": null,
+                      "scope": 13060,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract IERC20",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IERC20",
+                          "referencedDeclaration": 1548,
+                          "type": "contract IERC20"
+                        },
+                        "id": 13052,
+                        "name": "UserDefinedTypeName",
+                        "src": "1191:6:42"
+                      }
+                    ],
+                    "id": 13053,
+                    "name": "VariableDeclaration",
+                    "src": "1191:27:42"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_inceptionVaultPriceFeed",
+                      "overrides": null,
+                      "scope": 13060,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 13054,
+                        "name": "ElementaryTypeName",
+                        "src": "1224:7:42"
+                      }
+                    ],
+                    "id": 13055,
+                    "name": "VariableDeclaration",
+                    "src": "1224:32:42"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_assetOracle",
+                      "overrides": null,
+                      "scope": 13060,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 13056,
+                        "name": "ElementaryTypeName",
+                        "src": "1262:7:42"
+                      }
+                    ],
+                    "id": 13057,
+                    "name": "VariableDeclaration",
+                    "src": "1262:20:42"
+                  }
+                ],
+                "id": 13058,
+                "name": "ParameterList",
+                "src": "1125:161:42"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 13059,
+                "name": "ParameterList",
+                "src": "1295:0:42"
+              }
+            ],
+            "id": 13060,
+            "name": "FunctionDefinition",
+            "src": "1097:199:42"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "0bb6842d",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "addPriceFeed",
+              "overrides": null,
+              "scope": 13132,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_address",
+                      "overrides": null,
+                      "scope": 13065,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 13061,
+                        "name": "ElementaryTypeName",
+                        "src": "1322:7:42"
+                      }
+                    ],
+                    "id": 13062,
+                    "name": "VariableDeclaration",
+                    "src": "1322:16:42"
+                  }
+                ],
+                "id": 13063,
+                "name": "ParameterList",
+                "src": "1321:18:42"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 13064,
+                "name": "ParameterList",
+                "src": "1348:0:42"
+              }
+            ],
+            "id": 13065,
+            "name": "FunctionDefinition",
+            "src": "1300:49:42"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "0dbe671f",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "a",
+              "overrides": null,
+              "scope": 13132,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 13066,
+                "name": "ParameterList",
+                "src": "1378:2:42"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 13070,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract IAddressProvider",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IAddressProvider",
+                          "referencedDeclaration": 14021,
+                          "type": "contract IAddressProvider"
+                        },
+                        "id": 13067,
+                        "name": "UserDefinedTypeName",
+                        "src": "1404:16:42"
+                      }
+                    ],
+                    "id": 13068,
+                    "name": "VariableDeclaration",
+                    "src": "1404:16:42"
+                  }
+                ],
+                "id": 13069,
+                "name": "ParameterList",
+                "src": "1403:18:42"
+              }
+            ],
+            "id": 13070,
+            "name": "FunctionDefinition",
+            "src": "1368:54:42"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "bd1b7146",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "debtNotifier",
+              "overrides": null,
+              "scope": 13132,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 13071,
+                "name": "ParameterList",
+                "src": "1447:2:42"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 13075,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract IDebtNotifier",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IDebtNotifier",
+                          "referencedDeclaration": 23349,
+                          "type": "contract IDebtNotifier"
+                        },
+                        "id": 13072,
+                        "name": "UserDefinedTypeName",
+                        "src": "1473:13:42"
+                      }
+                    ],
+                    "id": 13073,
+                    "name": "VariableDeclaration",
+                    "src": "1473:13:42"
+                  }
+                ],
+                "id": 13074,
+                "name": "ParameterList",
+                "src": "1472:15:42"
+              }
+            ],
+            "id": 13075,
+            "name": "FunctionDefinition",
+            "src": "1426:62:42"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "3fc8cef3",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "weth",
+              "overrides": null,
+              "scope": 13132,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 13076,
+                "name": "ParameterList",
+                "src": "1505:2:42"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 13080,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract IWETH",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IWETH",
+                          "referencedDeclaration": 15037,
+                          "type": "contract IWETH"
+                        },
+                        "id": 13077,
+                        "name": "UserDefinedTypeName",
+                        "src": "1531:5:42"
+                      }
+                    ],
+                    "id": 13078,
+                    "name": "VariableDeclaration",
+                    "src": "1531:5:42"
+                  }
+                ],
+                "id": 13079,
+                "name": "ParameterList",
+                "src": "1530:7:42"
+              }
+            ],
+            "id": 13080,
+            "name": "FunctionDefinition",
+            "src": "1492:46:42"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "6d9b1823",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "mimo",
+              "overrides": null,
+              "scope": 13132,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 13081,
+                "name": "ParameterList",
+                "src": "1555:2:42"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 13085,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract IERC20",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IERC20",
+                          "referencedDeclaration": 1548,
+                          "type": "contract IERC20"
+                        },
+                        "id": 13082,
+                        "name": "UserDefinedTypeName",
+                        "src": "1581:6:42"
+                      }
+                    ],
+                    "id": 13083,
+                    "name": "VariableDeclaration",
+                    "src": "1581:6:42"
+                  }
+                ],
+                "id": 13084,
+                "name": "ParameterList",
+                "src": "1580:8:42"
+              }
+            ],
+            "id": 13085,
+            "name": "FunctionDefinition",
+            "src": "1542:47:42"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "3e9b4a07",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "adminInceptionVaultBase",
+              "overrides": null,
+              "scope": 13132,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 13086,
+                "name": "ParameterList",
+                "src": "1625:2:42"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 13090,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 13087,
+                        "name": "ElementaryTypeName",
+                        "src": "1651:7:42"
+                      }
+                    ],
+                    "id": 13088,
+                    "name": "VariableDeclaration",
+                    "src": "1651:7:42"
+                  }
+                ],
+                "id": 13089,
+                "name": "ParameterList",
+                "src": "1650:9:42"
+              }
+            ],
+            "id": 13090,
+            "name": "FunctionDefinition",
+            "src": "1593:67:42"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "396c39f0",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "inceptionVaultsCoreBase",
+              "overrides": null,
+              "scope": 13132,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 13091,
+                "name": "ParameterList",
+                "src": "1696:2:42"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 13095,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 13092,
+                        "name": "ElementaryTypeName",
+                        "src": "1722:7:42"
+                      }
+                    ],
+                    "id": 13093,
+                    "name": "VariableDeclaration",
+                    "src": "1722:7:42"
+                  }
+                ],
+                "id": 13094,
+                "name": "ParameterList",
+                "src": "1721:9:42"
+              }
+            ],
+            "id": 13095,
+            "name": "FunctionDefinition",
+            "src": "1664:67:42"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "3902db75",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "inceptionVaultsDataProviderBase",
+              "overrides": null,
+              "scope": 13132,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 13096,
+                "name": "ParameterList",
+                "src": "1775:2:42"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 13100,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 13097,
+                        "name": "ElementaryTypeName",
+                        "src": "1801:7:42"
+                      }
+                    ],
+                    "id": 13098,
+                    "name": "VariableDeclaration",
+                    "src": "1801:7:42"
+                  }
+                ],
+                "id": 13099,
+                "name": "ParameterList",
+                "src": "1800:9:42"
+              }
+            ],
+            "id": 13100,
+            "name": "FunctionDefinition",
+            "src": "1735:75:42"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "65586b16",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "inceptionVaultCount",
+              "overrides": null,
+              "scope": 13132,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 13101,
+                "name": "ParameterList",
+                "src": "1842:2:42"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 13105,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 13102,
+                        "name": "ElementaryTypeName",
+                        "src": "1868:7:42"
+                      }
+                    ],
+                    "id": 13103,
+                    "name": "VariableDeclaration",
+                    "src": "1868:7:42"
+                  }
+                ],
+                "id": 13104,
+                "name": "ParameterList",
+                "src": "1867:9:42"
+              }
+            ],
+            "id": 13105,
+            "name": "FunctionDefinition",
+            "src": "1814:63:42"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "36c15ab2",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "priceFeedCount",
+              "overrides": null,
+              "scope": 13132,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 13106,
+                "name": "ParameterList",
+                "src": "1904:2:42"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 13110,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint8",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint8",
+                          "type": "uint8"
+                        },
+                        "id": 13107,
+                        "name": "ElementaryTypeName",
+                        "src": "1930:5:42"
+                      }
+                    ],
+                    "id": 13108,
+                    "name": "VariableDeclaration",
+                    "src": "1930:5:42"
+                  }
+                ],
+                "id": 13109,
+                "name": "ParameterList",
+                "src": "1929:7:42"
+              }
+            ],
+            "id": 13110,
+            "name": "FunctionDefinition",
+            "src": "1881:56:42"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "2fe66f94",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "inceptionVaults",
+              "overrides": null,
+              "scope": 13132,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_id",
+                      "overrides": null,
+                      "scope": 13117,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 13111,
+                        "name": "ElementaryTypeName",
+                        "src": "1966:7:42"
+                      }
+                    ],
+                    "id": 13112,
+                    "name": "VariableDeclaration",
+                    "src": "1966:11:42"
+                  }
+                ],
+                "id": 13113,
+                "name": "ParameterList",
+                "src": "1965:13:42"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 13117,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "struct IInceptionVaultFactory.InceptionVault",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "InceptionVault",
+                          "referencedDeclaration": 13031,
+                          "type": "struct IInceptionVaultFactory.InceptionVault"
+                        },
+                        "id": 13114,
+                        "name": "UserDefinedTypeName",
+                        "src": "2002:14:42"
+                      }
+                    ],
+                    "id": 13115,
+                    "name": "VariableDeclaration",
+                    "src": "2002:21:42"
+                  }
+                ],
+                "id": 13116,
+                "name": "ParameterList",
+                "src": "2001:23:42"
+              }
+            ],
+            "id": 13117,
+            "name": "FunctionDefinition",
+            "src": "1941:84:42"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "2a6a7a07",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "priceFeeds",
+              "overrides": null,
+              "scope": 13132,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_id",
+                      "overrides": null,
+                      "scope": 13124,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint8",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint8",
+                          "type": "uint8"
+                        },
+                        "id": 13118,
+                        "name": "ElementaryTypeName",
+                        "src": "2049:5:42"
+                      }
+                    ],
+                    "id": 13119,
+                    "name": "VariableDeclaration",
+                    "src": "2049:9:42"
+                  }
+                ],
+                "id": 13120,
+                "name": "ParameterList",
+                "src": "2048:11:42"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 13124,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 13121,
+                        "name": "ElementaryTypeName",
+                        "src": "2083:7:42"
+                      }
+                    ],
+                    "id": 13122,
+                    "name": "VariableDeclaration",
+                    "src": "2083:7:42"
+                  }
+                ],
+                "id": 13123,
+                "name": "ParameterList",
+                "src": "2082:9:42"
+              }
+            ],
+            "id": 13124,
+            "name": "FunctionDefinition",
+            "src": "2029:63:42"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "336eb6ae",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "priceFeedIds",
+              "overrides": null,
+              "scope": 13132,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_priceFeed",
+                      "overrides": null,
+                      "scope": 13131,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 13125,
+                        "name": "ElementaryTypeName",
+                        "src": "2118:7:42"
+                      }
+                    ],
+                    "id": 13126,
+                    "name": "VariableDeclaration",
+                    "src": "2118:18:42"
+                  }
+                ],
+                "id": 13127,
+                "name": "ParameterList",
+                "src": "2117:20:42"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 13131,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint16",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint16",
+                          "type": "uint16"
+                        },
+                        "id": 13128,
+                        "name": "ElementaryTypeName",
+                        "src": "2161:6:42"
+                      }
+                    ],
+                    "id": 13129,
+                    "name": "VariableDeclaration",
+                    "src": "2161:6:42"
+                  }
+                ],
+                "id": 13130,
+                "name": "ParameterList",
+                "src": "2160:8:42"
+              }
+            ],
+            "id": 13131,
+            "name": "FunctionDefinition",
+            "src": "2096:73:42"
+          }
+        ],
+        "id": 13132,
+        "name": "ContractDefinition",
+        "src": "455:1716:42"
+      }
+    ],
+    "id": 13133,
+    "name": "SourceUnit",
+    "src": "31:2141:42"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.7",
+  "updatedAt": "2025-02-28T14:09:34.624Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

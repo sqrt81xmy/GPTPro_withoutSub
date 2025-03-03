@@ -1,0 +1,2532 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/Insurance.sol": {
+      "lastModificationDate": 1740637994799,
+      "contentHash": "bfa020334caa059a4c41ba4e1b3a61ed",
+      "sourceName": "contracts/Insurance.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./Interfaces/ITracerPerpetualSwaps.sol",
+        "./Interfaces/IInsurance.sol",
+        "./Interfaces/ITracerPerpetualsFactory.sol",
+        "./InsurancePoolToken.sol",
+        "./lib/LibMath.sol",
+        "./lib/LibBalances.sol",
+        "./lib/LibInsurance.sol",
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "prb-math/contracts/PRBMathSD59x18.sol",
+        "prb-math/contracts/PRBMathUD60x18.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Insurance"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/Interfaces/IInsurance.sol": {
+      "lastModificationDate": 1740637994800,
+      "contentHash": "625c51d9ebc3a7952bf50967569e934d",
+      "sourceName": "contracts/Interfaces/IInsurance.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IInsurance"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/Interfaces/ITracerPerpetualSwaps.sol": {
+      "lastModificationDate": 1740637994800,
+      "contentHash": "19c4b9f6003d46fde83d1ca61cf3dee9",
+      "sourceName": "contracts/Interfaces/ITracerPerpetualSwaps.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../lib/LibPerpetuals.sol",
+        "../lib/LibBalances.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ITracerPerpetualSwaps"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/Interfaces/ITracerPerpetualsFactory.sol": {
+      "lastModificationDate": 1740637994800,
+      "contentHash": "533549377741b2d63cdd66f686f9010e",
+      "sourceName": "contracts/Interfaces/ITracerPerpetualsFactory.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ITracerPerpetualsFactory"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/InsurancePoolToken.sol": {
+      "lastModificationDate": 1740637994799,
+      "contentHash": "261d60061aab1c2052644d30879cc251",
+      "sourceName": "contracts/InsurancePoolToken.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
+        "@openzeppelin/contracts/access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "InsurancePoolToken"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/lib/LibMath.sol": {
+      "lastModificationDate": 1740637994804,
+      "contentHash": "12f6b632c83af7576248065a618be034",
+      "sourceName": "contracts/lib/LibMath.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "LibMath"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/lib/LibInsurance.sol": {
+      "lastModificationDate": 1740637994804,
+      "contentHash": "4173bea9e412fd49cbe171fcfbbed320",
+      "sourceName": "contracts/lib/LibInsurance.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "prb-math/contracts/PRBMathUD60x18.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "LibInsurance"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/lib/LibBalances.sol": {
+      "lastModificationDate": 1740637994804,
+      "contentHash": "5c42ec660e040477e3ee6e7ca6dcb9fc",
+      "sourceName": "contracts/lib/LibBalances.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./LibMath.sol",
+        "../Interfaces/Types.sol",
+        "prb-math/contracts/PRBMathSD59x18.sol",
+        "prb-math/contracts/PRBMathUD60x18.sol",
+        "./LibPerpetuals.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Balances"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/node_modules/prb-math/contracts/PRBMathUD60x18.sol": {
+      "lastModificationDate": 1740752761421,
+      "contentHash": "3053e38c8a88f6953d3540a6214904c5",
+      "sourceName": "prb-math/contracts/PRBMathUD60x18.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./PRBMathCommon.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.0"
+      ],
+      "artifacts": [
+        "PRBMathUD60x18"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/node_modules/prb-math/contracts/PRBMathSD59x18.sol": {
+      "lastModificationDate": 1740752761361,
+      "contentHash": "fb541a59e247eac6160134edfded0270",
+      "sourceName": "prb-math/contracts/PRBMathSD59x18.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./PRBMathCommon.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.0"
+      ],
+      "artifacts": [
+        "PRBMathSD59x18"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1740752762368,
+      "contentHash": "df36f7051335cd1e748b1b6463b7fdd3",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/lib/LibPerpetuals.sol": {
+      "lastModificationDate": 1740637994804,
+      "contentHash": "37666ec0f075793f2f983c3e6cb497f5",
+      "sourceName": "contracts/lib/LibPerpetuals.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "prb-math/contracts/PRBMathUD60x18.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Perpetuals"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/node_modules/prb-math/contracts/PRBMathCommon.sol": {
+      "lastModificationDate": 1740752761141,
+      "contentHash": "9d97ccb6bede7a105ed19cb25a007085",
+      "sourceName": "prb-math/contracts/PRBMathCommon.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.8.0"
+      ],
+      "artifacts": [
+        "PRBMathCommon"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/Interfaces/Types.sol": {
+      "lastModificationDate": 1740637994800,
+      "contentHash": "142ad847790d0d3929b7b44c1ee52a3c",
+      "sourceName": "contracts/Interfaces/Types.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../lib/LibPerpetuals.sol",
+        "../lib/LibPrices.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Types"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/lib/LibPrices.sol": {
+      "lastModificationDate": 1740637994804,
+      "contentHash": "7cd0c4b00ae23a224a07b79246b28459",
+      "sourceName": "contracts/lib/LibPrices.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./LibMath.sol",
+        "./LibBalances.sol",
+        "prb-math/contracts/PRBMathUD60x18.sol",
+        "prb-math/contracts/PRBMathSD59x18.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Prices"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
+      "lastModificationDate": 1740752762398,
+      "contentHash": "5a20b2cad87ddb61c7a3a6af21289e28",
+      "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Ownable"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+      "lastModificationDate": 1740752762066,
+      "contentHash": "3ae5166c6827a9cf1a7a462d1632b464",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./IERC20.sol",
+        "./extensions/IERC20Metadata.sol",
+        "../../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC20"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/node_modules/@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol": {
+      "lastModificationDate": 1740752762066,
+      "contentHash": "a1c7f80ae26f5b2d7d563475627fbf25",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../ERC20.sol",
+        "../../../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC20Burnable"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "lastModificationDate": 1740752762027,
+      "contentHash": "f07feb4a44b1a4872370da5aa70e8e46",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
+      "lastModificationDate": 1740752762370,
+      "contentHash": "909ab67fc5c25033fe6cd364f8c056f9",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../IERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20Metadata"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/deployers/InsuranceDeployerV1.sol": {
+      "lastModificationDate": 1740637994801,
+      "contentHash": "7423b2d3c583714ed72302d10d98f070",
+      "sourceName": "contracts/deployers/InsuranceDeployerV1.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../Insurance.sol",
+        "../Interfaces/deployers/IInsuranceDeployer.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "InsuranceDeployerV1"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/Interfaces/deployers/IInsuranceDeployer.sol": {
+      "lastModificationDate": 1740637994800,
+      "contentHash": "8681d43c04db5bd2d7459f2c03e3c08f",
+      "sourceName": "contracts/Interfaces/deployers/IInsuranceDeployer.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IInsuranceDeployer"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/TracerPerpetualsFactory.sol": {
+      "lastModificationDate": 1740637994801,
+      "contentHash": "ef06a1e8008964b32c8a022fabe87134",
+      "sourceName": "contracts/TracerPerpetualsFactory.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./Interfaces/ITracerPerpetualSwaps.sol",
+        "./Interfaces/IPricing.sol",
+        "./Interfaces/ILiquidation.sol",
+        "./Interfaces/IInsurance.sol",
+        "./Interfaces/ITracerPerpetualsFactory.sol",
+        "./Interfaces/deployers/IPerpsDeployer.sol",
+        "./Interfaces/deployers/ILiquidationDeployer.sol",
+        "./Interfaces/deployers/IInsuranceDeployer.sol",
+        "./Interfaces/deployers/IPricingDeployer.sol",
+        "@openzeppelin/contracts/access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "TracerPerpetualsFactory"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/Interfaces/deployers/IPerpsDeployer.sol": {
+      "lastModificationDate": 1740637994801,
+      "contentHash": "c7b86d886e0709391d8831fd1d271acb",
+      "sourceName": "contracts/Interfaces/deployers/IPerpsDeployer.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IPerpsDeployer"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/Interfaces/IPricing.sol": {
+      "lastModificationDate": 1740637994800,
+      "contentHash": "14598512f0efbc358c2b8b9e36580c66",
+      "sourceName": "contracts/Interfaces/IPricing.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../lib/LibPrices.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IPricing"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/Interfaces/deployers/IPricingDeployer.sol": {
+      "lastModificationDate": 1740637994801,
+      "contentHash": "966349bdf2037688d5dfbd28488b77ed",
+      "sourceName": "contracts/Interfaces/deployers/IPricingDeployer.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IPricingDeployer"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/Interfaces/ILiquidation.sol": {
+      "lastModificationDate": 1740637994800,
+      "contentHash": "5223fd8d52c2c51d914fb849f432856d",
+      "sourceName": "contracts/Interfaces/ILiquidation.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./Types.sol",
+        "../lib/LibPerpetuals.sol",
+        "../lib/LibLiquidation.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ILiquidation"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/Interfaces/deployers/ILiquidationDeployer.sol": {
+      "lastModificationDate": 1740637994800,
+      "contentHash": "57e3a8e26f237f63af420153fbd0f20d",
+      "sourceName": "contracts/Interfaces/deployers/ILiquidationDeployer.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ILiquidationDeployer"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/lib/LibLiquidation.sol": {
+      "lastModificationDate": 1740637994804,
+      "contentHash": "82548d494a680c2506574abf180e41ac",
+      "sourceName": "contracts/lib/LibLiquidation.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./LibMath.sol",
+        "./LibPerpetuals.sol",
+        "./LibBalances.sol",
+        "prb-math/contracts/PRBMathUD60x18.sol",
+        "prb-math/contracts/PRBMathSD59x18.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "LibLiquidation"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/lib/SafetyWithdraw.sol": {
+      "lastModificationDate": 1740637994804,
+      "contentHash": "a60eac6ebfdd84220705f7056ad31858",
+      "sourceName": "contracts/lib/SafetyWithdraw.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../Interfaces/ISafetyWithdraw.sol",
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "@openzeppelin/contracts/access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "SafetyWithdraw"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/Interfaces/ISafetyWithdraw.sol": {
+      "lastModificationDate": 1740637994800,
+      "contentHash": "90dd1afafad1b719967e9d5b4f0d408e",
+      "sourceName": "contracts/Interfaces/ISafetyWithdraw.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ISafetyWithdraw"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/TracerPerpetualSwaps.sol": {
+      "lastModificationDate": 1740637994801,
+      "contentHash": "377e6c5979909eb24c9bf436c28cff3a",
+      "sourceName": "contracts/TracerPerpetualSwaps.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./lib/SafetyWithdraw.sol",
+        "./lib/LibMath.sol",
+        "./lib/LibBalances.sol",
+        "./Interfaces/Types.sol",
+        "./lib/LibPrices.sol",
+        "./lib/LibPerpetuals.sol",
+        "./Interfaces/IOracle.sol",
+        "./Interfaces/IInsurance.sol",
+        "./Interfaces/ITracerPerpetualSwaps.sol",
+        "./Interfaces/IPricing.sol",
+        "./Interfaces/ITrader.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "prb-math/contracts/PRBMathSD59x18.sol",
+        "prb-math/contracts/PRBMathUD60x18.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "TracerPerpetualSwaps"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/Interfaces/IOracle.sol": {
+      "lastModificationDate": 1740637994800,
+      "contentHash": "e9bad12741b59fc469c81ba728f3581a",
+      "sourceName": "contracts/Interfaces/IOracle.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IOracle"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/Interfaces/ITrader.sol": {
+      "lastModificationDate": 1740637994800,
+      "contentHash": "c9efb8c34dbe51e9e4164b9f9dc75778",
+      "sourceName": "contracts/Interfaces/ITrader.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./Types.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ITrader"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/deployers/PerpsDeployerV1.sol": {
+      "lastModificationDate": 1740637994801,
+      "contentHash": "e877a8c31dcd527d572726f42bb9cd15",
+      "sourceName": "contracts/deployers/PerpsDeployerV1.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../TracerPerpetualSwaps.sol",
+        "../Interfaces/deployers/IPerpsDeployer.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "PerpsDeployerV1"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/test/LibPricesMock.sol": {
+      "lastModificationDate": 1740637994805,
+      "contentHash": "0e0e647912f719f98939ecfc76bafdba",
+      "sourceName": "contracts/test/LibPricesMock.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../lib/LibPrices.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "LibPricesMock"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/test/TraderMock.sol": {
+      "lastModificationDate": 1740637994805,
+      "contentHash": "16002be3f2cc65b5d635dc15ed85e0bf",
+      "sourceName": "contracts/test/TraderMock.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../Interfaces/ITracerPerpetualSwaps.sol",
+        "../Interfaces/Types.sol",
+        "../Interfaces/ITrader.sol",
+        "../lib/LibPerpetuals.sol",
+        "../lib/LibBalances.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "TraderMock"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/test/TracerPerpetualSwapMock.sol": {
+      "lastModificationDate": 1740637994805,
+      "contentHash": "02e216153c5a2cbeb9f99d749a954818",
+      "sourceName": "contracts/test/TracerPerpetualSwapMock.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../lib/LibPerpetuals.sol"
+      ],
+      "versionPragmas": [
+        "0.8.0"
+      ],
+      "artifacts": [
+        "TracerPerpetualSwapMock"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/test/LibPerpetualsMock.sol": {
+      "lastModificationDate": 1740637994805,
+      "contentHash": "e95395c5f2f870773905450365e259d0",
+      "sourceName": "contracts/test/LibPerpetualsMock.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../lib/LibPerpetuals.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "PerpetualsMock"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/test/LibLiquidationMock.sol": {
+      "lastModificationDate": 1740637994805,
+      "contentHash": "125e0143ac000a2ec521703fe542febc",
+      "sourceName": "contracts/test/LibLiquidationMock.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../lib/LibLiquidation.sol",
+        "../lib/LibPerpetuals.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "LibLiquidationMock"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/oracle/GasOracle.sol": {
+      "lastModificationDate": 1740637994804,
+      "contentHash": "bb453026976188f84d40d5f6859e0fb7",
+      "sourceName": "contracts/oracle/GasOracle.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../Interfaces/IOracle.sol",
+        "../Interfaces/IChainlinkOracle.sol",
+        "../lib/LibMath.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "prb-math/contracts/PRBMathUD60x18.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "GasOracle"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/Interfaces/IChainlinkOracle.sol": {
+      "lastModificationDate": 1740637994800,
+      "contentHash": "626c6d98c10ac3a5ee9d385ae74b58b8",
+      "sourceName": "contracts/Interfaces/IChainlinkOracle.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IChainlinkOracle"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/oracle/ChainlinkOracleAdapter.sol": {
+      "lastModificationDate": 1740637994804,
+      "contentHash": "40034977d55746829672b20eb587c51d",
+      "sourceName": "contracts/oracle/ChainlinkOracleAdapter.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../Interfaces/IOracle.sol",
+        "../Interfaces/IChainlinkOracle.sol",
+        "../lib/LibMath.sol",
+        "@openzeppelin/contracts/access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "OracleAdapter"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/oracle/Oracle.sol": {
+      "lastModificationDate": 1740637994804,
+      "contentHash": "cbe94ba27031ce8f888290432afc80dc",
+      "sourceName": "contracts/oracle/Oracle.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../Interfaces/IOracle.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Oracle"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/Pricing.sol": {
+      "lastModificationDate": 1740637994801,
+      "contentHash": "06201123b96500f43fed3a4e450952b7",
+      "sourceName": "contracts/Pricing.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./lib/LibMath.sol",
+        "./lib/LibPrices.sol",
+        "./Interfaces/IPricing.sol",
+        "./Interfaces/ITracerPerpetualSwaps.sol",
+        "./Interfaces/IInsurance.sol",
+        "./Interfaces/IOracle.sol",
+        "prb-math/contracts/PRBMathSD59x18.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Pricing"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/deployers/PricingDeployerV1.sol": {
+      "lastModificationDate": 1740637994801,
+      "contentHash": "90568168803af0c92013d396a46a6b66",
+      "sourceName": "contracts/deployers/PricingDeployerV1.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../Pricing.sol",
+        "../Interfaces/deployers/IPricingDeployer.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "PricingDeployerV1"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/Liquidation.sol": {
+      "lastModificationDate": 1740637994801,
+      "contentHash": "42260cfe4846d86b48ea5336a1407cac",
+      "sourceName": "contracts/Liquidation.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "./lib/LibMath.sol",
+        "./lib/LibLiquidation.sol",
+        "./lib/LibBalances.sol",
+        "./lib/LibPerpetuals.sol",
+        "./Interfaces/ILiquidation.sol",
+        "./Interfaces/ITrader.sol",
+        "./Interfaces/ITracerPerpetualSwaps.sol",
+        "./Interfaces/ITracerPerpetualsFactory.sol",
+        "./Interfaces/IOracle.sol",
+        "./Interfaces/IPricing.sol",
+        "./Interfaces/IInsurance.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Liquidation"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/deployers/LiquidationDeployerV1.sol": {
+      "lastModificationDate": 1740637994801,
+      "contentHash": "1ee4385d763737993b1fa4db1f8dd576",
+      "sourceName": "contracts/deployers/LiquidationDeployerV1.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../Liquidation.sol",
+        "../Interfaces/deployers/ILiquidationDeployer.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "LiquidationDeployerV1"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/Trader.sol": {
+      "lastModificationDate": 1740637994801,
+      "contentHash": "9c4ce3cd18b7562d0d7efd9ed9e35612",
+      "sourceName": "contracts/Trader.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./Interfaces/ITracerPerpetualSwaps.sol",
+        "./Interfaces/Types.sol",
+        "./Interfaces/ITrader.sol",
+        "./lib/LibPerpetuals.sol",
+        "./lib/LibBalances.sol",
+        "@openzeppelin/contracts/utils/cryptography/ECDSA.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Trader"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol": {
+      "lastModificationDate": 1740752762046,
+      "contentHash": "d822a8a9468649cab463f29f5decf5cc",
+      "sourceName": "@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../Strings.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ECDSA"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/node_modules/@openzeppelin/contracts/utils/Strings.sol": {
+      "lastModificationDate": 1740752762409,
+      "contentHash": "48686fc32a22a3754b8e63321857dd2a",
+      "sourceName": "@openzeppelin/contracts/utils/Strings.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./math/Math.sol",
+        "./math/SignedMath.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Strings"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/node_modules/@openzeppelin/contracts/utils/math/Math.sol": {
+      "lastModificationDate": 1740752762395,
+      "contentHash": "fe63409d8a06818b926cf89e0ea88b1b",
+      "sourceName": "@openzeppelin/contracts/utils/math/Math.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Math"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol": {
+      "lastModificationDate": 1740752762407,
+      "contentHash": "9488ebd4daacfee8ad04811600d7d061",
+      "sourceName": "@openzeppelin/contracts/utils/math/SignedMath.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "SignedMath"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/test/LibBalancesMock.sol": {
+      "lastModificationDate": 1740637994805,
+      "contentHash": "646522457bdb2b562c69613f9be8fb12",
+      "sourceName": "contracts/test/LibBalancesMock.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../lib/LibBalances.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "LibBalancesMock"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/test/LibInsuranceMock.sol": {
+      "lastModificationDate": 1740637994805,
+      "contentHash": "824faeb54222f48789dead8687f93703",
+      "sourceName": "contracts/test/LibInsuranceMock.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../lib/LibInsurance.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "LibInsuranceMock"
+      ]
+    },
+    "/home/mingyue/sub_contract_content/Web3Bugs/contracts/16/src/contracts/TestToken.sol": {
+      "lastModificationDate": 1740637994801,
+      "contentHash": "2d2be085b533ebed4bba0e8e0c8c4bbe",
+      "sourceName": "contracts/TestToken.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "storageLayout",
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "TestToken"
+      ]
+    }
+  }
+}

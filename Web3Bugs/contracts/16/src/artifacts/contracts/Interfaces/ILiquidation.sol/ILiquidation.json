@@ -1,0 +1,393 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "ILiquidation",
+  "sourceName": "contracts/Interfaces/ILiquidation.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "escrowId",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "maker",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "market",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum Perpetuals.Side",
+              "name": "side",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint256",
+              "name": "expires",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "created",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Perpetuals.Order[]",
+          "name": "orders",
+          "type": "tuple[]"
+        },
+        {
+          "internalType": "address",
+          "name": "traderContract",
+          "type": "address"
+        }
+      ],
+      "name": "calcAmountToReturn",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "maker",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "market",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum Perpetuals.Side",
+              "name": "side",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint256",
+              "name": "expires",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "created",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Perpetuals.Order[]",
+          "name": "orders",
+          "type": "tuple[]"
+        },
+        {
+          "internalType": "address",
+          "name": "traderContract",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "receiptId",
+          "type": "uint256"
+        }
+      ],
+      "name": "calcUnitsSold",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "receiptId",
+          "type": "uint256"
+        }
+      ],
+      "name": "claimEscrow",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "receiptId",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "maker",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "market",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum Perpetuals.Side",
+              "name": "side",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint256",
+              "name": "expires",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "created",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Perpetuals.Order[]",
+          "name": "orders",
+          "type": "tuple[]"
+        },
+        {
+          "internalType": "address",
+          "name": "traderContract",
+          "type": "address"
+        }
+      ],
+      "name": "claimReceipt",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "currentLiquidationId",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getLiquidationReceipt",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "tracer",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "liquidator",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "liquidatee",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "time",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "escrowedAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "releaseTime",
+              "type": "uint256"
+            },
+            {
+              "internalType": "int256",
+              "name": "amountLiquidated",
+              "type": "int256"
+            },
+            {
+              "internalType": "bool",
+              "name": "escrowClaimed",
+              "type": "bool"
+            },
+            {
+              "internalType": "enum Perpetuals.Side",
+              "name": "liquidationSide",
+              "type": "uint8"
+            },
+            {
+              "internalType": "bool",
+              "name": "liquidatorRefundClaimed",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct LibLiquidation.LiquidationReceipt",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "int256",
+          "name": "amount",
+          "type": "int256"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "liquidate",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "maxSlippage",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "minimumLeftoverGasCostMultiplier",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "releaseTime",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_maxSlippage",
+          "type": "uint256"
+        }
+      ],
+      "name": "setMaxSlippage",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

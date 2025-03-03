@@ -1,0 +1,88 @@
+{
+    "res": [
+      {
+        "functionName": "init",
+        "sequences": [
+          [
+            {
+              "functionName": "init(0x123)",
+              "msgValue": 0,
+              "msgSender": "NormalUser1"
+            }
+          ]
+        ],
+        "reason": [
+          "The `init` function requires `inited` to be `false` initially, which it is by default. The function sets `inited` to `true` and assigns `POOLS` to the provided address. No prior conditions need to be satisfied other than the function being called with a valid address parameter."
+        ]
+      },
+      {
+        "functionName": "deploySynth",
+        "sequences": [
+          [
+            {
+              "functionName": "init(0x123)",
+              "msgValue": 0,
+              "msgSender": "NormalUser1"
+            },
+            {
+              "functionName": "deploySynth(0x456)",
+              "msgValue": 0,
+              "msgSender": "NormalUser2"
+            }
+          ]
+        ],
+        "reason": [
+          "The `deploySynth` function requires `getSynth[token]` to be `address(0)`, which it is by default. The function creates a new `Synth` contract with the provided token address and adds it to the `arraySynths`. The `init` function must be called first to set `POOLS`, which is required by the `onlyPOOLS` modifier."
+        ]
+      },
+      {
+        "functionName": "mintSynth",
+        "sequences": [
+          [
+            {
+              "functionName": "init(0x123)",
+              "msgValue": 0,
+              "msgSender": "NormalUser1"
+            },
+            {
+              "functionName": "deploySynth(0x456)",
+              "msgValue": 0,
+              "msgSender": "NormalUser2"
+            },
+            {
+              "functionName": "mintSynth(0x456, 0x789, 1000)",
+              "msgValue": 0,
+              "msgSender": "NormalUser3"
+            }
+          ]
+        ],
+        "reason": [
+          "The `mintSynth` function mints tokens to a specified member. It requires the `synth` address to be a valid synth, which is ensured by first calling `deploySynth`. The `init` function must be called first to set `POOLS`, which is required by the `onlyPOOLS` modifier."
+        ]
+      },
+      {
+        "functionName": "_addSynth",
+        "sequences": [
+          [
+            {
+              "functionName": "init(0x123)",
+              "msgValue": 0,
+              "msgSender": "NormalUser1"
+            },
+            {
+              "functionName": "deploySynth(0x456)",
+              "msgValue": 0,
+              "msgSender": "NormalUser2"
+            }
+          ]
+        ],
+        "reason": [
+          "The `_addSynth` function is called internally by `deploySynth` to add a new synth to the `arraySynths` and mark it as a valid synth. It requires `deploySynth` to be called first with a valid token address."
+        ]
+      },
+      {
+        "functions": "init, deploySynth, mintSynth, _addSynth",
+        "reason": "These functions are either public or have inherited relationships and are not private or internal. They are the main functions that interact with the contract's state and are essential for the contract's operation. Other functions are either private/internal or are modifiers/events that do not directly change the state or are not meant to be called directly."
+      }
+    ]
+  }

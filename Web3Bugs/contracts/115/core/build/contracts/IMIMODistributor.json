@@ -1,0 +1,1172 @@
+{
+  "contractName": "IMIMODistributor",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        }
+      ],
+      "name": "PayeeAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newTokens",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "releasedAt",
+          "type": "uint256"
+        }
+      ],
+      "name": "TokensReleased",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "a",
+      "outputs": [
+        {
+          "internalType": "contract IGovernanceAddressProvider",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address[]",
+          "name": "_payees",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "_shares",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "changePayees",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "currentIssuance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getPayees",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "mintableTokens",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "release",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "shares",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "startTime",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalShares",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "totalSupplyAt",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "weeklyIssuanceAt",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"shares\",\"type\":\"uint256\"}],\"name\":\"PayeeAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newTokens\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"releasedAt\",\"type\":\"uint256\"}],\"name\":\"TokensReleased\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"a\",\"outputs\":[{\"internalType\":\"contract IGovernanceAddressProvider\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"_payees\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"_shares\",\"type\":\"uint256[]\"}],\"name\":\"changePayees\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"currentIssuance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getPayees\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"mintableTokens\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"release\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"shares\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"startTime\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalShares\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"totalSupplyAt\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"weeklyIssuanceAt\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"changePayees(address[],uint256[])\":{\"details\":\"will release existing fees before the update.\",\"params\":{\"_payees\":\"Array of payees\",\"_shares\":\"Array of shares for each payee\"}},\"getPayees()\":{\"returns\":{\"_0\":\"array of current payees.\"}},\"release()\":{\"details\":\"anyone can call this.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"changePayees(address[],uint256[])\":{\"notice\":\"Updates the payee configuration to a new one.\"},\"getPayees()\":{\"notice\":\"Get current configured payees.\"},\"release()\":{\"notice\":\"Public function to release the accumulated new MIMO tokens to the payees.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/liquidityMining/interfaces/IMIMODistributor.sol\":\"IMIMODistributor\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x5f02220344881ce43204ae4a6281145a67bc52c2bb1290a791857df3d19d78f5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://24427744bd3e6cb73c17010119af12a318289c0253a4d9acb8576c9fb3797b08\",\"dweb:/ipfs/QmTLDqpKRBuxGxRAmjgXt9AkXyACW3MtKzi7PYjm5iMfGC\"]},\"project:/contracts/chainlink/AggregatorV3Interface.sol\":{\"keccak256\":\"0x0c0d6cd68d8e5d99035491c316bcc4c348f3df1da03d09a7948ef879445b7546\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://1d70c77b85bc876a03d7d918d15686490db87df5535988193cecd0bff3f9eb12\",\"dweb:/ipfs/QmTaEHVucJ6wUSBJxHQMReyCsRai7GZ4YKLFE4TPaVEwkD\"]},\"project:/contracts/governance/interfaces/IGovernanceAddressProvider.sol\":{\"keccak256\":\"0xddec642acfbf56e612164d624b6e89d7d341463897871952c5e6c6b3df9e0290\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a438ed8b1205b5d96d85b47da8f2bd457031e06f9a7ab18aa0454d26a935445c\",\"dweb:/ipfs/QmUJuJ1c8dgyuEzEySUcs2ikJKGB3XLXGDor84BHQv3u8V\"]},\"project:/contracts/governance/interfaces/IGovernorAlpha.sol\":{\"keccak256\":\"0xf8981c4f5e9eb3f000d39835d29c8e76aa4da5882718400b50c7550075616d19\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b6cadf0c19c50a4544806324a7a59bd3bac55f7b19147507cf2de95496f8e1b0\",\"dweb:/ipfs/QmRyhHkMi24HatL3BdoJ6WRSX8Aa4TbJPJ8sPQixZXJ8ib\"]},\"project:/contracts/governance/interfaces/ITimelock.sol\":{\"keccak256\":\"0xf0f0c7745ffb50e2bbd6f5368a89287af561e1345ab27f0e96f47bd3b5f94fa3\",\"license\":\"BSD-3-Clause\",\"urls\":[\"bzz-raw://030e3878a145531230a887fa0ce4a42d6b102cabd105befe1ea20c4b1804b2be\",\"dweb:/ipfs/QmTYdzszrS67wWkpNtsY46FZtCpc7TvmN4uxsA64sq4z7c\"]},\"project:/contracts/governance/interfaces/IVotingEscrow.sol\":{\"keccak256\":\"0xeb4d3820abed3ad175bdcc99ad0347ad4d0f66d5767f3c9dd478a66683378bd6\",\"license\":\"AGPL-3.0\",\"urls\":[\"bzz-raw://155925d8b8a1cfa8760b7d22d555a2b0d06d9b6c6116403e70dfb46947427ab0\",\"dweb:/ipfs/QmbbfF4M3HP6ic6iV8LZLgkQQcWwJyu7sbXPDid9JJH8DX\"]},\"project:/contracts/interfaces/IAccessController.sol\":{\"keccak256\":\"0x44296736b9049485ccf8aca15e582563cb5387af4cd6070d9e3e887d65f89173\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://cf924c3a8c3519ad2745a5da689001f51549fd6ca0e19c071e18c983d61c7f09\",\"dweb:/ipfs/QmVyMF9i8FWM2c4rR6KVwgBxKZb1XBHCmTB5tL1UWBbQA1\"]},\"project:/contracts/interfaces/IAddressProvider.sol\":{\"keccak256\":\"0xf14b8634f04cf84b38c7d2c5d51e7bf0e8276f4275dc6794a0cf76bcc8d3f8ea\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2f2e1afb47e310670d966e0728414e933c6392b4cbaf17f81505b6c198596f0a\",\"dweb:/ipfs/QmVVqKc7wAYdmDg2yTYgLqEkT9iw5NtdL96KJVuRaeJQ6k\"]},\"project:/contracts/interfaces/IConfigProvider.sol\":{\"keccak256\":\"0x33129128a94bcc86fbb83e7a323ec7bc0a5a290a5f35af1d3c129f5f76827e85\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2e306cff52ced075148b372e662c0d4ff83fa67a61df57eff5867e0b9a03d4f6\",\"dweb:/ipfs/Qmc2RqZvst72RgkWS2FtWPuygjtJmb2NMHJbNxqDc72yQC\"]},\"project:/contracts/interfaces/IFeeDistributor.sol\":{\"keccak256\":\"0x8c45c3ef043b247b5e481839a3a3caf62ae24225cfb85626b3df8f57510de979\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://92de1c240f12c273334e70d8368d789af8fa292ba3553d15cf43c6954e61f91a\",\"dweb:/ipfs/QmWjqiNRLuejFfuVVrKsSTvjb49ubefC7miLUkWJw2HTuF\"]},\"project:/contracts/interfaces/ILiquidationManager.sol\":{\"keccak256\":\"0xde6c43dcc1423b34b85f0d7d9947b3249b94df54225b2758b8bf0e2c425ccb90\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e373ef9231207fb8807f556fc458db38c645a9dfdf5796775e6cc6f1fc726a8d\",\"dweb:/ipfs/QmV8DuEHSp8DnUnkdfAeXVkeyvuFviqtuJH7XxHzAH7eK1\"]},\"project:/contracts/interfaces/IPriceFeed.sol\":{\"keccak256\":\"0x8cc0b8ad6f913b3a8cc62e4a7ffb574b40792c4043ddb0c851a1d832c21e0c70\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e8045418cdcd6fb5907037e6213665491b8fad4501b3aa1bf124840c59762928\",\"dweb:/ipfs/QmeP3huTbkHsBtAxYTzn3UnVk6EqNwWyLJjFntSveWveqi\"]},\"project:/contracts/interfaces/IRatesManager.sol\":{\"keccak256\":\"0x59826e9fc772f479422dbefcdd7a31eb4bc6474ea55dd748a2425b725a2b13f8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://4e788723ff15000db36c3096b17ea1b8e6e1dff8df7623a1815734ea5d89e7c0\",\"dweb:/ipfs/QmazQ165fmWPusYCnj23KupadxDi5Via7W48gWC1THGAgp\"]},\"project:/contracts/interfaces/ISTABLEX.sol\":{\"keccak256\":\"0x6915d210a8867b2c1b5a8e983a3342a41dcc63d71ae5f181185b546e3817aead\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6a031814ad3273c5852ee04c36d75e5cae9b8fd2db74e346c8480f71c27f847a\",\"dweb:/ipfs/QmUTunG1C5fQX9oUKdYshM99GmdSziHbCqYLyFsbD8XcCc\"]},\"project:/contracts/interfaces/IVaultsCore.sol\":{\"keccak256\":\"0x3162cc126f547075e43a816a52bdcf406fc9374a75419f67080c8931d19b790d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6de2594d702d1282a7420cadd0cbe205221b834bfbe6476091dcec6b4330263d\",\"dweb:/ipfs/QmSnTLZRi1NAE4WeW7kpUA7uvER1NK7HsXq4jnZWUuTdae\"]},\"project:/contracts/interfaces/IVaultsCoreState.sol\":{\"keccak256\":\"0x7895dfbbf72f559c4050f9d1c14314dca6ef8b044422c31cf22805fb5e314a82\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0551201124b7644d353fb55a41ae5ee191cf53a5264492cf113343f477056180\",\"dweb:/ipfs/QmfDgJrRUF79QwCrQewXrSNA9kCdvAT6QuLTiMwLPCFkf9\"]},\"project:/contracts/interfaces/IVaultsDataProvider.sol\":{\"keccak256\":\"0x6653e963fc559a8fdf4a021ee79a776525c49dada9653c9ed47cbf248b84c51c\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://77313d5f7f994ed4571ec44e052aa8fa940d0fc8fc1f36d4825effa600280232\",\"dweb:/ipfs/QmcAax4EsynydpCj6J3SSqdxmdSaPfjNXQAeAhqgoYLs3F\"]},\"project:/contracts/interfaces/IWETH.sol\":{\"keccak256\":\"0xfdd7722adff687336662cf3c75449b7d7e0f9029cbe2ce05b75657af99dcb90b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ec6d48d39eaf2b46cbe9c2e9ddd1fe704e82883e7231ca1342ce210807c2d81f\",\"dweb:/ipfs/QmUDTMe2BNrivULxPnv4aZ59CiR45kJcPrhguoB9ok9WDh\"]},\"project:/contracts/liquidityMining/interfaces/IBaseDistributor.sol\":{\"keccak256\":\"0xecfcf5caf8ebe2757ff11778afe9ab6435d3494b9be3f5d97d912f7106f44ea5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8a673acf45c250459032419f837f64dd3e22cbc6a2e425fab8edca04372d0692\",\"dweb:/ipfs/QmStuQYdZVPh79myR7t8smHaZEXMqAqFNaHKAgm4jr1Pkr\"]},\"project:/contracts/liquidityMining/interfaces/IDebtNotifier.sol\":{\"keccak256\":\"0x102e26cf04884ab25e8635fd127ff67e79656a2541f2f4e59bbc37b9cb454eb8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5ccb5f51ff8efd442d06458eba24c7b341beab28dbc78d46bb965650bf38644b\",\"dweb:/ipfs/QmQAeXQKmPiAsHmZszzPcuXkDZhMf1DuEJv8KLwceu2gNe\"]},\"project:/contracts/liquidityMining/interfaces/IGenericMiner.sol\":{\"keccak256\":\"0x0e3499d884736706d4bd00101e4c6a658bf81e550288909e71cff4172d4a729b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7b0ace26847e73a481116e5fc4b604ae3bd7ed312aa8309a4aeb1da99663bdc5\",\"dweb:/ipfs/QmVUuFjzxnzf4ereAZUfddvRaCRCDZCFVn46mGjY9tb9PG\"]},\"project:/contracts/liquidityMining/interfaces/IMIMO.sol\":{\"keccak256\":\"0x828c30f45ca2f30b7a9f429ae6e49629a97eed4cd4b5ba23b29e5af24dedc811\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3326b33f699ca6f67b64111cc8482d428ed59894e4785f2757a064f5887a0e08\",\"dweb:/ipfs/QmWCgwcEK5ZqiWbkkVqSSFMaD7J3LE815YerGQsmzJ2xUN\"]},\"project:/contracts/liquidityMining/interfaces/IMIMODistributor.sol\":{\"keccak256\":\"0x81bc92f5d34f2163c50cdae6121ecdc9270e702dbee6cc31ebd5b362feb939b0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b9c99dbaf68a450f3e28847d855494e9fde4dfd513ad7b43d8b333757cd2a48b\",\"dweb:/ipfs/QmWAfZsNPoKEadNsqbjmfkHAvKPeejC76rjAUfHifVKQMu\"]},\"project:/contracts/liquidityMining/interfaces/ISupplyMiner.sol\":{\"keccak256\":\"0xc1f3130c8d6b1b2fa17535d12e5e9bada0b9a751e0af27281207b112c841f98d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e9e7229abf46ac7b75c822203e74766a1addd2382f2a8b072be0ade1a07b77c3\",\"dweb:/ipfs/QmUgt2dxHBqggaaW46yf7pPwmkLPGYMveCnwEcowjXwZ3N\"]},\"project:/contracts/v1/interfaces/IAddressProviderV1.sol\":{\"keccak256\":\"0x8ca0f0f6fe9184013255d19ac7cf605fd0f1fe4b9b6d964e430879302013cae4\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://31c084fc31e6818895b754cfd84c0ad954d95ec91bc4cf36500e2009868cebae\",\"dweb:/ipfs/QmUK8Jb41bkxKcsSkevJDzRb5Tt4nXCy7Jds3TfgGypYVV\"]},\"project:/contracts/v1/interfaces/IConfigProviderV1.sol\":{\"keccak256\":\"0x3367989f6ab1ac32776dbfd6ec303a791048fb30b7c5e5e10eda774b03c7d8d2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://423e9ba2b280a95e1701db6cc1591c1304914c120760365309b32849b0f70a54\",\"dweb:/ipfs/QmTbpimRWoe1Lyg5cR6VC4cbB5mpPoFUrvtAzGKz2KWTqd\"]},\"project:/contracts/v1/interfaces/ILiquidationManagerV1.sol\":{\"keccak256\":\"0x2680a1f246fe7617c3019e04c9e0ebd6dc6512302fbb922e5d5691b6ab8c4da0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://52f157dd2ef3248fc00bf21be4de195bc807d8d91ab513ec40a590a997da9cff\",\"dweb:/ipfs/QmbioUYyZJKMKuXZY828BDueiVDBqVWoBDWS4UKxmcximt\"]},\"project:/contracts/v1/interfaces/IVaultsCoreV1.sol\":{\"keccak256\":\"0x6cf5a137af266b97daa3a0300161a2e1176cd7be1f2fc1db6111e9abc7fdac82\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b9bf7e5e3d42eda478a6db9b067ccd2610c4ec8ee62b4e4a8354bdd56ede7470\",\"dweb:/ipfs/QmWYZajCH2Nsfpb4HdG754YFty76QWtZFc6jWFtZqHjA2K\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\n\npragma experimental ABIEncoderV2;\npragma solidity 0.6.12;\n\nimport \"../../governance/interfaces/IGovernanceAddressProvider.sol\";\nimport \"./IBaseDistributor.sol\";\n\ninterface IMIMODistributorExtension {\n  function startTime() external view returns (uint256);\n\n  function currentIssuance() external view returns (uint256);\n\n  function weeklyIssuanceAt(uint256 timestamp) external view returns (uint256);\n\n  function totalSupplyAt(uint256 timestamp) external view returns (uint256);\n}\n\ninterface IMIMODistributor is IBaseDistributor, IMIMODistributorExtension {}\n",
+  "sourcePath": "/home/mingyue/sub_contract_content/Web3Bugs/contracts/115/core/contracts/liquidityMining/interfaces/IMIMODistributor.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/liquidityMining/interfaces/IMIMODistributor.sol",
+    "exportedSymbols": {
+      "IMIMODistributor": [
+        23485
+      ],
+      "IMIMODistributorExtension": [
+        23480
+      ]
+    },
+    "id": 23486,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 23452,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:33:94"
+      },
+      {
+        "id": 23453,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "67:23:94"
+      },
+      {
+        "absolutePath": "project:/contracts/governance/interfaces/IGovernanceAddressProvider.sol",
+        "file": "../../governance/interfaces/IGovernanceAddressProvider.sol",
+        "id": 23454,
+        "nodeType": "ImportDirective",
+        "scope": 23486,
+        "sourceUnit": 9771,
+        "src": "92:68:94",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/liquidityMining/interfaces/IBaseDistributor.sol",
+        "file": "./IBaseDistributor.sol",
+        "id": 23455,
+        "nodeType": "ImportDirective",
+        "scope": 23486,
+        "sourceUnit": 23320,
+        "src": "161:32:94",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 23480,
+        "linearizedBaseContracts": [
+          23480
+        ],
+        "name": "IMIMODistributorExtension",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "78e97925",
+            "id": 23460,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "startTime",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 23456,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "253:2:94"
+            },
+            "returnParameters": {
+              "id": 23459,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23458,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 23460,
+                  "src": "279:7:94",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23457,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "279:7:94",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "278:9:94"
+            },
+            "scope": 23480,
+            "src": "235:53:94",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "d4048089",
+            "id": 23465,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "currentIssuance",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 23461,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "316:2:94"
+            },
+            "returnParameters": {
+              "id": 23464,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23463,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 23465,
+                  "src": "342:7:94",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23462,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "342:7:94",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "341:9:94"
+            },
+            "scope": 23480,
+            "src": "292:59:94",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "ebcd2a61",
+            "id": 23472,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "weeklyIssuanceAt",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 23468,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23467,
+                  "mutability": "mutable",
+                  "name": "timestamp",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 23472,
+                  "src": "381:17:94",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23466,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "381:7:94",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "380:19:94"
+            },
+            "returnParameters": {
+              "id": 23471,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23470,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 23472,
+                  "src": "423:7:94",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23469,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "423:7:94",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "422:9:94"
+            },
+            "scope": 23480,
+            "src": "355:77:94",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "981b24d0",
+            "id": 23479,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "totalSupplyAt",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 23475,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23474,
+                  "mutability": "mutable",
+                  "name": "timestamp",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 23479,
+                  "src": "459:17:94",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23473,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "459:7:94",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "458:19:94"
+            },
+            "returnParameters": {
+              "id": 23478,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23477,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 23479,
+                  "src": "501:7:94",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23476,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "501:7:94",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "500:9:94"
+            },
+            "scope": 23480,
+            "src": "436:74:94",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 23486,
+        "src": "195:317:94"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 23481,
+              "name": "IBaseDistributor",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 23319,
+              "src": "544:16:94",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IBaseDistributor_$23319",
+                "typeString": "contract IBaseDistributor"
+              }
+            },
+            "id": 23482,
+            "nodeType": "InheritanceSpecifier",
+            "src": "544:16:94"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 23483,
+              "name": "IMIMODistributorExtension",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 23480,
+              "src": "562:25:94",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IMIMODistributorExtension_$23480",
+                "typeString": "contract IMIMODistributorExtension"
+              }
+            },
+            "id": 23484,
+            "nodeType": "InheritanceSpecifier",
+            "src": "562:25:94"
+          }
+        ],
+        "contractDependencies": [
+          23319,
+          23480
+        ],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 23485,
+        "linearizedBaseContracts": [
+          23485,
+          23480,
+          23319
+        ],
+        "name": "IMIMODistributor",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 23486,
+        "src": "514:76:94"
+      }
+    ],
+    "src": "33:558:94"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/liquidityMining/interfaces/IMIMODistributor.sol",
+      "exportedSymbols": {
+        "IMIMODistributor": [
+          23485
+        ],
+        "IMIMODistributorExtension": [
+          23480
+        ]
+      },
+      "license": "MIT"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "experimental",
+            "ABIEncoderV2"
+          ]
+        },
+        "id": 23452,
+        "name": "PragmaDirective",
+        "src": "33:33:94"
+      },
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.6",
+            ".12"
+          ]
+        },
+        "id": 23453,
+        "name": "PragmaDirective",
+        "src": "67:23:94"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 9771,
+          "absolutePath": "project:/contracts/governance/interfaces/IGovernanceAddressProvider.sol",
+          "file": "../../governance/interfaces/IGovernanceAddressProvider.sol",
+          "scope": 23486,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 23454,
+        "name": "ImportDirective",
+        "src": "92:68:94"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 23320,
+          "absolutePath": "project:/contracts/liquidityMining/interfaces/IBaseDistributor.sol",
+          "file": "./IBaseDistributor.sol",
+          "scope": 23486,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 23455,
+        "name": "ImportDirective",
+        "src": "161:32:94"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            23480
+          ],
+          "name": "IMIMODistributorExtension",
+          "scope": 23486
+        },
+        "children": [
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "78e97925",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "startTime",
+              "overrides": null,
+              "scope": 23480,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 23456,
+                "name": "ParameterList",
+                "src": "253:2:94"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 23460,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 23457,
+                        "name": "ElementaryTypeName",
+                        "src": "279:7:94"
+                      }
+                    ],
+                    "id": 23458,
+                    "name": "VariableDeclaration",
+                    "src": "279:7:94"
+                  }
+                ],
+                "id": 23459,
+                "name": "ParameterList",
+                "src": "278:9:94"
+              }
+            ],
+            "id": 23460,
+            "name": "FunctionDefinition",
+            "src": "235:53:94"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "d4048089",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "currentIssuance",
+              "overrides": null,
+              "scope": 23480,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 23461,
+                "name": "ParameterList",
+                "src": "316:2:94"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 23465,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 23462,
+                        "name": "ElementaryTypeName",
+                        "src": "342:7:94"
+                      }
+                    ],
+                    "id": 23463,
+                    "name": "VariableDeclaration",
+                    "src": "342:7:94"
+                  }
+                ],
+                "id": 23464,
+                "name": "ParameterList",
+                "src": "341:9:94"
+              }
+            ],
+            "id": 23465,
+            "name": "FunctionDefinition",
+            "src": "292:59:94"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "ebcd2a61",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "weeklyIssuanceAt",
+              "overrides": null,
+              "scope": 23480,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "timestamp",
+                      "overrides": null,
+                      "scope": 23472,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 23466,
+                        "name": "ElementaryTypeName",
+                        "src": "381:7:94"
+                      }
+                    ],
+                    "id": 23467,
+                    "name": "VariableDeclaration",
+                    "src": "381:17:94"
+                  }
+                ],
+                "id": 23468,
+                "name": "ParameterList",
+                "src": "380:19:94"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 23472,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 23469,
+                        "name": "ElementaryTypeName",
+                        "src": "423:7:94"
+                      }
+                    ],
+                    "id": 23470,
+                    "name": "VariableDeclaration",
+                    "src": "423:7:94"
+                  }
+                ],
+                "id": 23471,
+                "name": "ParameterList",
+                "src": "422:9:94"
+              }
+            ],
+            "id": 23472,
+            "name": "FunctionDefinition",
+            "src": "355:77:94"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "981b24d0",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "totalSupplyAt",
+              "overrides": null,
+              "scope": 23480,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "timestamp",
+                      "overrides": null,
+                      "scope": 23479,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 23473,
+                        "name": "ElementaryTypeName",
+                        "src": "459:7:94"
+                      }
+                    ],
+                    "id": 23474,
+                    "name": "VariableDeclaration",
+                    "src": "459:17:94"
+                  }
+                ],
+                "id": 23475,
+                "name": "ParameterList",
+                "src": "458:19:94"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 23479,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 23476,
+                        "name": "ElementaryTypeName",
+                        "src": "501:7:94"
+                      }
+                    ],
+                    "id": 23477,
+                    "name": "VariableDeclaration",
+                    "src": "501:7:94"
+                  }
+                ],
+                "id": 23478,
+                "name": "ParameterList",
+                "src": "500:9:94"
+              }
+            ],
+            "id": 23479,
+            "name": "FunctionDefinition",
+            "src": "436:74:94"
+          }
+        ],
+        "id": 23480,
+        "name": "ContractDefinition",
+        "src": "195:317:94"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "contractDependencies": [
+            23319,
+            23480
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            23485,
+            23480,
+            23319
+          ],
+          "name": "IMIMODistributor",
+          "nodes": [
+            null
+          ],
+          "scope": 23486
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "IBaseDistributor",
+                  "referencedDeclaration": 23319,
+                  "type": "contract IBaseDistributor"
+                },
+                "id": 23481,
+                "name": "UserDefinedTypeName",
+                "src": "544:16:94"
+              }
+            ],
+            "id": 23482,
+            "name": "InheritanceSpecifier",
+            "src": "544:16:94"
+          },
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "IMIMODistributorExtension",
+                  "referencedDeclaration": 23480,
+                  "type": "contract IMIMODistributorExtension"
+                },
+                "id": 23483,
+                "name": "UserDefinedTypeName",
+                "src": "562:25:94"
+              }
+            ],
+            "id": 23484,
+            "name": "InheritanceSpecifier",
+            "src": "562:25:94"
+          }
+        ],
+        "id": 23485,
+        "name": "ContractDefinition",
+        "src": "514:76:94"
+      }
+    ],
+    "id": 23486,
+    "name": "SourceUnit",
+    "src": "33:558:94"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.7",
+  "updatedAt": "2025-02-28T14:09:34.653Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "changePayees(address[],uint256[])": {
+        "details": "will release existing fees before the update.",
+        "params": {
+          "_payees": "Array of payees",
+          "_shares": "Array of shares for each payee"
+        }
+      },
+      "getPayees()": {
+        "returns": {
+          "_0": "array of current payees."
+        }
+      },
+      "release()": {
+        "details": "anyone can call this."
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "changePayees(address[],uint256[])": {
+        "notice": "Updates the payee configuration to a new one."
+      },
+      "getPayees()": {
+        "notice": "Get current configured payees."
+      },
+      "release()": {
+        "notice": "Public function to release the accumulated new MIMO tokens to the payees."
+      }
+    },
+    "version": 1
+  }
+}

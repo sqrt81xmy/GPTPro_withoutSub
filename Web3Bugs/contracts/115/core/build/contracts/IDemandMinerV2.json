@@ -1,0 +1,1771 @@
+{
+  "contractName": "IDemandMinerV2",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "income",
+          "type": "uint256"
+        }
+      ],
+      "name": "DepositFeeReleased",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "feeCollector",
+          "type": "address"
+        }
+      ],
+      "name": "FeeCollectorSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "depositFee",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "withdrawFee",
+              "type": "uint256"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct IDemandMinerV2.FeeConfig",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "name": "FeeConfigSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "income",
+          "type": "uint256"
+        }
+      ],
+      "name": "WithdrawFeeReleased",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "feeCollector",
+          "type": "address"
+        }
+      ],
+      "name": "setFeeCollector",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "depositFee",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "withdrawFee",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct IDemandMinerV2.FeeConfig",
+          "name": "newFeeConfig",
+          "type": "tuple"
+        }
+      ],
+      "name": "setFeeConfig",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "deposit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "token",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "feeCollector",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "feeConfig",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "depositFee",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "withdrawFee",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct IDemandMinerV2.FeeConfig",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"income\",\"type\":\"uint256\"}],\"name\":\"DepositFeeReleased\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"feeCollector\",\"type\":\"address\"}],\"name\":\"FeeCollectorSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"depositFee\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"withdrawFee\",\"type\":\"uint256\"}],\"indexed\":false,\"internalType\":\"struct IDemandMinerV2.FeeConfig\",\"name\":\"\",\"type\":\"tuple\"}],\"name\":\"FeeConfigSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"income\",\"type\":\"uint256\"}],\"name\":\"WithdrawFeeReleased\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"deposit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"feeCollector\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"feeConfig\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"depositFee\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"withdrawFee\",\"type\":\"uint256\"}],\"internalType\":\"struct IDemandMinerV2.FeeConfig\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"feeCollector\",\"type\":\"address\"}],\"name\":\"setFeeCollector\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"depositFee\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"withdrawFee\",\"type\":\"uint256\"}],\"internalType\":\"struct IDemandMinerV2.FeeConfig\",\"name\":\"newFeeConfig\",\"type\":\"tuple\"}],\"name\":\"setFeeConfig\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"token\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/liquidityMining/v2/interfaces/IDemandMinerV2.sol\":\"IDemandMinerV2\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x5f02220344881ce43204ae4a6281145a67bc52c2bb1290a791857df3d19d78f5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://24427744bd3e6cb73c17010119af12a318289c0253a4d9acb8576c9fb3797b08\",\"dweb:/ipfs/QmTLDqpKRBuxGxRAmjgXt9AkXyACW3MtKzi7PYjm5iMfGC\"]},\"project:/contracts/liquidityMining/v2/interfaces/IDemandMinerV2.sol\":{\"keccak256\":\"0x483c816332a1faedc54c12acf34b0b3161082fb94f9c5a4d6ed79f62261d18f5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://c0e3a0feed52f4e494d9c7aae82fa3287fe465dc17757305b10be99128a449ec\",\"dweb:/ipfs/QmSHGPNK7oK7XAJnHPLQb4Ge5pKEwYCXGXDBexyZZFKFSW\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\n\npragma experimental ABIEncoderV2;\npragma solidity 0.6.12;\n\nimport \"@openzeppelin/contracts/token/ERC20/IERC20.sol\";\n\ninterface IDemandMinerV2 {\n  event FeeCollectorSet(address feeCollector);\n\n  event FeeConfigSet(FeeConfig);\n\n  event DepositFeeReleased(uint256 income);\n\n  event WithdrawFeeReleased(uint256 income);\n\n  struct FeeConfig {\n    uint256 depositFee;\n    uint256 withdrawFee;\n  }\n\n  function setFeeCollector(address feeCollector) external;\n\n  function setFeeConfig(FeeConfig memory newFeeConfig) external;\n\n  function deposit(uint256 amount) external;\n\n  function withdraw(uint256 amount) external;\n\n  function token() external view returns (IERC20);\n\n  function feeCollector() external view returns (address);\n\n  function feeConfig() external view returns (FeeConfig memory);\n}\n",
+  "sourcePath": "/home/mingyue/sub_contract_content/Web3Bugs/contracts/115/core/contracts/liquidityMining/v2/interfaces/IDemandMinerV2.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/liquidityMining/v2/interfaces/IDemandMinerV2.sol",
+    "exportedSymbols": {
+      "IDemandMinerV2": [
+        26468
+      ]
+    },
+    "id": 26469,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 26409,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:33:102"
+      },
+      {
+        "id": 26410,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "67:23:102"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 26411,
+        "nodeType": "ImportDirective",
+        "scope": 26469,
+        "sourceUnit": 1549,
+        "src": "92:56:102",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 26468,
+        "linearizedBaseContracts": [
+          26468
+        ],
+        "name": "IDemandMinerV2",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 26415,
+            "name": "FeeCollectorSet",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 26414,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26413,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "feeCollector",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26415,
+                  "src": "201:20:102",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 26412,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "201:7:102",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "200:22:102"
+            },
+            "src": "179:44:102"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 26419,
+            "name": "FeeConfigSet",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 26418,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26417,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26419,
+                  "src": "246:9:102",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_FeeConfig_$26432_memory_ptr",
+                    "typeString": "struct IDemandMinerV2.FeeConfig"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 26416,
+                    "name": "FeeConfig",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 26432,
+                    "src": "246:9:102",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_FeeConfig_$26432_storage_ptr",
+                      "typeString": "struct IDemandMinerV2.FeeConfig"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "245:11:102"
+            },
+            "src": "227:30:102"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 26423,
+            "name": "DepositFeeReleased",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 26422,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26421,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "income",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26423,
+                  "src": "286:14:102",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 26420,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "286:7:102",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "285:16:102"
+            },
+            "src": "261:41:102"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 26427,
+            "name": "WithdrawFeeReleased",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 26426,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26425,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "income",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26427,
+                  "src": "332:14:102",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 26424,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "332:7:102",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "331:16:102"
+            },
+            "src": "306:42:102"
+          },
+          {
+            "canonicalName": "IDemandMinerV2.FeeConfig",
+            "id": 26432,
+            "members": [
+              {
+                "constant": false,
+                "id": 26429,
+                "mutability": "mutable",
+                "name": "depositFee",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 26432,
+                "src": "375:18:102",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 26428,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "375:7:102",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 26431,
+                "mutability": "mutable",
+                "name": "withdrawFee",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 26432,
+                "src": "399:19:102",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 26430,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "399:7:102",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "FeeConfig",
+            "nodeType": "StructDefinition",
+            "scope": 26468,
+            "src": "352:71:102",
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "a42dce80",
+            "id": 26437,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setFeeCollector",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 26435,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26434,
+                  "mutability": "mutable",
+                  "name": "feeCollector",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26437,
+                  "src": "452:20:102",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 26433,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "452:7:102",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "451:22:102"
+            },
+            "returnParameters": {
+              "id": 26436,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "482:0:102"
+            },
+            "scope": 26468,
+            "src": "427:56:102",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "0e1fbe5f",
+            "id": 26442,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setFeeConfig",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 26440,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26439,
+                  "mutability": "mutable",
+                  "name": "newFeeConfig",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26442,
+                  "src": "509:29:102",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_FeeConfig_$26432_memory_ptr",
+                    "typeString": "struct IDemandMinerV2.FeeConfig"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 26438,
+                    "name": "FeeConfig",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 26432,
+                    "src": "509:9:102",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_FeeConfig_$26432_storage_ptr",
+                      "typeString": "struct IDemandMinerV2.FeeConfig"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "508:31:102"
+            },
+            "returnParameters": {
+              "id": 26441,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "548:0:102"
+            },
+            "scope": 26468,
+            "src": "487:62:102",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "b6b55f25",
+            "id": 26447,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "deposit",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 26445,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26444,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26447,
+                  "src": "570:14:102",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 26443,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "570:7:102",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "569:16:102"
+            },
+            "returnParameters": {
+              "id": 26446,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "594:0:102"
+            },
+            "scope": 26468,
+            "src": "553:42:102",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "2e1a7d4d",
+            "id": 26452,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "withdraw",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 26450,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26449,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26452,
+                  "src": "617:14:102",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 26448,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "617:7:102",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "616:16:102"
+            },
+            "returnParameters": {
+              "id": 26451,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "641:0:102"
+            },
+            "scope": 26468,
+            "src": "599:43:102",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "fc0c546a",
+            "id": 26457,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "token",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 26453,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "660:2:102"
+            },
+            "returnParameters": {
+              "id": 26456,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26455,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26457,
+                  "src": "686:6:102",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$1548",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 26454,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 1548,
+                    "src": "686:6:102",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$1548",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "685:8:102"
+            },
+            "scope": 26468,
+            "src": "646:48:102",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "c415b95c",
+            "id": 26462,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "feeCollector",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 26458,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "719:2:102"
+            },
+            "returnParameters": {
+              "id": 26461,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26460,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26462,
+                  "src": "745:7:102",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 26459,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "745:7:102",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "744:9:102"
+            },
+            "scope": 26468,
+            "src": "698:56:102",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "1e5eb1d0",
+            "id": 26467,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "feeConfig",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 26463,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "776:2:102"
+            },
+            "returnParameters": {
+              "id": 26466,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26465,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26467,
+                  "src": "802:16:102",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_FeeConfig_$26432_memory_ptr",
+                    "typeString": "struct IDemandMinerV2.FeeConfig"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 26464,
+                    "name": "FeeConfig",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 26432,
+                    "src": "802:9:102",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_FeeConfig_$26432_storage_ptr",
+                      "typeString": "struct IDemandMinerV2.FeeConfig"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "801:18:102"
+            },
+            "scope": 26468,
+            "src": "758:62:102",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 26469,
+        "src": "150:672:102"
+      }
+    ],
+    "src": "33:790:102"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/liquidityMining/v2/interfaces/IDemandMinerV2.sol",
+      "exportedSymbols": {
+        "IDemandMinerV2": [
+          26468
+        ]
+      },
+      "license": "MIT"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "experimental",
+            "ABIEncoderV2"
+          ]
+        },
+        "id": 26409,
+        "name": "PragmaDirective",
+        "src": "33:33:102"
+      },
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.6",
+            ".12"
+          ]
+        },
+        "id": 26410,
+        "name": "PragmaDirective",
+        "src": "67:23:102"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 1549,
+          "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+          "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+          "scope": 26469,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 26411,
+        "name": "ImportDirective",
+        "src": "92:56:102"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            26468
+          ],
+          "name": "IDemandMinerV2",
+          "scope": 26469
+        },
+        "children": [
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "FeeCollectorSet"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "feeCollector",
+                      "overrides": null,
+                      "scope": 26415,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 26412,
+                        "name": "ElementaryTypeName",
+                        "src": "201:7:102"
+                      }
+                    ],
+                    "id": 26413,
+                    "name": "VariableDeclaration",
+                    "src": "201:20:102"
+                  }
+                ],
+                "id": 26414,
+                "name": "ParameterList",
+                "src": "200:22:102"
+              }
+            ],
+            "id": 26415,
+            "name": "EventDefinition",
+            "src": "179:44:102"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "FeeConfigSet"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 26419,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "struct IDemandMinerV2.FeeConfig",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "FeeConfig",
+                          "referencedDeclaration": 26432,
+                          "type": "struct IDemandMinerV2.FeeConfig"
+                        },
+                        "id": 26416,
+                        "name": "UserDefinedTypeName",
+                        "src": "246:9:102"
+                      }
+                    ],
+                    "id": 26417,
+                    "name": "VariableDeclaration",
+                    "src": "246:9:102"
+                  }
+                ],
+                "id": 26418,
+                "name": "ParameterList",
+                "src": "245:11:102"
+              }
+            ],
+            "id": 26419,
+            "name": "EventDefinition",
+            "src": "227:30:102"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "DepositFeeReleased"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "income",
+                      "overrides": null,
+                      "scope": 26423,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 26420,
+                        "name": "ElementaryTypeName",
+                        "src": "286:7:102"
+                      }
+                    ],
+                    "id": 26421,
+                    "name": "VariableDeclaration",
+                    "src": "286:14:102"
+                  }
+                ],
+                "id": 26422,
+                "name": "ParameterList",
+                "src": "285:16:102"
+              }
+            ],
+            "id": 26423,
+            "name": "EventDefinition",
+            "src": "261:41:102"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "WithdrawFeeReleased"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "income",
+                      "overrides": null,
+                      "scope": 26427,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 26424,
+                        "name": "ElementaryTypeName",
+                        "src": "332:7:102"
+                      }
+                    ],
+                    "id": 26425,
+                    "name": "VariableDeclaration",
+                    "src": "332:14:102"
+                  }
+                ],
+                "id": 26426,
+                "name": "ParameterList",
+                "src": "331:16:102"
+              }
+            ],
+            "id": 26427,
+            "name": "EventDefinition",
+            "src": "306:42:102"
+          },
+          {
+            "attributes": {
+              "canonicalName": "IDemandMinerV2.FeeConfig",
+              "name": "FeeConfig",
+              "scope": 26468,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "depositFee",
+                  "overrides": null,
+                  "scope": 26432,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 26428,
+                    "name": "ElementaryTypeName",
+                    "src": "375:7:102"
+                  }
+                ],
+                "id": 26429,
+                "name": "VariableDeclaration",
+                "src": "375:18:102"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "withdrawFee",
+                  "overrides": null,
+                  "scope": 26432,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 26430,
+                    "name": "ElementaryTypeName",
+                    "src": "399:7:102"
+                  }
+                ],
+                "id": 26431,
+                "name": "VariableDeclaration",
+                "src": "399:19:102"
+              }
+            ],
+            "id": 26432,
+            "name": "StructDefinition",
+            "src": "352:71:102"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "a42dce80",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setFeeCollector",
+              "overrides": null,
+              "scope": 26468,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "feeCollector",
+                      "overrides": null,
+                      "scope": 26437,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 26433,
+                        "name": "ElementaryTypeName",
+                        "src": "452:7:102"
+                      }
+                    ],
+                    "id": 26434,
+                    "name": "VariableDeclaration",
+                    "src": "452:20:102"
+                  }
+                ],
+                "id": 26435,
+                "name": "ParameterList",
+                "src": "451:22:102"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 26436,
+                "name": "ParameterList",
+                "src": "482:0:102"
+              }
+            ],
+            "id": 26437,
+            "name": "FunctionDefinition",
+            "src": "427:56:102"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "0e1fbe5f",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setFeeConfig",
+              "overrides": null,
+              "scope": 26468,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "newFeeConfig",
+                      "overrides": null,
+                      "scope": 26442,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "struct IDemandMinerV2.FeeConfig",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "FeeConfig",
+                          "referencedDeclaration": 26432,
+                          "type": "struct IDemandMinerV2.FeeConfig"
+                        },
+                        "id": 26438,
+                        "name": "UserDefinedTypeName",
+                        "src": "509:9:102"
+                      }
+                    ],
+                    "id": 26439,
+                    "name": "VariableDeclaration",
+                    "src": "509:29:102"
+                  }
+                ],
+                "id": 26440,
+                "name": "ParameterList",
+                "src": "508:31:102"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 26441,
+                "name": "ParameterList",
+                "src": "548:0:102"
+              }
+            ],
+            "id": 26442,
+            "name": "FunctionDefinition",
+            "src": "487:62:102"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "b6b55f25",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "deposit",
+              "overrides": null,
+              "scope": 26468,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "amount",
+                      "overrides": null,
+                      "scope": 26447,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 26443,
+                        "name": "ElementaryTypeName",
+                        "src": "570:7:102"
+                      }
+                    ],
+                    "id": 26444,
+                    "name": "VariableDeclaration",
+                    "src": "570:14:102"
+                  }
+                ],
+                "id": 26445,
+                "name": "ParameterList",
+                "src": "569:16:102"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 26446,
+                "name": "ParameterList",
+                "src": "594:0:102"
+              }
+            ],
+            "id": 26447,
+            "name": "FunctionDefinition",
+            "src": "553:42:102"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "2e1a7d4d",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "withdraw",
+              "overrides": null,
+              "scope": 26468,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "amount",
+                      "overrides": null,
+                      "scope": 26452,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 26448,
+                        "name": "ElementaryTypeName",
+                        "src": "617:7:102"
+                      }
+                    ],
+                    "id": 26449,
+                    "name": "VariableDeclaration",
+                    "src": "617:14:102"
+                  }
+                ],
+                "id": 26450,
+                "name": "ParameterList",
+                "src": "616:16:102"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 26451,
+                "name": "ParameterList",
+                "src": "641:0:102"
+              }
+            ],
+            "id": 26452,
+            "name": "FunctionDefinition",
+            "src": "599:43:102"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "fc0c546a",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "token",
+              "overrides": null,
+              "scope": 26468,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 26453,
+                "name": "ParameterList",
+                "src": "660:2:102"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 26457,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract IERC20",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IERC20",
+                          "referencedDeclaration": 1548,
+                          "type": "contract IERC20"
+                        },
+                        "id": 26454,
+                        "name": "UserDefinedTypeName",
+                        "src": "686:6:102"
+                      }
+                    ],
+                    "id": 26455,
+                    "name": "VariableDeclaration",
+                    "src": "686:6:102"
+                  }
+                ],
+                "id": 26456,
+                "name": "ParameterList",
+                "src": "685:8:102"
+              }
+            ],
+            "id": 26457,
+            "name": "FunctionDefinition",
+            "src": "646:48:102"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "c415b95c",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "feeCollector",
+              "overrides": null,
+              "scope": 26468,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 26458,
+                "name": "ParameterList",
+                "src": "719:2:102"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 26462,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 26459,
+                        "name": "ElementaryTypeName",
+                        "src": "745:7:102"
+                      }
+                    ],
+                    "id": 26460,
+                    "name": "VariableDeclaration",
+                    "src": "745:7:102"
+                  }
+                ],
+                "id": 26461,
+                "name": "ParameterList",
+                "src": "744:9:102"
+              }
+            ],
+            "id": 26462,
+            "name": "FunctionDefinition",
+            "src": "698:56:102"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "1e5eb1d0",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "feeConfig",
+              "overrides": null,
+              "scope": 26468,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 26463,
+                "name": "ParameterList",
+                "src": "776:2:102"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 26467,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "struct IDemandMinerV2.FeeConfig",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "FeeConfig",
+                          "referencedDeclaration": 26432,
+                          "type": "struct IDemandMinerV2.FeeConfig"
+                        },
+                        "id": 26464,
+                        "name": "UserDefinedTypeName",
+                        "src": "802:9:102"
+                      }
+                    ],
+                    "id": 26465,
+                    "name": "VariableDeclaration",
+                    "src": "802:16:102"
+                  }
+                ],
+                "id": 26466,
+                "name": "ParameterList",
+                "src": "801:18:102"
+              }
+            ],
+            "id": 26467,
+            "name": "FunctionDefinition",
+            "src": "758:62:102"
+          }
+        ],
+        "id": 26468,
+        "name": "ContractDefinition",
+        "src": "150:672:102"
+      }
+    ],
+    "id": 26469,
+    "name": "SourceUnit",
+    "src": "33:790:102"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.7",
+  "updatedAt": "2025-02-28T14:09:34.661Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

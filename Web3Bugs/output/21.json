@@ -1,0 +1,14 @@
+{
+    "file_path": "/home/mingyue/sub_contract_content/Web3Bugs/contracts/21",
+    "external_functions": [
+        [
+            "ForeignLock",
+            "ISherlock"
+        ],
+        [
+            "NativeLock"
+        ]
+    ],
+    "new_contract": "contract ForeignLock is NativeLock {\n  constructor(\n    string memory _name,\n    string memory _symbol,\n    IERC20 _sherlock,\n    IERC20 _underlying\n  ) NativeLock(_name, _symbol, _sherlock) {\n    underlying = _underlying;\n  }\n\n  function _beforeTokenTransfer(\n    address from,\n    address to,\n    uint256 amount\n  ) internal override {\n    ISherlock(owner())._beforeTokenTransfer(from, to, amount);\n  }\n}\ncontract NativeLock is ERC20, ILock, Ownable {\n  IERC20 public override underlying;\n\n  constructor(\n    string memory _name,\n    string memory _symbol,\n    IERC20 _sherlock\n  ) ERC20(_name, _symbol) {\n    transferOwnership(address(_sherlock));\n    underlying = _sherlock;\n  }\n\n  function getOwner() external view override returns (address) {\n    return owner();\n  }\n\n  function mint(address _account, uint256 _amount) external override onlyOwner {\n    _mint(_account, _amount);\n  }\n\n  function burn(address _account, uint256 _amount) external override onlyOwner {\n    _burn(_account, _amount);\n  }\n}\n",
+    "bin": []
+}

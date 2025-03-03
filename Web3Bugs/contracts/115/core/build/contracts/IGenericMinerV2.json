@@ -1,0 +1,3273 @@
+{
+  "contractName": "IGenericMinerV2",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "a",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "b",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "c",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "d",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "e",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "maxBoost",
+              "type": "uint256"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct IGenericMinerV2.BoostConfig",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "name": "BoostConfigSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "stake",
+          "type": "uint256"
+        }
+      ],
+      "name": "StakeDecreased",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "stake",
+          "type": "uint256"
+        }
+      ],
+      "name": "StakeIncreased",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "releaseRewards",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "stake",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "stakeWithBoost",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "a",
+      "outputs": [
+        {
+          "internalType": "contract IGovernanceAddressProvider",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "pendingMIMO",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "pendingPAR",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "par",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "boostConfig",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "a",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "b",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "c",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "d",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "e",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "maxBoost",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct IGenericMinerV2.BoostConfig",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalStake",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalStakeWithBoost",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "userInfo",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "stake",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "stakeWithBoost",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "accAmountPerShare",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "accParAmountPerShare",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct IGenericMinerV2.UserInfo",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"a\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"b\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"c\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"d\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"e\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxBoost\",\"type\":\"uint256\"}],\"indexed\":false,\"internalType\":\"struct IGenericMinerV2.BoostConfig\",\"name\":\"\",\"type\":\"tuple\"}],\"name\":\"BoostConfigSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"stake\",\"type\":\"uint256\"}],\"name\":\"StakeDecreased\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"stake\",\"type\":\"uint256\"}],\"name\":\"StakeIncreased\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"a\",\"outputs\":[{\"internalType\":\"contract IGovernanceAddressProvider\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"boostConfig\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"a\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"b\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"c\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"d\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"e\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxBoost\",\"type\":\"uint256\"}],\"internalType\":\"struct IGenericMinerV2.BoostConfig\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"par\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"pendingMIMO\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"pendingPAR\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"releaseRewards\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"stake\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"stakeWithBoost\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalStake\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalStakeWithBoost\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"userInfo\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"stake\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"stakeWithBoost\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"accAmountPerShare\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"accParAmountPerShare\",\"type\":\"uint256\"}],\"internalType\":\"struct IGenericMinerV2.UserInfo\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"events\":{\"StakeDecreased(address,uint256)\":{\"details\":\"This emit when a users' productivity has changed It emits with the user's address and the the value after the change.\"},\"StakeIncreased(address,uint256)\":{\"details\":\"This emit when a users' productivity has changed It emits with the user's address and the the value after the change.\"}},\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/liquidityMining/v2/interfaces/IGenericMinerV2.sol\":\"IGenericMinerV2\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x5f02220344881ce43204ae4a6281145a67bc52c2bb1290a791857df3d19d78f5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://24427744bd3e6cb73c17010119af12a318289c0253a4d9acb8576c9fb3797b08\",\"dweb:/ipfs/QmTLDqpKRBuxGxRAmjgXt9AkXyACW3MtKzi7PYjm5iMfGC\"]},\"project:/contracts/chainlink/AggregatorV3Interface.sol\":{\"keccak256\":\"0x0c0d6cd68d8e5d99035491c316bcc4c348f3df1da03d09a7948ef879445b7546\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://1d70c77b85bc876a03d7d918d15686490db87df5535988193cecd0bff3f9eb12\",\"dweb:/ipfs/QmTaEHVucJ6wUSBJxHQMReyCsRai7GZ4YKLFE4TPaVEwkD\"]},\"project:/contracts/governance/interfaces/IGovernanceAddressProvider.sol\":{\"keccak256\":\"0xddec642acfbf56e612164d624b6e89d7d341463897871952c5e6c6b3df9e0290\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a438ed8b1205b5d96d85b47da8f2bd457031e06f9a7ab18aa0454d26a935445c\",\"dweb:/ipfs/QmUJuJ1c8dgyuEzEySUcs2ikJKGB3XLXGDor84BHQv3u8V\"]},\"project:/contracts/governance/interfaces/IGovernorAlpha.sol\":{\"keccak256\":\"0xf8981c4f5e9eb3f000d39835d29c8e76aa4da5882718400b50c7550075616d19\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b6cadf0c19c50a4544806324a7a59bd3bac55f7b19147507cf2de95496f8e1b0\",\"dweb:/ipfs/QmRyhHkMi24HatL3BdoJ6WRSX8Aa4TbJPJ8sPQixZXJ8ib\"]},\"project:/contracts/governance/interfaces/ITimelock.sol\":{\"keccak256\":\"0xf0f0c7745ffb50e2bbd6f5368a89287af561e1345ab27f0e96f47bd3b5f94fa3\",\"license\":\"BSD-3-Clause\",\"urls\":[\"bzz-raw://030e3878a145531230a887fa0ce4a42d6b102cabd105befe1ea20c4b1804b2be\",\"dweb:/ipfs/QmTYdzszrS67wWkpNtsY46FZtCpc7TvmN4uxsA64sq4z7c\"]},\"project:/contracts/governance/interfaces/IVotingEscrow.sol\":{\"keccak256\":\"0xeb4d3820abed3ad175bdcc99ad0347ad4d0f66d5767f3c9dd478a66683378bd6\",\"license\":\"AGPL-3.0\",\"urls\":[\"bzz-raw://155925d8b8a1cfa8760b7d22d555a2b0d06d9b6c6116403e70dfb46947427ab0\",\"dweb:/ipfs/QmbbfF4M3HP6ic6iV8LZLgkQQcWwJyu7sbXPDid9JJH8DX\"]},\"project:/contracts/interfaces/IAccessController.sol\":{\"keccak256\":\"0x44296736b9049485ccf8aca15e582563cb5387af4cd6070d9e3e887d65f89173\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://cf924c3a8c3519ad2745a5da689001f51549fd6ca0e19c071e18c983d61c7f09\",\"dweb:/ipfs/QmVyMF9i8FWM2c4rR6KVwgBxKZb1XBHCmTB5tL1UWBbQA1\"]},\"project:/contracts/interfaces/IAddressProvider.sol\":{\"keccak256\":\"0xf14b8634f04cf84b38c7d2c5d51e7bf0e8276f4275dc6794a0cf76bcc8d3f8ea\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2f2e1afb47e310670d966e0728414e933c6392b4cbaf17f81505b6c198596f0a\",\"dweb:/ipfs/QmVVqKc7wAYdmDg2yTYgLqEkT9iw5NtdL96KJVuRaeJQ6k\"]},\"project:/contracts/interfaces/IConfigProvider.sol\":{\"keccak256\":\"0x33129128a94bcc86fbb83e7a323ec7bc0a5a290a5f35af1d3c129f5f76827e85\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2e306cff52ced075148b372e662c0d4ff83fa67a61df57eff5867e0b9a03d4f6\",\"dweb:/ipfs/Qmc2RqZvst72RgkWS2FtWPuygjtJmb2NMHJbNxqDc72yQC\"]},\"project:/contracts/interfaces/IFeeDistributor.sol\":{\"keccak256\":\"0x8c45c3ef043b247b5e481839a3a3caf62ae24225cfb85626b3df8f57510de979\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://92de1c240f12c273334e70d8368d789af8fa292ba3553d15cf43c6954e61f91a\",\"dweb:/ipfs/QmWjqiNRLuejFfuVVrKsSTvjb49ubefC7miLUkWJw2HTuF\"]},\"project:/contracts/interfaces/ILiquidationManager.sol\":{\"keccak256\":\"0xde6c43dcc1423b34b85f0d7d9947b3249b94df54225b2758b8bf0e2c425ccb90\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e373ef9231207fb8807f556fc458db38c645a9dfdf5796775e6cc6f1fc726a8d\",\"dweb:/ipfs/QmV8DuEHSp8DnUnkdfAeXVkeyvuFviqtuJH7XxHzAH7eK1\"]},\"project:/contracts/interfaces/IPriceFeed.sol\":{\"keccak256\":\"0x8cc0b8ad6f913b3a8cc62e4a7ffb574b40792c4043ddb0c851a1d832c21e0c70\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e8045418cdcd6fb5907037e6213665491b8fad4501b3aa1bf124840c59762928\",\"dweb:/ipfs/QmeP3huTbkHsBtAxYTzn3UnVk6EqNwWyLJjFntSveWveqi\"]},\"project:/contracts/interfaces/IRatesManager.sol\":{\"keccak256\":\"0x59826e9fc772f479422dbefcdd7a31eb4bc6474ea55dd748a2425b725a2b13f8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://4e788723ff15000db36c3096b17ea1b8e6e1dff8df7623a1815734ea5d89e7c0\",\"dweb:/ipfs/QmazQ165fmWPusYCnj23KupadxDi5Via7W48gWC1THGAgp\"]},\"project:/contracts/interfaces/ISTABLEX.sol\":{\"keccak256\":\"0x6915d210a8867b2c1b5a8e983a3342a41dcc63d71ae5f181185b546e3817aead\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6a031814ad3273c5852ee04c36d75e5cae9b8fd2db74e346c8480f71c27f847a\",\"dweb:/ipfs/QmUTunG1C5fQX9oUKdYshM99GmdSziHbCqYLyFsbD8XcCc\"]},\"project:/contracts/interfaces/IVaultsCore.sol\":{\"keccak256\":\"0x3162cc126f547075e43a816a52bdcf406fc9374a75419f67080c8931d19b790d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6de2594d702d1282a7420cadd0cbe205221b834bfbe6476091dcec6b4330263d\",\"dweb:/ipfs/QmSnTLZRi1NAE4WeW7kpUA7uvER1NK7HsXq4jnZWUuTdae\"]},\"project:/contracts/interfaces/IVaultsCoreState.sol\":{\"keccak256\":\"0x7895dfbbf72f559c4050f9d1c14314dca6ef8b044422c31cf22805fb5e314a82\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0551201124b7644d353fb55a41ae5ee191cf53a5264492cf113343f477056180\",\"dweb:/ipfs/QmfDgJrRUF79QwCrQewXrSNA9kCdvAT6QuLTiMwLPCFkf9\"]},\"project:/contracts/interfaces/IVaultsDataProvider.sol\":{\"keccak256\":\"0x6653e963fc559a8fdf4a021ee79a776525c49dada9653c9ed47cbf248b84c51c\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://77313d5f7f994ed4571ec44e052aa8fa940d0fc8fc1f36d4825effa600280232\",\"dweb:/ipfs/QmcAax4EsynydpCj6J3SSqdxmdSaPfjNXQAeAhqgoYLs3F\"]},\"project:/contracts/interfaces/IWETH.sol\":{\"keccak256\":\"0xfdd7722adff687336662cf3c75449b7d7e0f9029cbe2ce05b75657af99dcb90b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ec6d48d39eaf2b46cbe9c2e9ddd1fe704e82883e7231ca1342ce210807c2d81f\",\"dweb:/ipfs/QmUDTMe2BNrivULxPnv4aZ59CiR45kJcPrhguoB9ok9WDh\"]},\"project:/contracts/liquidityMining/interfaces/IDebtNotifier.sol\":{\"keccak256\":\"0x102e26cf04884ab25e8635fd127ff67e79656a2541f2f4e59bbc37b9cb454eb8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5ccb5f51ff8efd442d06458eba24c7b341beab28dbc78d46bb965650bf38644b\",\"dweb:/ipfs/QmQAeXQKmPiAsHmZszzPcuXkDZhMf1DuEJv8KLwceu2gNe\"]},\"project:/contracts/liquidityMining/interfaces/IGenericMiner.sol\":{\"keccak256\":\"0x0e3499d884736706d4bd00101e4c6a658bf81e550288909e71cff4172d4a729b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7b0ace26847e73a481116e5fc4b604ae3bd7ed312aa8309a4aeb1da99663bdc5\",\"dweb:/ipfs/QmVUuFjzxnzf4ereAZUfddvRaCRCDZCFVn46mGjY9tb9PG\"]},\"project:/contracts/liquidityMining/interfaces/IMIMO.sol\":{\"keccak256\":\"0x828c30f45ca2f30b7a9f429ae6e49629a97eed4cd4b5ba23b29e5af24dedc811\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3326b33f699ca6f67b64111cc8482d428ed59894e4785f2757a064f5887a0e08\",\"dweb:/ipfs/QmWCgwcEK5ZqiWbkkVqSSFMaD7J3LE815YerGQsmzJ2xUN\"]},\"project:/contracts/liquidityMining/interfaces/ISupplyMiner.sol\":{\"keccak256\":\"0xc1f3130c8d6b1b2fa17535d12e5e9bada0b9a751e0af27281207b112c841f98d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e9e7229abf46ac7b75c822203e74766a1addd2382f2a8b072be0ade1a07b77c3\",\"dweb:/ipfs/QmUgt2dxHBqggaaW46yf7pPwmkLPGYMveCnwEcowjXwZ3N\"]},\"project:/contracts/liquidityMining/v2/interfaces/IGenericMinerV2.sol\":{\"keccak256\":\"0x03a477d20bb95b08c000c0e9bb6b18f7320522f31b7eccbaabe2506fdb836d03\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9ba9133d18e3cfcdc5029ed31d2d17e202df2a11c214bd94963e8a60e0d8d661\",\"dweb:/ipfs/QmSBjPtkgDvYTv23vo1rQycnT2pBf7r9dEYyTkXere8QQQ\"]},\"project:/contracts/v1/interfaces/IAddressProviderV1.sol\":{\"keccak256\":\"0x8ca0f0f6fe9184013255d19ac7cf605fd0f1fe4b9b6d964e430879302013cae4\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://31c084fc31e6818895b754cfd84c0ad954d95ec91bc4cf36500e2009868cebae\",\"dweb:/ipfs/QmUK8Jb41bkxKcsSkevJDzRb5Tt4nXCy7Jds3TfgGypYVV\"]},\"project:/contracts/v1/interfaces/IConfigProviderV1.sol\":{\"keccak256\":\"0x3367989f6ab1ac32776dbfd6ec303a791048fb30b7c5e5e10eda774b03c7d8d2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://423e9ba2b280a95e1701db6cc1591c1304914c120760365309b32849b0f70a54\",\"dweb:/ipfs/QmTbpimRWoe1Lyg5cR6VC4cbB5mpPoFUrvtAzGKz2KWTqd\"]},\"project:/contracts/v1/interfaces/ILiquidationManagerV1.sol\":{\"keccak256\":\"0x2680a1f246fe7617c3019e04c9e0ebd6dc6512302fbb922e5d5691b6ab8c4da0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://52f157dd2ef3248fc00bf21be4de195bc807d8d91ab513ec40a590a997da9cff\",\"dweb:/ipfs/QmbioUYyZJKMKuXZY828BDueiVDBqVWoBDWS4UKxmcximt\"]},\"project:/contracts/v1/interfaces/IVaultsCoreV1.sol\":{\"keccak256\":\"0x6cf5a137af266b97daa3a0300161a2e1176cd7be1f2fc1db6111e9abc7fdac82\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b9bf7e5e3d42eda478a6db9b067ccd2610c4ec8ee62b4e4a8354bdd56ede7470\",\"dweb:/ipfs/QmWYZajCH2Nsfpb4HdG754YFty76QWtZFc6jWFtZqHjA2K\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\n\npragma experimental ABIEncoderV2;\npragma solidity 0.6.12;\n\nimport \"@openzeppelin/contracts/token/ERC20/IERC20.sol\";\nimport \"../../../interfaces/IAddressProvider.sol\";\nimport \"../../../governance/interfaces/IGovernanceAddressProvider.sol\";\n\ninterface IGenericMinerV2 {\n  struct UserInfo {\n    uint256 stake;\n    uint256 stakeWithBoost;\n    uint256 accAmountPerShare;\n    uint256 accParAmountPerShare;\n  }\n\n  struct BoostConfig {\n    uint256 a;\n    uint256 b;\n    uint256 c;\n    uint256 d;\n    uint256 e;\n    uint256 maxBoost;\n  }\n\n  /// @dev This emit when a users' productivity has changed\n  /// It emits with the user's address and the the value after the change.\n  event StakeIncreased(address indexed user, uint256 stake);\n\n  /// @dev This emit when a users' productivity has changed\n  /// It emits with the user's address and the the value after the change.\n  event StakeDecreased(address indexed user, uint256 stake);\n\n  event BoostConfigSet(BoostConfig);\n\n  function releaseRewards(address _user) external;\n\n  function stake(address _user) external view returns (uint256);\n\n  function stakeWithBoost(address _user) external view returns (uint256);\n\n  // Read only\n  function a() external view returns (IGovernanceAddressProvider);\n\n  function pendingMIMO(address _user) external view returns (uint256);\n\n  function pendingPAR(address _user) external view returns (uint256);\n\n  function par() external view returns (IERC20);\n\n  function boostConfig() external view returns (BoostConfig memory);\n\n  function totalStake() external view returns (uint256);\n\n  function totalStakeWithBoost() external view returns (uint256);\n\n  function userInfo(address _user) external view returns (UserInfo memory);\n}\n",
+  "sourcePath": "/home/mingyue/sub_contract_content/Web3Bugs/contracts/115/core/contracts/liquidityMining/v2/interfaces/IGenericMinerV2.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/liquidityMining/v2/interfaces/IGenericMinerV2.sol",
+    "exportedSymbols": {
+      "IGenericMinerV2": [
+        26580
+      ]
+    },
+    "id": 26581,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 26470,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:33:103"
+      },
+      {
+        "id": 26471,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "67:23:103"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 26472,
+        "nodeType": "ImportDirective",
+        "scope": 26581,
+        "sourceUnit": 1549,
+        "src": "92:56:103",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/interfaces/IAddressProvider.sol",
+        "file": "../../../interfaces/IAddressProvider.sol",
+        "id": 26473,
+        "nodeType": "ImportDirective",
+        "scope": 26581,
+        "sourceUnit": 14022,
+        "src": "149:50:103",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/governance/interfaces/IGovernanceAddressProvider.sol",
+        "file": "../../../governance/interfaces/IGovernanceAddressProvider.sol",
+        "id": 26474,
+        "nodeType": "ImportDirective",
+        "scope": 26581,
+        "sourceUnit": 9771,
+        "src": "200:71:103",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 26580,
+        "linearizedBaseContracts": [
+          26580
+        ],
+        "name": "IGenericMinerV2",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IGenericMinerV2.UserInfo",
+            "id": 26483,
+            "members": [
+              {
+                "constant": false,
+                "id": 26476,
+                "mutability": "mutable",
+                "name": "stake",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 26483,
+                "src": "325:13:103",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 26475,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "325:7:103",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 26478,
+                "mutability": "mutable",
+                "name": "stakeWithBoost",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 26483,
+                "src": "344:22:103",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 26477,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "344:7:103",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 26480,
+                "mutability": "mutable",
+                "name": "accAmountPerShare",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 26483,
+                "src": "372:25:103",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 26479,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "372:7:103",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 26482,
+                "mutability": "mutable",
+                "name": "accParAmountPerShare",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 26483,
+                "src": "403:28:103",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 26481,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "403:7:103",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "UserInfo",
+            "nodeType": "StructDefinition",
+            "scope": 26580,
+            "src": "303:133:103",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "IGenericMinerV2.BoostConfig",
+            "id": 26496,
+            "members": [
+              {
+                "constant": false,
+                "id": 26485,
+                "mutability": "mutable",
+                "name": "a",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 26496,
+                "src": "465:9:103",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 26484,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "465:7:103",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 26487,
+                "mutability": "mutable",
+                "name": "b",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 26496,
+                "src": "480:9:103",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 26486,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "480:7:103",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 26489,
+                "mutability": "mutable",
+                "name": "c",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 26496,
+                "src": "495:9:103",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 26488,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "495:7:103",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 26491,
+                "mutability": "mutable",
+                "name": "d",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 26496,
+                "src": "510:9:103",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 26490,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "510:7:103",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 26493,
+                "mutability": "mutable",
+                "name": "e",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 26496,
+                "src": "525:9:103",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 26492,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "525:7:103",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 26495,
+                "mutability": "mutable",
+                "name": "maxBoost",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 26496,
+                "src": "540:16:103",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 26494,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "540:7:103",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "BoostConfig",
+            "nodeType": "StructDefinition",
+            "scope": 26580,
+            "src": "440:121:103",
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 26497,
+              "nodeType": "StructuredDocumentation",
+              "src": "565:132:103",
+              "text": "@dev This emit when a users' productivity has changed\n It emits with the user's address and the the value after the change."
+            },
+            "id": 26503,
+            "name": "StakeIncreased",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 26502,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26499,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "user",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26503,
+                  "src": "721:20:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 26498,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "721:7:103",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 26501,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "stake",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26503,
+                  "src": "743:13:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 26500,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "743:7:103",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "720:37:103"
+            },
+            "src": "700:58:103"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 26504,
+              "nodeType": "StructuredDocumentation",
+              "src": "762:132:103",
+              "text": "@dev This emit when a users' productivity has changed\n It emits with the user's address and the the value after the change."
+            },
+            "id": 26510,
+            "name": "StakeDecreased",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 26509,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26506,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "user",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26510,
+                  "src": "918:20:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 26505,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "918:7:103",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 26508,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "stake",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26510,
+                  "src": "940:13:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 26507,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "940:7:103",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "917:37:103"
+            },
+            "src": "897:58:103"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 26514,
+            "name": "BoostConfigSet",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 26513,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26512,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26514,
+                  "src": "980:11:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_BoostConfig_$26496_memory_ptr",
+                    "typeString": "struct IGenericMinerV2.BoostConfig"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 26511,
+                    "name": "BoostConfig",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 26496,
+                    "src": "980:11:103",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_BoostConfig_$26496_storage_ptr",
+                      "typeString": "struct IGenericMinerV2.BoostConfig"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "979:13:103"
+            },
+            "src": "959:34:103"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "610edec2",
+            "id": 26519,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "releaseRewards",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 26517,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26516,
+                  "mutability": "mutable",
+                  "name": "_user",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26519,
+                  "src": "1021:13:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 26515,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1021:7:103",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1020:15:103"
+            },
+            "returnParameters": {
+              "id": 26518,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1044:0:103"
+            },
+            "scope": 26580,
+            "src": "997:48:103",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "26476204",
+            "id": 26526,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "stake",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 26522,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26521,
+                  "mutability": "mutable",
+                  "name": "_user",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26526,
+                  "src": "1064:13:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 26520,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1064:7:103",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1063:15:103"
+            },
+            "returnParameters": {
+              "id": 26525,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26524,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26526,
+                  "src": "1102:7:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 26523,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1102:7:103",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1101:9:103"
+            },
+            "scope": 26580,
+            "src": "1049:62:103",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "be347355",
+            "id": 26533,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "stakeWithBoost",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 26529,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26528,
+                  "mutability": "mutable",
+                  "name": "_user",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26533,
+                  "src": "1139:13:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 26527,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1139:7:103",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1138:15:103"
+            },
+            "returnParameters": {
+              "id": 26532,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26531,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26533,
+                  "src": "1177:7:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 26530,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1177:7:103",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1176:9:103"
+            },
+            "scope": 26580,
+            "src": "1115:71:103",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "0dbe671f",
+            "id": 26538,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "a",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 26534,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1215:2:103"
+            },
+            "returnParameters": {
+              "id": 26537,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26536,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26538,
+                  "src": "1241:26:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IGovernanceAddressProvider_$9770",
+                    "typeString": "contract IGovernanceAddressProvider"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 26535,
+                    "name": "IGovernanceAddressProvider",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 9770,
+                    "src": "1241:26:103",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IGovernanceAddressProvider_$9770",
+                      "typeString": "contract IGovernanceAddressProvider"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1240:28:103"
+            },
+            "scope": 26580,
+            "src": "1205:64:103",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "7c284c0a",
+            "id": 26545,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "pendingMIMO",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 26541,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26540,
+                  "mutability": "mutable",
+                  "name": "_user",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26545,
+                  "src": "1294:13:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 26539,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1294:7:103",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1293:15:103"
+            },
+            "returnParameters": {
+              "id": 26544,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26543,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26545,
+                  "src": "1332:7:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 26542,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1332:7:103",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1331:9:103"
+            },
+            "scope": 26580,
+            "src": "1273:68:103",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "a3898c07",
+            "id": 26552,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "pendingPAR",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 26548,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26547,
+                  "mutability": "mutable",
+                  "name": "_user",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26552,
+                  "src": "1365:13:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 26546,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1365:7:103",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1364:15:103"
+            },
+            "returnParameters": {
+              "id": 26551,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26550,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26552,
+                  "src": "1403:7:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 26549,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1403:7:103",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1402:9:103"
+            },
+            "scope": 26580,
+            "src": "1345:67:103",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "495d32cb",
+            "id": 26557,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "par",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 26553,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1428:2:103"
+            },
+            "returnParameters": {
+              "id": 26556,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26555,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26557,
+                  "src": "1454:6:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$1548",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 26554,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 1548,
+                    "src": "1454:6:103",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$1548",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1453:8:103"
+            },
+            "scope": 26580,
+            "src": "1416:46:103",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "cf275967",
+            "id": 26562,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "boostConfig",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 26558,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1486:2:103"
+            },
+            "returnParameters": {
+              "id": 26561,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26560,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26562,
+                  "src": "1512:18:103",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_BoostConfig_$26496_memory_ptr",
+                    "typeString": "struct IGenericMinerV2.BoostConfig"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 26559,
+                    "name": "BoostConfig",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 26496,
+                    "src": "1512:11:103",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_BoostConfig_$26496_storage_ptr",
+                      "typeString": "struct IGenericMinerV2.BoostConfig"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1511:20:103"
+            },
+            "scope": 26580,
+            "src": "1466:66:103",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "8b0e9f3f",
+            "id": 26567,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "totalStake",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 26563,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1555:2:103"
+            },
+            "returnParameters": {
+              "id": 26566,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26565,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26567,
+                  "src": "1581:7:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 26564,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1581:7:103",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1580:9:103"
+            },
+            "scope": 26580,
+            "src": "1536:54:103",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "d76da20c",
+            "id": 26572,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "totalStakeWithBoost",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 26568,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1622:2:103"
+            },
+            "returnParameters": {
+              "id": 26571,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26570,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26572,
+                  "src": "1648:7:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 26569,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1648:7:103",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1647:9:103"
+            },
+            "scope": 26580,
+            "src": "1594:63:103",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "1959a002",
+            "id": 26579,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "userInfo",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 26575,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26574,
+                  "mutability": "mutable",
+                  "name": "_user",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26579,
+                  "src": "1679:13:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 26573,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1679:7:103",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1678:15:103"
+            },
+            "returnParameters": {
+              "id": 26578,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 26577,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26579,
+                  "src": "1717:15:103",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_UserInfo_$26483_memory_ptr",
+                    "typeString": "struct IGenericMinerV2.UserInfo"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 26576,
+                    "name": "UserInfo",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 26483,
+                    "src": "1717:8:103",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_UserInfo_$26483_storage_ptr",
+                      "typeString": "struct IGenericMinerV2.UserInfo"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1716:17:103"
+            },
+            "scope": 26580,
+            "src": "1661:73:103",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 26581,
+        "src": "273:1463:103"
+      }
+    ],
+    "src": "33:1704:103"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/liquidityMining/v2/interfaces/IGenericMinerV2.sol",
+      "exportedSymbols": {
+        "IGenericMinerV2": [
+          26580
+        ]
+      },
+      "license": "MIT"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "experimental",
+            "ABIEncoderV2"
+          ]
+        },
+        "id": 26470,
+        "name": "PragmaDirective",
+        "src": "33:33:103"
+      },
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.6",
+            ".12"
+          ]
+        },
+        "id": 26471,
+        "name": "PragmaDirective",
+        "src": "67:23:103"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 1549,
+          "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+          "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+          "scope": 26581,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 26472,
+        "name": "ImportDirective",
+        "src": "92:56:103"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 14022,
+          "absolutePath": "project:/contracts/interfaces/IAddressProvider.sol",
+          "file": "../../../interfaces/IAddressProvider.sol",
+          "scope": 26581,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 26473,
+        "name": "ImportDirective",
+        "src": "149:50:103"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 9771,
+          "absolutePath": "project:/contracts/governance/interfaces/IGovernanceAddressProvider.sol",
+          "file": "../../../governance/interfaces/IGovernanceAddressProvider.sol",
+          "scope": 26581,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 26474,
+        "name": "ImportDirective",
+        "src": "200:71:103"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            26580
+          ],
+          "name": "IGenericMinerV2",
+          "scope": 26581
+        },
+        "children": [
+          {
+            "attributes": {
+              "canonicalName": "IGenericMinerV2.UserInfo",
+              "name": "UserInfo",
+              "scope": 26580,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "stake",
+                  "overrides": null,
+                  "scope": 26483,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 26475,
+                    "name": "ElementaryTypeName",
+                    "src": "325:7:103"
+                  }
+                ],
+                "id": 26476,
+                "name": "VariableDeclaration",
+                "src": "325:13:103"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "stakeWithBoost",
+                  "overrides": null,
+                  "scope": 26483,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 26477,
+                    "name": "ElementaryTypeName",
+                    "src": "344:7:103"
+                  }
+                ],
+                "id": 26478,
+                "name": "VariableDeclaration",
+                "src": "344:22:103"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "accAmountPerShare",
+                  "overrides": null,
+                  "scope": 26483,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 26479,
+                    "name": "ElementaryTypeName",
+                    "src": "372:7:103"
+                  }
+                ],
+                "id": 26480,
+                "name": "VariableDeclaration",
+                "src": "372:25:103"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "accParAmountPerShare",
+                  "overrides": null,
+                  "scope": 26483,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 26481,
+                    "name": "ElementaryTypeName",
+                    "src": "403:7:103"
+                  }
+                ],
+                "id": 26482,
+                "name": "VariableDeclaration",
+                "src": "403:28:103"
+              }
+            ],
+            "id": 26483,
+            "name": "StructDefinition",
+            "src": "303:133:103"
+          },
+          {
+            "attributes": {
+              "canonicalName": "IGenericMinerV2.BoostConfig",
+              "name": "BoostConfig",
+              "scope": 26580,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "a",
+                  "overrides": null,
+                  "scope": 26496,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 26484,
+                    "name": "ElementaryTypeName",
+                    "src": "465:7:103"
+                  }
+                ],
+                "id": 26485,
+                "name": "VariableDeclaration",
+                "src": "465:9:103"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "b",
+                  "overrides": null,
+                  "scope": 26496,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 26486,
+                    "name": "ElementaryTypeName",
+                    "src": "480:7:103"
+                  }
+                ],
+                "id": 26487,
+                "name": "VariableDeclaration",
+                "src": "480:9:103"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "c",
+                  "overrides": null,
+                  "scope": 26496,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 26488,
+                    "name": "ElementaryTypeName",
+                    "src": "495:7:103"
+                  }
+                ],
+                "id": 26489,
+                "name": "VariableDeclaration",
+                "src": "495:9:103"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "d",
+                  "overrides": null,
+                  "scope": 26496,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 26490,
+                    "name": "ElementaryTypeName",
+                    "src": "510:7:103"
+                  }
+                ],
+                "id": 26491,
+                "name": "VariableDeclaration",
+                "src": "510:9:103"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "e",
+                  "overrides": null,
+                  "scope": 26496,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 26492,
+                    "name": "ElementaryTypeName",
+                    "src": "525:7:103"
+                  }
+                ],
+                "id": 26493,
+                "name": "VariableDeclaration",
+                "src": "525:9:103"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "maxBoost",
+                  "overrides": null,
+                  "scope": 26496,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 26494,
+                    "name": "ElementaryTypeName",
+                    "src": "540:7:103"
+                  }
+                ],
+                "id": 26495,
+                "name": "VariableDeclaration",
+                "src": "540:16:103"
+              }
+            ],
+            "id": 26496,
+            "name": "StructDefinition",
+            "src": "440:121:103"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "name": "StakeIncreased"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@dev This emit when a users' productivity has changed\n It emits with the user's address and the the value after the change."
+                },
+                "id": 26497,
+                "name": "StructuredDocumentation",
+                "src": "565:132:103"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "mutability": "mutable",
+                      "name": "user",
+                      "overrides": null,
+                      "scope": 26503,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 26498,
+                        "name": "ElementaryTypeName",
+                        "src": "721:7:103"
+                      }
+                    ],
+                    "id": 26499,
+                    "name": "VariableDeclaration",
+                    "src": "721:20:103"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "stake",
+                      "overrides": null,
+                      "scope": 26503,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 26500,
+                        "name": "ElementaryTypeName",
+                        "src": "743:7:103"
+                      }
+                    ],
+                    "id": 26501,
+                    "name": "VariableDeclaration",
+                    "src": "743:13:103"
+                  }
+                ],
+                "id": 26502,
+                "name": "ParameterList",
+                "src": "720:37:103"
+              }
+            ],
+            "id": 26503,
+            "name": "EventDefinition",
+            "src": "700:58:103"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "name": "StakeDecreased"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@dev This emit when a users' productivity has changed\n It emits with the user's address and the the value after the change."
+                },
+                "id": 26504,
+                "name": "StructuredDocumentation",
+                "src": "762:132:103"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "mutability": "mutable",
+                      "name": "user",
+                      "overrides": null,
+                      "scope": 26510,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 26505,
+                        "name": "ElementaryTypeName",
+                        "src": "918:7:103"
+                      }
+                    ],
+                    "id": 26506,
+                    "name": "VariableDeclaration",
+                    "src": "918:20:103"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "stake",
+                      "overrides": null,
+                      "scope": 26510,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 26507,
+                        "name": "ElementaryTypeName",
+                        "src": "940:7:103"
+                      }
+                    ],
+                    "id": 26508,
+                    "name": "VariableDeclaration",
+                    "src": "940:13:103"
+                  }
+                ],
+                "id": 26509,
+                "name": "ParameterList",
+                "src": "917:37:103"
+              }
+            ],
+            "id": 26510,
+            "name": "EventDefinition",
+            "src": "897:58:103"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "BoostConfigSet"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 26514,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "struct IGenericMinerV2.BoostConfig",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "BoostConfig",
+                          "referencedDeclaration": 26496,
+                          "type": "struct IGenericMinerV2.BoostConfig"
+                        },
+                        "id": 26511,
+                        "name": "UserDefinedTypeName",
+                        "src": "980:11:103"
+                      }
+                    ],
+                    "id": 26512,
+                    "name": "VariableDeclaration",
+                    "src": "980:11:103"
+                  }
+                ],
+                "id": 26513,
+                "name": "ParameterList",
+                "src": "979:13:103"
+              }
+            ],
+            "id": 26514,
+            "name": "EventDefinition",
+            "src": "959:34:103"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "610edec2",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "releaseRewards",
+              "overrides": null,
+              "scope": 26580,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_user",
+                      "overrides": null,
+                      "scope": 26519,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 26515,
+                        "name": "ElementaryTypeName",
+                        "src": "1021:7:103"
+                      }
+                    ],
+                    "id": 26516,
+                    "name": "VariableDeclaration",
+                    "src": "1021:13:103"
+                  }
+                ],
+                "id": 26517,
+                "name": "ParameterList",
+                "src": "1020:15:103"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 26518,
+                "name": "ParameterList",
+                "src": "1044:0:103"
+              }
+            ],
+            "id": 26519,
+            "name": "FunctionDefinition",
+            "src": "997:48:103"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "26476204",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "stake",
+              "overrides": null,
+              "scope": 26580,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_user",
+                      "overrides": null,
+                      "scope": 26526,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 26520,
+                        "name": "ElementaryTypeName",
+                        "src": "1064:7:103"
+                      }
+                    ],
+                    "id": 26521,
+                    "name": "VariableDeclaration",
+                    "src": "1064:13:103"
+                  }
+                ],
+                "id": 26522,
+                "name": "ParameterList",
+                "src": "1063:15:103"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 26526,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 26523,
+                        "name": "ElementaryTypeName",
+                        "src": "1102:7:103"
+                      }
+                    ],
+                    "id": 26524,
+                    "name": "VariableDeclaration",
+                    "src": "1102:7:103"
+                  }
+                ],
+                "id": 26525,
+                "name": "ParameterList",
+                "src": "1101:9:103"
+              }
+            ],
+            "id": 26526,
+            "name": "FunctionDefinition",
+            "src": "1049:62:103"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "be347355",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "stakeWithBoost",
+              "overrides": null,
+              "scope": 26580,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_user",
+                      "overrides": null,
+                      "scope": 26533,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 26527,
+                        "name": "ElementaryTypeName",
+                        "src": "1139:7:103"
+                      }
+                    ],
+                    "id": 26528,
+                    "name": "VariableDeclaration",
+                    "src": "1139:13:103"
+                  }
+                ],
+                "id": 26529,
+                "name": "ParameterList",
+                "src": "1138:15:103"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 26533,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 26530,
+                        "name": "ElementaryTypeName",
+                        "src": "1177:7:103"
+                      }
+                    ],
+                    "id": 26531,
+                    "name": "VariableDeclaration",
+                    "src": "1177:7:103"
+                  }
+                ],
+                "id": 26532,
+                "name": "ParameterList",
+                "src": "1176:9:103"
+              }
+            ],
+            "id": 26533,
+            "name": "FunctionDefinition",
+            "src": "1115:71:103"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "0dbe671f",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "a",
+              "overrides": null,
+              "scope": 26580,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 26534,
+                "name": "ParameterList",
+                "src": "1215:2:103"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 26538,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract IGovernanceAddressProvider",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IGovernanceAddressProvider",
+                          "referencedDeclaration": 9770,
+                          "type": "contract IGovernanceAddressProvider"
+                        },
+                        "id": 26535,
+                        "name": "UserDefinedTypeName",
+                        "src": "1241:26:103"
+                      }
+                    ],
+                    "id": 26536,
+                    "name": "VariableDeclaration",
+                    "src": "1241:26:103"
+                  }
+                ],
+                "id": 26537,
+                "name": "ParameterList",
+                "src": "1240:28:103"
+              }
+            ],
+            "id": 26538,
+            "name": "FunctionDefinition",
+            "src": "1205:64:103"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "7c284c0a",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "pendingMIMO",
+              "overrides": null,
+              "scope": 26580,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_user",
+                      "overrides": null,
+                      "scope": 26545,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 26539,
+                        "name": "ElementaryTypeName",
+                        "src": "1294:7:103"
+                      }
+                    ],
+                    "id": 26540,
+                    "name": "VariableDeclaration",
+                    "src": "1294:13:103"
+                  }
+                ],
+                "id": 26541,
+                "name": "ParameterList",
+                "src": "1293:15:103"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 26545,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 26542,
+                        "name": "ElementaryTypeName",
+                        "src": "1332:7:103"
+                      }
+                    ],
+                    "id": 26543,
+                    "name": "VariableDeclaration",
+                    "src": "1332:7:103"
+                  }
+                ],
+                "id": 26544,
+                "name": "ParameterList",
+                "src": "1331:9:103"
+              }
+            ],
+            "id": 26545,
+            "name": "FunctionDefinition",
+            "src": "1273:68:103"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "a3898c07",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "pendingPAR",
+              "overrides": null,
+              "scope": 26580,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_user",
+                      "overrides": null,
+                      "scope": 26552,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 26546,
+                        "name": "ElementaryTypeName",
+                        "src": "1365:7:103"
+                      }
+                    ],
+                    "id": 26547,
+                    "name": "VariableDeclaration",
+                    "src": "1365:13:103"
+                  }
+                ],
+                "id": 26548,
+                "name": "ParameterList",
+                "src": "1364:15:103"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 26552,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 26549,
+                        "name": "ElementaryTypeName",
+                        "src": "1403:7:103"
+                      }
+                    ],
+                    "id": 26550,
+                    "name": "VariableDeclaration",
+                    "src": "1403:7:103"
+                  }
+                ],
+                "id": 26551,
+                "name": "ParameterList",
+                "src": "1402:9:103"
+              }
+            ],
+            "id": 26552,
+            "name": "FunctionDefinition",
+            "src": "1345:67:103"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "495d32cb",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "par",
+              "overrides": null,
+              "scope": 26580,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 26553,
+                "name": "ParameterList",
+                "src": "1428:2:103"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 26557,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract IERC20",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IERC20",
+                          "referencedDeclaration": 1548,
+                          "type": "contract IERC20"
+                        },
+                        "id": 26554,
+                        "name": "UserDefinedTypeName",
+                        "src": "1454:6:103"
+                      }
+                    ],
+                    "id": 26555,
+                    "name": "VariableDeclaration",
+                    "src": "1454:6:103"
+                  }
+                ],
+                "id": 26556,
+                "name": "ParameterList",
+                "src": "1453:8:103"
+              }
+            ],
+            "id": 26557,
+            "name": "FunctionDefinition",
+            "src": "1416:46:103"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "cf275967",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "boostConfig",
+              "overrides": null,
+              "scope": 26580,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 26558,
+                "name": "ParameterList",
+                "src": "1486:2:103"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 26562,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "struct IGenericMinerV2.BoostConfig",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "BoostConfig",
+                          "referencedDeclaration": 26496,
+                          "type": "struct IGenericMinerV2.BoostConfig"
+                        },
+                        "id": 26559,
+                        "name": "UserDefinedTypeName",
+                        "src": "1512:11:103"
+                      }
+                    ],
+                    "id": 26560,
+                    "name": "VariableDeclaration",
+                    "src": "1512:18:103"
+                  }
+                ],
+                "id": 26561,
+                "name": "ParameterList",
+                "src": "1511:20:103"
+              }
+            ],
+            "id": 26562,
+            "name": "FunctionDefinition",
+            "src": "1466:66:103"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "8b0e9f3f",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "totalStake",
+              "overrides": null,
+              "scope": 26580,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 26563,
+                "name": "ParameterList",
+                "src": "1555:2:103"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 26567,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 26564,
+                        "name": "ElementaryTypeName",
+                        "src": "1581:7:103"
+                      }
+                    ],
+                    "id": 26565,
+                    "name": "VariableDeclaration",
+                    "src": "1581:7:103"
+                  }
+                ],
+                "id": 26566,
+                "name": "ParameterList",
+                "src": "1580:9:103"
+              }
+            ],
+            "id": 26567,
+            "name": "FunctionDefinition",
+            "src": "1536:54:103"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "d76da20c",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "totalStakeWithBoost",
+              "overrides": null,
+              "scope": 26580,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 26568,
+                "name": "ParameterList",
+                "src": "1622:2:103"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 26572,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 26569,
+                        "name": "ElementaryTypeName",
+                        "src": "1648:7:103"
+                      }
+                    ],
+                    "id": 26570,
+                    "name": "VariableDeclaration",
+                    "src": "1648:7:103"
+                  }
+                ],
+                "id": 26571,
+                "name": "ParameterList",
+                "src": "1647:9:103"
+              }
+            ],
+            "id": 26572,
+            "name": "FunctionDefinition",
+            "src": "1594:63:103"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "1959a002",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "userInfo",
+              "overrides": null,
+              "scope": 26580,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_user",
+                      "overrides": null,
+                      "scope": 26579,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 26573,
+                        "name": "ElementaryTypeName",
+                        "src": "1679:7:103"
+                      }
+                    ],
+                    "id": 26574,
+                    "name": "VariableDeclaration",
+                    "src": "1679:13:103"
+                  }
+                ],
+                "id": 26575,
+                "name": "ParameterList",
+                "src": "1678:15:103"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 26579,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "struct IGenericMinerV2.UserInfo",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "UserInfo",
+                          "referencedDeclaration": 26483,
+                          "type": "struct IGenericMinerV2.UserInfo"
+                        },
+                        "id": 26576,
+                        "name": "UserDefinedTypeName",
+                        "src": "1717:8:103"
+                      }
+                    ],
+                    "id": 26577,
+                    "name": "VariableDeclaration",
+                    "src": "1717:15:103"
+                  }
+                ],
+                "id": 26578,
+                "name": "ParameterList",
+                "src": "1716:17:103"
+              }
+            ],
+            "id": 26579,
+            "name": "FunctionDefinition",
+            "src": "1661:73:103"
+          }
+        ],
+        "id": 26580,
+        "name": "ContractDefinition",
+        "src": "273:1463:103"
+      }
+    ],
+    "id": 26581,
+    "name": "SourceUnit",
+    "src": "33:1704:103"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.7",
+  "updatedAt": "2025-02-28T14:09:34.661Z",
+  "devdoc": {
+    "events": {
+      "StakeDecreased(address,uint256)": {
+        "details": "This emit when a users' productivity has changed It emits with the user's address and the the value after the change."
+      },
+      "StakeIncreased(address,uint256)": {
+        "details": "This emit when a users' productivity has changed It emits with the user's address and the the value after the change."
+      }
+    },
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

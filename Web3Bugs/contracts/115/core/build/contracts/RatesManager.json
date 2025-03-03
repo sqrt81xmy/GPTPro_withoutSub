@@ -1,0 +1,3478 @@
+{
+  "contractName": "RatesManager",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "contract IAddressProvider",
+          "name": "_addresses",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "a",
+      "outputs": [
+        {
+          "internalType": "contract IAddressProvider",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_borrowRate",
+          "type": "uint256"
+        }
+      ],
+      "name": "annualizedBorrowRate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_baseDebt",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_cumulativeRate",
+          "type": "uint256"
+        }
+      ],
+      "name": "calculateDebt",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "debt",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_debt",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_cumulativeRate",
+          "type": "uint256"
+        }
+      ],
+      "name": "calculateBaseDebt",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "baseDebt",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_borrowRate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_cumulativeRate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_timeElapsed",
+          "type": "uint256"
+        }
+      ],
+      "name": "calculateCumulativeRate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"contract IAddressProvider\",\"name\":\"_addresses\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"a\",\"outputs\":[{\"internalType\":\"contract IAddressProvider\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_borrowRate\",\"type\":\"uint256\"}],\"name\":\"annualizedBorrowRate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_debt\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_cumulativeRate\",\"type\":\"uint256\"}],\"name\":\"calculateBaseDebt\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"baseDebt\",\"type\":\"uint256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_borrowRate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_cumulativeRate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_timeElapsed\",\"type\":\"uint256\"}],\"name\":\"calculateCumulativeRate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_baseDebt\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_cumulativeRate\",\"type\":\"uint256\"}],\"name\":\"calculateDebt\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"debt\",\"type\":\"uint256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"annualizedBorrowRate(uint256)\":{\"params\":{\"_borrowRate\":\"rate for a 1 second interval specified in RAY accuracy.\"},\"returns\":{\"_0\":\"annualized rate\"}},\"calculateBaseDebt(uint256,uint256)\":{\"params\":{\"_cumulativeRate\":\"the cumulative rate in RAY accuracy.\",\"_debt\":\"the total debt to be used.\"},\"returns\":{\"baseDebt\":\"the new base debt\"}},\"calculateCumulativeRate(uint256,uint256,uint256)\":{\"params\":{\"_borrowRate\":\"rate for a 1 second interval specified in RAY accuracy to be applied\",\"_cumulativeRate\":\"the initial cumulative rate from which to apply the borrow rate\",\"_timeElapsed\":\"the time over whicht the borrow rate shall be applied\"},\"returns\":{\"_0\":\"new cumulative rate\"}},\"calculateDebt(uint256,uint256)\":{\"params\":{\"_baseDebt\":\"the base debt to be used. Can be a vault base debt or an aggregate base debt\",\"_cumulativeRate\":\"the cumulative rate in RAY accuracy.\"},\"returns\":{\"debt\":\"after applying the cumulative rate\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"annualizedBorrowRate(uint256)\":{\"notice\":\"Calculate the annualized borrow rate from the specified borrowing rate.\"},\"calculateBaseDebt(uint256,uint256)\":{\"notice\":\"Calculate the base debt from a specified total debt and cumulative rate.\"},\"calculateCumulativeRate(uint256,uint256,uint256)\":{\"notice\":\"Bring an existing cumulative rate forward in time\"},\"calculateDebt(uint256,uint256)\":{\"notice\":\"Calculate the total debt from a specified base debt and cumulative rate.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/core/RatesManager.sol\":\"RatesManager\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0xcc78a17dd88fa5a2edc60c8489e2f405c0913b377216a5b26b35656b2d0dab52\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://526dc85e1f9b9b45830e202568d267d93dde7a4fcccf4ad7798dadcd92304d3c\",\"dweb:/ipfs/QmaoXMB972J3cSDLtBq3xBo4jLwqD2uzXTwujtSPqkYVhR\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x5f02220344881ce43204ae4a6281145a67bc52c2bb1290a791857df3d19d78f5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://24427744bd3e6cb73c17010119af12a318289c0253a4d9acb8576c9fb3797b08\",\"dweb:/ipfs/QmTLDqpKRBuxGxRAmjgXt9AkXyACW3MtKzi7PYjm5iMfGC\"]},\"project:/contracts/chainlink/AggregatorV3Interface.sol\":{\"keccak256\":\"0x0c0d6cd68d8e5d99035491c316bcc4c348f3df1da03d09a7948ef879445b7546\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://1d70c77b85bc876a03d7d918d15686490db87df5535988193cecd0bff3f9eb12\",\"dweb:/ipfs/QmTaEHVucJ6wUSBJxHQMReyCsRai7GZ4YKLFE4TPaVEwkD\"]},\"project:/contracts/core/RatesManager.sol\":{\"keccak256\":\"0xb16f291a7a950d07bf54505edbb200a2b1fd44e5b283045a51b6480931a1443e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3b39333182b35084da36bee266b0103efa46f87606a323c9d8b322a55a98829c\",\"dweb:/ipfs/QmP9EPwMfBQecFZ49DKFMFSsesphuHFzw62U152uGdigit\"]},\"project:/contracts/governance/interfaces/IGovernanceAddressProvider.sol\":{\"keccak256\":\"0xddec642acfbf56e612164d624b6e89d7d341463897871952c5e6c6b3df9e0290\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a438ed8b1205b5d96d85b47da8f2bd457031e06f9a7ab18aa0454d26a935445c\",\"dweb:/ipfs/QmUJuJ1c8dgyuEzEySUcs2ikJKGB3XLXGDor84BHQv3u8V\"]},\"project:/contracts/governance/interfaces/IGovernorAlpha.sol\":{\"keccak256\":\"0xf8981c4f5e9eb3f000d39835d29c8e76aa4da5882718400b50c7550075616d19\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b6cadf0c19c50a4544806324a7a59bd3bac55f7b19147507cf2de95496f8e1b0\",\"dweb:/ipfs/QmRyhHkMi24HatL3BdoJ6WRSX8Aa4TbJPJ8sPQixZXJ8ib\"]},\"project:/contracts/governance/interfaces/ITimelock.sol\":{\"keccak256\":\"0xf0f0c7745ffb50e2bbd6f5368a89287af561e1345ab27f0e96f47bd3b5f94fa3\",\"license\":\"BSD-3-Clause\",\"urls\":[\"bzz-raw://030e3878a145531230a887fa0ce4a42d6b102cabd105befe1ea20c4b1804b2be\",\"dweb:/ipfs/QmTYdzszrS67wWkpNtsY46FZtCpc7TvmN4uxsA64sq4z7c\"]},\"project:/contracts/governance/interfaces/IVotingEscrow.sol\":{\"keccak256\":\"0xeb4d3820abed3ad175bdcc99ad0347ad4d0f66d5767f3c9dd478a66683378bd6\",\"license\":\"AGPL-3.0\",\"urls\":[\"bzz-raw://155925d8b8a1cfa8760b7d22d555a2b0d06d9b6c6116403e70dfb46947427ab0\",\"dweb:/ipfs/QmbbfF4M3HP6ic6iV8LZLgkQQcWwJyu7sbXPDid9JJH8DX\"]},\"project:/contracts/interfaces/IAccessController.sol\":{\"keccak256\":\"0x44296736b9049485ccf8aca15e582563cb5387af4cd6070d9e3e887d65f89173\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://cf924c3a8c3519ad2745a5da689001f51549fd6ca0e19c071e18c983d61c7f09\",\"dweb:/ipfs/QmVyMF9i8FWM2c4rR6KVwgBxKZb1XBHCmTB5tL1UWBbQA1\"]},\"project:/contracts/interfaces/IAddressProvider.sol\":{\"keccak256\":\"0xf14b8634f04cf84b38c7d2c5d51e7bf0e8276f4275dc6794a0cf76bcc8d3f8ea\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2f2e1afb47e310670d966e0728414e933c6392b4cbaf17f81505b6c198596f0a\",\"dweb:/ipfs/QmVVqKc7wAYdmDg2yTYgLqEkT9iw5NtdL96KJVuRaeJQ6k\"]},\"project:/contracts/interfaces/IConfigProvider.sol\":{\"keccak256\":\"0x33129128a94bcc86fbb83e7a323ec7bc0a5a290a5f35af1d3c129f5f76827e85\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2e306cff52ced075148b372e662c0d4ff83fa67a61df57eff5867e0b9a03d4f6\",\"dweb:/ipfs/Qmc2RqZvst72RgkWS2FtWPuygjtJmb2NMHJbNxqDc72yQC\"]},\"project:/contracts/interfaces/IFeeDistributor.sol\":{\"keccak256\":\"0x8c45c3ef043b247b5e481839a3a3caf62ae24225cfb85626b3df8f57510de979\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://92de1c240f12c273334e70d8368d789af8fa292ba3553d15cf43c6954e61f91a\",\"dweb:/ipfs/QmWjqiNRLuejFfuVVrKsSTvjb49ubefC7miLUkWJw2HTuF\"]},\"project:/contracts/interfaces/ILiquidationManager.sol\":{\"keccak256\":\"0xde6c43dcc1423b34b85f0d7d9947b3249b94df54225b2758b8bf0e2c425ccb90\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e373ef9231207fb8807f556fc458db38c645a9dfdf5796775e6cc6f1fc726a8d\",\"dweb:/ipfs/QmV8DuEHSp8DnUnkdfAeXVkeyvuFviqtuJH7XxHzAH7eK1\"]},\"project:/contracts/interfaces/IPriceFeed.sol\":{\"keccak256\":\"0x8cc0b8ad6f913b3a8cc62e4a7ffb574b40792c4043ddb0c851a1d832c21e0c70\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e8045418cdcd6fb5907037e6213665491b8fad4501b3aa1bf124840c59762928\",\"dweb:/ipfs/QmeP3huTbkHsBtAxYTzn3UnVk6EqNwWyLJjFntSveWveqi\"]},\"project:/contracts/interfaces/IRatesManager.sol\":{\"keccak256\":\"0x59826e9fc772f479422dbefcdd7a31eb4bc6474ea55dd748a2425b725a2b13f8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://4e788723ff15000db36c3096b17ea1b8e6e1dff8df7623a1815734ea5d89e7c0\",\"dweb:/ipfs/QmazQ165fmWPusYCnj23KupadxDi5Via7W48gWC1THGAgp\"]},\"project:/contracts/interfaces/ISTABLEX.sol\":{\"keccak256\":\"0x6915d210a8867b2c1b5a8e983a3342a41dcc63d71ae5f181185b546e3817aead\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6a031814ad3273c5852ee04c36d75e5cae9b8fd2db74e346c8480f71c27f847a\",\"dweb:/ipfs/QmUTunG1C5fQX9oUKdYshM99GmdSziHbCqYLyFsbD8XcCc\"]},\"project:/contracts/interfaces/IVaultsCore.sol\":{\"keccak256\":\"0x3162cc126f547075e43a816a52bdcf406fc9374a75419f67080c8931d19b790d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6de2594d702d1282a7420cadd0cbe205221b834bfbe6476091dcec6b4330263d\",\"dweb:/ipfs/QmSnTLZRi1NAE4WeW7kpUA7uvER1NK7HsXq4jnZWUuTdae\"]},\"project:/contracts/interfaces/IVaultsCoreState.sol\":{\"keccak256\":\"0x7895dfbbf72f559c4050f9d1c14314dca6ef8b044422c31cf22805fb5e314a82\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0551201124b7644d353fb55a41ae5ee191cf53a5264492cf113343f477056180\",\"dweb:/ipfs/QmfDgJrRUF79QwCrQewXrSNA9kCdvAT6QuLTiMwLPCFkf9\"]},\"project:/contracts/interfaces/IVaultsDataProvider.sol\":{\"keccak256\":\"0x6653e963fc559a8fdf4a021ee79a776525c49dada9653c9ed47cbf248b84c51c\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://77313d5f7f994ed4571ec44e052aa8fa940d0fc8fc1f36d4825effa600280232\",\"dweb:/ipfs/QmcAax4EsynydpCj6J3SSqdxmdSaPfjNXQAeAhqgoYLs3F\"]},\"project:/contracts/interfaces/IWETH.sol\":{\"keccak256\":\"0xfdd7722adff687336662cf3c75449b7d7e0f9029cbe2ce05b75657af99dcb90b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ec6d48d39eaf2b46cbe9c2e9ddd1fe704e82883e7231ca1342ce210807c2d81f\",\"dweb:/ipfs/QmUDTMe2BNrivULxPnv4aZ59CiR45kJcPrhguoB9ok9WDh\"]},\"project:/contracts/libraries/WadRayMath.sol\":{\"keccak256\":\"0x48c0ffd0b8eaef177accf1c1c7d3cb8f2229dcfc306b092e3c93cb5d8ef6732b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8bbc87de786eb223894db04b1ff2d469be68c29ade273c6d4e49c207ea772c01\",\"dweb:/ipfs/QmYfrfiVFR6g62KFHv83hhWkgv5FriHTbCfXuNAjpvvt2E\"]},\"project:/contracts/liquidityMining/interfaces/IDebtNotifier.sol\":{\"keccak256\":\"0x102e26cf04884ab25e8635fd127ff67e79656a2541f2f4e59bbc37b9cb454eb8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5ccb5f51ff8efd442d06458eba24c7b341beab28dbc78d46bb965650bf38644b\",\"dweb:/ipfs/QmQAeXQKmPiAsHmZszzPcuXkDZhMf1DuEJv8KLwceu2gNe\"]},\"project:/contracts/liquidityMining/interfaces/IGenericMiner.sol\":{\"keccak256\":\"0x0e3499d884736706d4bd00101e4c6a658bf81e550288909e71cff4172d4a729b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7b0ace26847e73a481116e5fc4b604ae3bd7ed312aa8309a4aeb1da99663bdc5\",\"dweb:/ipfs/QmVUuFjzxnzf4ereAZUfddvRaCRCDZCFVn46mGjY9tb9PG\"]},\"project:/contracts/liquidityMining/interfaces/IMIMO.sol\":{\"keccak256\":\"0x828c30f45ca2f30b7a9f429ae6e49629a97eed4cd4b5ba23b29e5af24dedc811\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3326b33f699ca6f67b64111cc8482d428ed59894e4785f2757a064f5887a0e08\",\"dweb:/ipfs/QmWCgwcEK5ZqiWbkkVqSSFMaD7J3LE815YerGQsmzJ2xUN\"]},\"project:/contracts/liquidityMining/interfaces/ISupplyMiner.sol\":{\"keccak256\":\"0xc1f3130c8d6b1b2fa17535d12e5e9bada0b9a751e0af27281207b112c841f98d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e9e7229abf46ac7b75c822203e74766a1addd2382f2a8b072be0ade1a07b77c3\",\"dweb:/ipfs/QmUgt2dxHBqggaaW46yf7pPwmkLPGYMveCnwEcowjXwZ3N\"]},\"project:/contracts/v1/interfaces/IAddressProviderV1.sol\":{\"keccak256\":\"0x8ca0f0f6fe9184013255d19ac7cf605fd0f1fe4b9b6d964e430879302013cae4\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://31c084fc31e6818895b754cfd84c0ad954d95ec91bc4cf36500e2009868cebae\",\"dweb:/ipfs/QmUK8Jb41bkxKcsSkevJDzRb5Tt4nXCy7Jds3TfgGypYVV\"]},\"project:/contracts/v1/interfaces/IConfigProviderV1.sol\":{\"keccak256\":\"0x3367989f6ab1ac32776dbfd6ec303a791048fb30b7c5e5e10eda774b03c7d8d2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://423e9ba2b280a95e1701db6cc1591c1304914c120760365309b32849b0f70a54\",\"dweb:/ipfs/QmTbpimRWoe1Lyg5cR6VC4cbB5mpPoFUrvtAzGKz2KWTqd\"]},\"project:/contracts/v1/interfaces/ILiquidationManagerV1.sol\":{\"keccak256\":\"0x2680a1f246fe7617c3019e04c9e0ebd6dc6512302fbb922e5d5691b6ab8c4da0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://52f157dd2ef3248fc00bf21be4de195bc807d8d91ab513ec40a590a997da9cff\",\"dweb:/ipfs/QmbioUYyZJKMKuXZY828BDueiVDBqVWoBDWS4UKxmcximt\"]},\"project:/contracts/v1/interfaces/IVaultsCoreV1.sol\":{\"keccak256\":\"0x6cf5a137af266b97daa3a0300161a2e1176cd7be1f2fc1db6111e9abc7fdac82\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b9bf7e5e3d42eda478a6db9b067ccd2610c4ec8ee62b4e4a8354bdd56ede7470\",\"dweb:/ipfs/QmWYZajCH2Nsfpb4HdG754YFty76QWtZFc6jWFtZqHjA2K\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516104ac3803806104ac83398101604081905261002f91610067565b6001600160a01b03811661004257600080fd5b600080546001600160a01b0319166001600160a01b0392909216919091179055610095565b600060208284031215610078578081fd5b81516001600160a01b038116811461008e578182fd5b9392505050565b610408806100a46000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c80630dbe671f1461005c5780631c3405e21461007a5780633a282c0a1461009a57806389d224ec146100ad578063e7b5e7bd146100c0575b600080fd5b6100646100d3565b6040516100719190610306565b60405180910390f35b61008d6100883660046102ba565b6100e2565b60405161007191906103c9565b61008d6100a83660046102ba565b6100f7565b61008d6100bb3660046102a2565b610103565b61008d6100ce3660046102db565b610113565b6000546001600160a01b031681565b60006100ee8383610144565b90505b92915050565b60006100ee838361017c565b60006100f1826301e133806101ae565b60008161012157508161013d565b600061012d85846101ae565b90506101398482610144565b9150505b9392505050565b60006100ee6b033b2e3c9fd0803ce80000006101766101638686610208565b6b019d971e4fe8401e740000009061024b565b90610270565b6000600282046101a68361017661019f876b033b2e3c9fd0803ce8000000610208565b849061024b565b949350505050565b6000600282066101ca576b033b2e3c9fd0803ce80000006101cc565b825b90506002820491505b81156100f1576101e58384610144565b925060028206156101fd576101fa8184610144565b90505b6002820491506101d5565b600082610217575060006100f1565b8282028284828161022457fe5b04146100ee5760405162461bcd60e51b815260040161024290610388565b60405180910390fd5b6000828201838110156100ee5760405162461bcd60e51b81526004016102429061031a565b60008082116102915760405162461bcd60e51b815260040161024290610351565b81838161029a57fe5b049392505050565b6000602082840312156102b3578081fd5b5035919050565b600080604083850312156102cc578081fd5b50508035926020909101359150565b6000806000606084860312156102ef578081fd5b505081359360208301359350604090920135919050565b6001600160a01b0391909116815260200190565b6020808252601b908201527f536166654d6174683a206164646974696f6e206f766572666c6f770000000000604082015260600190565b6020808252601a908201527f536166654d6174683a206469766973696f6e206279207a65726f000000000000604082015260600190565b60208082526021908201527f536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f6040820152607760f81b606082015260800190565b9081526020019056fea26469706673582212205d659fb69765d156086322cd90fdc57d587e2260ce1b66a50c37722fd83e91fd64736f6c634300060c0033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100575760003560e01c80630dbe671f1461005c5780631c3405e21461007a5780633a282c0a1461009a57806389d224ec146100ad578063e7b5e7bd146100c0575b600080fd5b6100646100d3565b6040516100719190610306565b60405180910390f35b61008d6100883660046102ba565b6100e2565b60405161007191906103c9565b61008d6100a83660046102ba565b6100f7565b61008d6100bb3660046102a2565b610103565b61008d6100ce3660046102db565b610113565b6000546001600160a01b031681565b60006100ee8383610144565b90505b92915050565b60006100ee838361017c565b60006100f1826301e133806101ae565b60008161012157508161013d565b600061012d85846101ae565b90506101398482610144565b9150505b9392505050565b60006100ee6b033b2e3c9fd0803ce80000006101766101638686610208565b6b019d971e4fe8401e740000009061024b565b90610270565b6000600282046101a68361017661019f876b033b2e3c9fd0803ce8000000610208565b849061024b565b949350505050565b6000600282066101ca576b033b2e3c9fd0803ce80000006101cc565b825b90506002820491505b81156100f1576101e58384610144565b925060028206156101fd576101fa8184610144565b90505b6002820491506101d5565b600082610217575060006100f1565b8282028284828161022457fe5b04146100ee5760405162461bcd60e51b815260040161024290610388565b60405180910390fd5b6000828201838110156100ee5760405162461bcd60e51b81526004016102429061031a565b60008082116102915760405162461bcd60e51b815260040161024290610351565b81838161029a57fe5b049392505050565b6000602082840312156102b3578081fd5b5035919050565b600080604083850312156102cc578081fd5b50508035926020909101359150565b6000806000606084860312156102ef578081fd5b505081359360208301359350604090920135919050565b6001600160a01b0391909116815260200190565b6020808252601b908201527f536166654d6174683a206164646974696f6e206f766572666c6f770000000000604082015260600190565b6020808252601a908201527f536166654d6174683a206469766973696f6e206279207a65726f000000000000604082015260600190565b60208082526021908201527f536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f6040820152607760f81b606082015260800190565b9081526020019056fea26469706673582212205d659fb69765d156086322cd90fdc57d587e2260ce1b66a50c37722fd83e91fd64736f6c634300060c0033",
+  "immutableReferences": {},
+  "sourceMap": "270:2232:20:-:0;;;473:121;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;-1:-1:-1;;;;;535:33:20;;527:42;;;;;;575:1;:14;;-1:-1:-1;;;;;;575:14:20;-1:-1:-1;;;;;575:14:20;;;;;;;;;;270:2232;;198:315:-1;;339:2;327:9;318:7;314:23;310:32;307:2;;;-1:-1;;345:12;307:2;109:13;;-1:-1;;;;;804:54;;955:61;;945:2;;-1:-1;;1020:12;945:2;397:100;301:212;-1:-1;;;301:212::o;:::-;270:2232:20;;;;;;",
+  "deployedSourceMap": "270:2232:20:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;434:34;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;1243:162;;;;;;:::i;:::-;;:::i;:::-;;;;;;;:::i;1644:::-;;;;;;:::i;:::-;;:::i;792:145::-;;;;;;:::i;:::-;;:::i;2168:332::-;;;;;;:::i;:::-;;:::i;434:34::-;;;-1:-1:-1;;;;;434:34:20;;:::o;1243:162::-;1340:12;1367:33;:9;1384:15;1367:16;:33::i;:::-;1360:40;;1243:162;;;;;:::o;1644:::-;1741:16;1772:29;:5;1785:15;1772:12;:29::i;792:145::-;873:7;895:37;:11;421:8;895:18;:37::i;2168:332::-;2315:7;2334:17;2330:45;;-1:-1:-1;2360:15:20;2353:22;;2330:45;2381:25;2409:32;:11;2428:12;2409:18;:32::i;:::-;2381:60;-1:-1:-1;2454:41:20;:15;2381:60;2454:22;:41::i;:::-;2447:48;;;2168:332;;;;;;:::o;1170:121:67:-;1231:7;1253:33;476:4;1253:23;1267:8;:1;1273;1267:5;:8::i;:::-;522;;1253:13;:23::i;:::-;:27;;:33::i;1295:145::-;1356:7;1391:1;1387:5;;1406:29;1387:1;1406:22;1416:11;:1;476:4;1416:5;:11::i;:::-;1406:5;;:9;:22::i;:29::-;1399:36;1295:145;-1:-1:-1;;;;1295:145:67:o;1865:233::-;1926:9;1951:1;1947;:5;:21;;476:4;1947:21;;;1960:1;1947:21;1943:25;-1:-1:-1;1985:1:67;1980:6;;;;1975:119;1988:6;;1975:119;;2016:12;2023:1;2026;2016:6;:12::i;:::-;2012:16;-1:-1:-1;2045:1:67;2041;:5;:10;2037:51;;2067:12;2074:1;2077;2067:6;:12::i;:::-;2063:16;;2037:51;2001:1;1996:6;;;;1975:119;;3538:215:4;3596:7;3619:6;3615:20;;-1:-1:-1;3634:1:4;3627:8;;3615:20;3657:5;;;3661:1;3657;:5;:1;3680:5;;;;;:10;3672:56;;;;-1:-1:-1;;;3672:56:4;;;;;;;:::i;:::-;;;;;;;;2690:175;2748:7;2779:5;;;2802:6;;;;2794:46;;;;-1:-1:-1;;;2794:46:4;;;;;;;:::i;4217:150::-;4275:7;4306:1;4302;:5;4294:44;;;;-1:-1:-1;;;4294:44:4;;;;;;;:::i;:::-;4359:1;4355;:5;;;;;;;4217:150;-1:-1:-1;;;4217:150:4:o;142:241:-1:-;;246:2;234:9;225:7;221:23;217:32;214:2;;;-1:-1;;252:12;214:2;-1:-1;72:20;;208:175;-1:-1;208:175::o;390:366::-;;;511:2;499:9;490:7;486:23;482:32;479:2;;;-1:-1;;517:12;479:2;-1:-1;;72:20;;;669:2;708:22;;;72:20;;-1:-1;473:283::o;763:491::-;;;;901:2;889:9;880:7;876:23;872:32;869:2;;;-1:-1;;907:12;869:2;-1:-1;;72:20;;;1059:2;1098:22;;72:20;;-1:-1;1167:2;1206:22;;;72:20;;863:391;-1:-1;863:391::o;2616:274::-;-1:-1;;;;;4629:54;;;;1358:76;;2769:2;2754:18;;2740:150::o;2897:416::-;3097:2;3111:47;;;1671:2;3082:18;;;4499:19;1707:29;4539:14;;;1687:50;1756:12;;;3068:245::o;3320:416::-;3520:2;3534:47;;;2007:2;3505:18;;;4499:19;2043:28;4539:14;;;2023:49;2091:12;;;3491:245::o;3743:416::-;3943:2;3957:47;;;2342:2;3928:18;;;4499:19;2378:34;4539:14;;;2358:55;-1:-1;;;2433:12;;;2426:25;2470:12;;;3914:245::o;4166:222::-;2567:37;;;4293:2;4278:18;;4264:124::o",
+  "source": "// SPDX-License-Identifier: MIT\n\npragma experimental ABIEncoderV2;\npragma solidity 0.6.12;\n\nimport \"@openzeppelin/contracts/math/SafeMath.sol\";\nimport \"../libraries/WadRayMath.sol\";\nimport \"../interfaces/IRatesManager.sol\";\nimport \"../interfaces/IAddressProvider.sol\";\n\ncontract RatesManager is IRatesManager {\n  using SafeMath for uint256;\n  using WadRayMath for uint256;\n\n  uint256 private constant _SECONDS_PER_YEAR = 365 days;\n\n  IAddressProvider public override a;\n\n  constructor(IAddressProvider _addresses) public {\n    require(address(_addresses) != address(0));\n    a = _addresses;\n  }\n\n  /**\n    Calculate the annualized borrow rate from the specified borrowing rate.\n    @param _borrowRate rate for a 1 second interval specified in RAY accuracy.\n    @return annualized rate\n  */\n  function annualizedBorrowRate(uint256 _borrowRate) public pure override returns (uint256) {\n    return _borrowRate.rayPow(_SECONDS_PER_YEAR);\n  }\n\n  /**\n    Calculate the total debt from a specified base debt and cumulative rate.\n    @param _baseDebt the base debt to be used. Can be a vault base debt or an aggregate base debt\n    @param _cumulativeRate the cumulative rate in RAY accuracy.\n    @return debt after applying the cumulative rate\n  */\n  function calculateDebt(uint256 _baseDebt, uint256 _cumulativeRate) public pure override returns (uint256 debt) {\n    return _baseDebt.rayMul(_cumulativeRate);\n  }\n\n  /**\n    Calculate the base debt from a specified total debt and cumulative rate.\n    @param _debt the total debt to be used.\n    @param _cumulativeRate the cumulative rate in RAY accuracy.\n    @return baseDebt the new base debt\n  */\n  function calculateBaseDebt(uint256 _debt, uint256 _cumulativeRate) public pure override returns (uint256 baseDebt) {\n    return _debt.rayDiv(_cumulativeRate);\n  }\n\n  /**\n    Bring an existing cumulative rate forward in time\n    @param _borrowRate rate for a 1 second interval specified in RAY accuracy to be applied\n    @param _timeElapsed the time over whicht the borrow rate shall be applied\n    @param _cumulativeRate the initial cumulative rate from which to apply the borrow rate\n    @return new cumulative rate\n  */\n  function calculateCumulativeRate(\n    uint256 _borrowRate,\n    uint256 _cumulativeRate,\n    uint256 _timeElapsed\n  ) public view override returns (uint256) {\n    if (_timeElapsed == 0) return _cumulativeRate;\n    uint256 cumulativeElapsed = _borrowRate.rayPow(_timeElapsed);\n    return _cumulativeRate.rayMul(cumulativeElapsed);\n  }\n}\n",
+  "sourcePath": "/home/mingyue/sub_contract_content/Web3Bugs/contracts/115/core/contracts/core/RatesManager.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/core/RatesManager.sol",
+    "exportedSymbols": {
+      "RatesManager": [
+        4457
+      ]
+    },
+    "id": 4458,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 4334,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:33:20"
+      },
+      {
+        "id": 4335,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "67:23:20"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/math/SafeMath.sol",
+        "file": "@openzeppelin/contracts/math/SafeMath.sol",
+        "id": 4336,
+        "nodeType": "ImportDirective",
+        "scope": 4458,
+        "sourceUnit": 822,
+        "src": "92:51:20",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/libraries/WadRayMath.sol",
+        "file": "../libraries/WadRayMath.sol",
+        "id": 4337,
+        "nodeType": "ImportDirective",
+        "scope": 4458,
+        "sourceUnit": 18791,
+        "src": "144:37:20",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/interfaces/IRatesManager.sol",
+        "file": "../interfaces/IRatesManager.sol",
+        "id": 4338,
+        "nodeType": "ImportDirective",
+        "scope": 4458,
+        "sourceUnit": 14599,
+        "src": "182:41:20",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/interfaces/IAddressProvider.sol",
+        "file": "../interfaces/IAddressProvider.sol",
+        "id": 4339,
+        "nodeType": "ImportDirective",
+        "scope": 4458,
+        "sourceUnit": 14022,
+        "src": "224:44:20",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 4340,
+              "name": "IRatesManager",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 14598,
+              "src": "295:13:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IRatesManager_$14598",
+                "typeString": "contract IRatesManager"
+              }
+            },
+            "id": 4341,
+            "nodeType": "InheritanceSpecifier",
+            "src": "295:13:20"
+          }
+        ],
+        "contractDependencies": [
+          14598
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 4457,
+        "linearizedBaseContracts": [
+          4457,
+          14598
+        ],
+        "name": "RatesManager",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "id": 4344,
+            "libraryName": {
+              "contractScope": null,
+              "id": 4342,
+              "name": "SafeMath",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 821,
+              "src": "319:8:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_SafeMath_$821",
+                "typeString": "library SafeMath"
+              }
+            },
+            "nodeType": "UsingForDirective",
+            "src": "313:27:20",
+            "typeName": {
+              "id": 4343,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "332:7:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            }
+          },
+          {
+            "id": 4347,
+            "libraryName": {
+              "contractScope": null,
+              "id": 4345,
+              "name": "WadRayMath",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 18790,
+              "src": "349:10:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_WadRayMath_$18790",
+                "typeString": "library WadRayMath"
+              }
+            },
+            "nodeType": "UsingForDirective",
+            "src": "343:29:20",
+            "typeName": {
+              "id": 4346,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "364:7:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            }
+          },
+          {
+            "constant": true,
+            "id": 4350,
+            "mutability": "constant",
+            "name": "_SECONDS_PER_YEAR",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 4457,
+            "src": "376:53:20",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 4348,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "376:7:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "333635",
+              "id": 4349,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "421:8:20",
+              "subdenomination": "days",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_31536000_by_1",
+                "typeString": "int_const 31536000"
+              },
+              "value": "365"
+            },
+            "visibility": "private"
+          },
+          {
+            "baseFunctions": [
+              14561
+            ],
+            "constant": false,
+            "functionSelector": "0dbe671f",
+            "id": 4353,
+            "mutability": "mutable",
+            "name": "a",
+            "nodeType": "VariableDeclaration",
+            "overrides": {
+              "id": 4352,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "458:8:20"
+            },
+            "scope": 4457,
+            "src": "434:34:20",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_IAddressProvider_$14021",
+              "typeString": "contract IAddressProvider"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 4351,
+              "name": "IAddressProvider",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 14021,
+              "src": "434:16:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IAddressProvider_$14021",
+                "typeString": "contract IAddressProvider"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 4374,
+              "nodeType": "Block",
+              "src": "521:73:20",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 4367,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "id": 4361,
+                              "name": "_addresses",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4355,
+                              "src": "543:10:20",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_contract$_IAddressProvider_$14021",
+                                "typeString": "contract IAddressProvider"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_contract$_IAddressProvider_$14021",
+                                "typeString": "contract IAddressProvider"
+                              }
+                            ],
+                            "id": 4360,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "535:7:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": {
+                              "id": 4359,
+                              "name": "address",
+                              "nodeType": "ElementaryTypeName",
+                              "src": "535:7:20",
+                              "typeDescriptions": {
+                                "typeIdentifier": null,
+                                "typeString": null
+                              }
+                            }
+                          },
+                          "id": 4362,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "535:19:20",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "!=",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "hexValue": "30",
+                              "id": 4365,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "566:1:20",
+                              "subdenomination": null,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              }
+                            ],
+                            "id": 4364,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "558:7:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": {
+                              "id": 4363,
+                              "name": "address",
+                              "nodeType": "ElementaryTypeName",
+                              "src": "558:7:20",
+                              "typeDescriptions": {
+                                "typeIdentifier": null,
+                                "typeString": null
+                              }
+                            }
+                          },
+                          "id": 4366,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "558:10:20",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        "src": "535:33:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 4358,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
+                      "referencedDeclaration": -18,
+                      "src": "527:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 4368,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "527:42:20",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 4369,
+                  "nodeType": "ExpressionStatement",
+                  "src": "527:42:20"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 4372,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 4370,
+                      "name": "a",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4353,
+                      "src": "575:1:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IAddressProvider_$14021",
+                        "typeString": "contract IAddressProvider"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 4371,
+                      "name": "_addresses",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4355,
+                      "src": "579:10:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IAddressProvider_$14021",
+                        "typeString": "contract IAddressProvider"
+                      }
+                    },
+                    "src": "575:14:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IAddressProvider_$14021",
+                      "typeString": "contract IAddressProvider"
+                    }
+                  },
+                  "id": 4373,
+                  "nodeType": "ExpressionStatement",
+                  "src": "575:14:20"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 4375,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4356,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4355,
+                  "mutability": "mutable",
+                  "name": "_addresses",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4375,
+                  "src": "485:27:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IAddressProvider_$14021",
+                    "typeString": "contract IAddressProvider"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4354,
+                    "name": "IAddressProvider",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 14021,
+                    "src": "485:16:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IAddressProvider_$14021",
+                      "typeString": "contract IAddressProvider"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "484:29:20"
+            },
+            "returnParameters": {
+              "id": 4357,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "521:0:20"
+            },
+            "scope": 4457,
+            "src": "473:121:20",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "baseFunctions": [
+              14568
+            ],
+            "body": {
+              "id": 4389,
+              "nodeType": "Block",
+              "src": "882:55:20",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 4386,
+                        "name": "_SECONDS_PER_YEAR",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4350,
+                        "src": "914:17:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 4384,
+                        "name": "_borrowRate",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4378,
+                        "src": "895:11:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "id": 4385,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "rayPow",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 18789,
+                      "src": "895:18:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
+                        "typeString": "function (uint256,uint256) pure returns (uint256)"
+                      }
+                    },
+                    "id": 4387,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "895:37:20",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 4383,
+                  "id": 4388,
+                  "nodeType": "Return",
+                  "src": "888:44:20"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 4376,
+              "nodeType": "StructuredDocumentation",
+              "src": "598:191:20",
+              "text": "Calculate the annualized borrow rate from the specified borrowing rate.\n@param _borrowRate rate for a 1 second interval specified in RAY accuracy.\n@return annualized rate"
+            },
+            "functionSelector": "89d224ec",
+            "id": 4390,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "annualizedBorrowRate",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 4380,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "855:8:20"
+            },
+            "parameters": {
+              "id": 4379,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4378,
+                  "mutability": "mutable",
+                  "name": "_borrowRate",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4390,
+                  "src": "822:19:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4377,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "822:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "821:21:20"
+            },
+            "returnParameters": {
+              "id": 4383,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4382,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4390,
+                  "src": "873:7:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4381,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "873:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "872:9:20"
+            },
+            "scope": 4457,
+            "src": "792:145:20",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "baseFunctions": [
+              14577
+            ],
+            "body": {
+              "id": 4406,
+              "nodeType": "Block",
+              "src": "1354:51:20",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 4403,
+                        "name": "_cumulativeRate",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4395,
+                        "src": "1384:15:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 4401,
+                        "name": "_baseDebt",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4393,
+                        "src": "1367:9:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "id": 4402,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "rayMul",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 18671,
+                      "src": "1367:16:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
+                        "typeString": "function (uint256,uint256) pure returns (uint256)"
+                      }
+                    },
+                    "id": 4404,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1367:33:20",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 4400,
+                  "id": 4405,
+                  "nodeType": "Return",
+                  "src": "1360:40:20"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 4391,
+              "nodeType": "StructuredDocumentation",
+              "src": "941:299:20",
+              "text": "Calculate the total debt from a specified base debt and cumulative rate.\n@param _baseDebt the base debt to be used. Can be a vault base debt or an aggregate base debt\n@param _cumulativeRate the cumulative rate in RAY accuracy.\n@return debt after applying the cumulative rate"
+            },
+            "functionSelector": "1c3405e2",
+            "id": 4407,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "calculateDebt",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 4397,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "1322:8:20"
+            },
+            "parameters": {
+              "id": 4396,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4393,
+                  "mutability": "mutable",
+                  "name": "_baseDebt",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4407,
+                  "src": "1266:17:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4392,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1266:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4395,
+                  "mutability": "mutable",
+                  "name": "_cumulativeRate",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4407,
+                  "src": "1285:23:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4394,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1285:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1265:44:20"
+            },
+            "returnParameters": {
+              "id": 4400,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4399,
+                  "mutability": "mutable",
+                  "name": "debt",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4407,
+                  "src": "1340:12:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4398,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1340:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1339:14:20"
+            },
+            "scope": 4457,
+            "src": "1243:162:20",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "baseFunctions": [
+              14586
+            ],
+            "body": {
+              "id": 4423,
+              "nodeType": "Block",
+              "src": "1759:47:20",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 4420,
+                        "name": "_cumulativeRate",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4412,
+                        "src": "1785:15:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 4418,
+                        "name": "_debt",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4410,
+                        "src": "1772:5:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "id": 4419,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "rayDiv",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 18698,
+                      "src": "1772:12:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
+                        "typeString": "function (uint256,uint256) pure returns (uint256)"
+                      }
+                    },
+                    "id": 4421,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1772:29:20",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 4417,
+                  "id": 4422,
+                  "nodeType": "Return",
+                  "src": "1765:36:20"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 4408,
+              "nodeType": "StructuredDocumentation",
+              "src": "1409:232:20",
+              "text": "Calculate the base debt from a specified total debt and cumulative rate.\n@param _debt the total debt to be used.\n@param _cumulativeRate the cumulative rate in RAY accuracy.\n@return baseDebt the new base debt"
+            },
+            "functionSelector": "3a282c0a",
+            "id": 4424,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "calculateBaseDebt",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 4414,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "1723:8:20"
+            },
+            "parameters": {
+              "id": 4413,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4410,
+                  "mutability": "mutable",
+                  "name": "_debt",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4424,
+                  "src": "1671:13:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4409,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1671:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4412,
+                  "mutability": "mutable",
+                  "name": "_cumulativeRate",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4424,
+                  "src": "1686:23:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4411,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1686:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1670:40:20"
+            },
+            "returnParameters": {
+              "id": 4417,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4416,
+                  "mutability": "mutable",
+                  "name": "baseDebt",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4424,
+                  "src": "1741:16:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4415,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1741:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1740:18:20"
+            },
+            "scope": 4457,
+            "src": "1644:162:20",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "baseFunctions": [
+              14597
+            ],
+            "body": {
+              "id": 4455,
+              "nodeType": "Block",
+              "src": "2324:176:20",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 4439,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 4437,
+                      "name": "_timeElapsed",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4431,
+                      "src": "2334:12:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "hexValue": "30",
+                      "id": 4438,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "2350:1:20",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "2334:17:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": null,
+                  "id": 4442,
+                  "nodeType": "IfStatement",
+                  "src": "2330:45:20",
+                  "trueBody": {
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 4440,
+                      "name": "_cumulativeRate",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4429,
+                      "src": "2360:15:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "functionReturnParameters": 4436,
+                    "id": 4441,
+                    "nodeType": "Return",
+                    "src": "2353:22:20"
+                  }
+                },
+                {
+                  "assignments": [
+                    4444
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 4444,
+                      "mutability": "mutable",
+                      "name": "cumulativeElapsed",
+                      "nodeType": "VariableDeclaration",
+                      "overrides": null,
+                      "scope": 4455,
+                      "src": "2381:25:20",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 4443,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "2381:7:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 4449,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 4447,
+                        "name": "_timeElapsed",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4431,
+                        "src": "2428:12:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 4445,
+                        "name": "_borrowRate",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4427,
+                        "src": "2409:11:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "id": 4446,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "rayPow",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 18789,
+                      "src": "2409:18:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
+                        "typeString": "function (uint256,uint256) pure returns (uint256)"
+                      }
+                    },
+                    "id": 4448,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2409:32:20",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2381:60:20"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 4452,
+                        "name": "cumulativeElapsed",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4444,
+                        "src": "2477:17:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 4450,
+                        "name": "_cumulativeRate",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4429,
+                        "src": "2454:15:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "id": 4451,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "rayMul",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 18671,
+                      "src": "2454:22:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
+                        "typeString": "function (uint256,uint256) pure returns (uint256)"
+                      }
+                    },
+                    "id": 4453,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2454:41:20",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 4436,
+                  "id": 4454,
+                  "nodeType": "Return",
+                  "src": "2447:48:20"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 4425,
+              "nodeType": "StructuredDocumentation",
+              "src": "1810:355:20",
+              "text": "Bring an existing cumulative rate forward in time\n@param _borrowRate rate for a 1 second interval specified in RAY accuracy to be applied\n@param _timeElapsed the time over whicht the borrow rate shall be applied\n@param _cumulativeRate the initial cumulative rate from which to apply the borrow rate\n@return new cumulative rate"
+            },
+            "functionSelector": "e7b5e7bd",
+            "id": 4456,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "calculateCumulativeRate",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 4433,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "2297:8:20"
+            },
+            "parameters": {
+              "id": 4432,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4427,
+                  "mutability": "mutable",
+                  "name": "_borrowRate",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4456,
+                  "src": "2206:19:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4426,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2206:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4429,
+                  "mutability": "mutable",
+                  "name": "_cumulativeRate",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4456,
+                  "src": "2231:23:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4428,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2231:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4431,
+                  "mutability": "mutable",
+                  "name": "_timeElapsed",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4456,
+                  "src": "2260:20:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4430,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2260:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2200:84:20"
+            },
+            "returnParameters": {
+              "id": 4436,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4435,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4456,
+                  "src": "2315:7:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4434,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2315:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2314:9:20"
+            },
+            "scope": 4457,
+            "src": "2168:332:20",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 4458,
+        "src": "270:2232:20"
+      }
+    ],
+    "src": "33:2470:20"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/core/RatesManager.sol",
+      "exportedSymbols": {
+        "RatesManager": [
+          4457
+        ]
+      },
+      "license": "MIT"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "experimental",
+            "ABIEncoderV2"
+          ]
+        },
+        "id": 4334,
+        "name": "PragmaDirective",
+        "src": "33:33:20"
+      },
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.6",
+            ".12"
+          ]
+        },
+        "id": 4335,
+        "name": "PragmaDirective",
+        "src": "67:23:20"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 822,
+          "absolutePath": "@openzeppelin/contracts/math/SafeMath.sol",
+          "file": "@openzeppelin/contracts/math/SafeMath.sol",
+          "scope": 4458,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 4336,
+        "name": "ImportDirective",
+        "src": "92:51:20"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 18791,
+          "absolutePath": "project:/contracts/libraries/WadRayMath.sol",
+          "file": "../libraries/WadRayMath.sol",
+          "scope": 4458,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 4337,
+        "name": "ImportDirective",
+        "src": "144:37:20"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 14599,
+          "absolutePath": "project:/contracts/interfaces/IRatesManager.sol",
+          "file": "../interfaces/IRatesManager.sol",
+          "scope": 4458,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 4338,
+        "name": "ImportDirective",
+        "src": "182:41:20"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 14022,
+          "absolutePath": "project:/contracts/interfaces/IAddressProvider.sol",
+          "file": "../interfaces/IAddressProvider.sol",
+          "scope": 4458,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 4339,
+        "name": "ImportDirective",
+        "src": "224:44:20"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "contractDependencies": [
+            14598
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            4457,
+            14598
+          ],
+          "name": "RatesManager",
+          "scope": 4458
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "IRatesManager",
+                  "referencedDeclaration": 14598,
+                  "type": "contract IRatesManager"
+                },
+                "id": 4340,
+                "name": "UserDefinedTypeName",
+                "src": "295:13:20"
+              }
+            ],
+            "id": 4341,
+            "name": "InheritanceSpecifier",
+            "src": "295:13:20"
+          },
+          {
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "SafeMath",
+                  "referencedDeclaration": 821,
+                  "type": "library SafeMath"
+                },
+                "id": 4342,
+                "name": "UserDefinedTypeName",
+                "src": "319:8:20"
+              },
+              {
+                "attributes": {
+                  "name": "uint256",
+                  "type": "uint256"
+                },
+                "id": 4343,
+                "name": "ElementaryTypeName",
+                "src": "332:7:20"
+              }
+            ],
+            "id": 4344,
+            "name": "UsingForDirective",
+            "src": "313:27:20"
+          },
+          {
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "WadRayMath",
+                  "referencedDeclaration": 18790,
+                  "type": "library WadRayMath"
+                },
+                "id": 4345,
+                "name": "UserDefinedTypeName",
+                "src": "349:10:20"
+              },
+              {
+                "attributes": {
+                  "name": "uint256",
+                  "type": "uint256"
+                },
+                "id": 4346,
+                "name": "ElementaryTypeName",
+                "src": "364:7:20"
+              }
+            ],
+            "id": 4347,
+            "name": "UsingForDirective",
+            "src": "343:29:20"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "mutability": "constant",
+              "name": "_SECONDS_PER_YEAR",
+              "overrides": null,
+              "scope": 4457,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint256",
+              "visibility": "private"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint256",
+                  "type": "uint256"
+                },
+                "id": 4348,
+                "name": "ElementaryTypeName",
+                "src": "376:7:20"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "hexvalue": "333635",
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "subdenomination": "days",
+                  "token": "number",
+                  "type": "int_const 31536000",
+                  "value": "365"
+                },
+                "id": 4349,
+                "name": "Literal",
+                "src": "421:8:20"
+              }
+            ],
+            "id": 4350,
+            "name": "VariableDeclaration",
+            "src": "376:53:20"
+          },
+          {
+            "attributes": {
+              "baseFunctions": [
+                14561
+              ],
+              "constant": false,
+              "functionSelector": "0dbe671f",
+              "mutability": "mutable",
+              "name": "a",
+              "scope": 4457,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "contract IAddressProvider",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "IAddressProvider",
+                  "referencedDeclaration": 14021,
+                  "type": "contract IAddressProvider"
+                },
+                "id": 4351,
+                "name": "UserDefinedTypeName",
+                "src": "434:16:20"
+              },
+              {
+                "attributes": {
+                  "overrides": [
+                    null
+                  ]
+                },
+                "id": 4352,
+                "name": "OverrideSpecifier",
+                "src": "458:8:20"
+              }
+            ],
+            "id": 4353,
+            "name": "VariableDeclaration",
+            "src": "434:34:20"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": true,
+              "kind": "constructor",
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "overrides": null,
+              "scope": 4457,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_addresses",
+                      "overrides": null,
+                      "scope": 4375,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract IAddressProvider",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IAddressProvider",
+                          "referencedDeclaration": 14021,
+                          "type": "contract IAddressProvider"
+                        },
+                        "id": 4354,
+                        "name": "UserDefinedTypeName",
+                        "src": "485:16:20"
+                      }
+                    ],
+                    "id": 4355,
+                    "name": "VariableDeclaration",
+                    "src": "485:27:20"
+                  }
+                ],
+                "id": 4356,
+                "name": "ParameterList",
+                "src": "484:29:20"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4357,
+                "name": "ParameterList",
+                "src": "521:0:20"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                -18,
+                                -18
+                              ],
+                              "referencedDeclaration": -18,
+                              "type": "function (bool) pure",
+                              "value": "require"
+                            },
+                            "id": 4358,
+                            "name": "Identifier",
+                            "src": "527:7:20"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "!=",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "tryCall": false,
+                                  "type": "address",
+                                  "type_conversion": true
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_contract$_IAddressProvider_$14021",
+                                          "typeString": "contract IAddressProvider"
+                                        }
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "type": "type(address)"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "name": "address",
+                                          "type": null
+                                        },
+                                        "id": 4359,
+                                        "name": "ElementaryTypeName",
+                                        "src": "535:7:20"
+                                      }
+                                    ],
+                                    "id": 4360,
+                                    "name": "ElementaryTypeNameExpression",
+                                    "src": "535:7:20"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 4355,
+                                      "type": "contract IAddressProvider",
+                                      "value": "_addresses"
+                                    },
+                                    "id": 4361,
+                                    "name": "Identifier",
+                                    "src": "543:10:20"
+                                  }
+                                ],
+                                "id": 4362,
+                                "name": "FunctionCall",
+                                "src": "535:19:20"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "tryCall": false,
+                                  "type": "address payable",
+                                  "type_conversion": true
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_rational_0_by_1",
+                                          "typeString": "int_const 0"
+                                        }
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "type": "type(address)"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "name": "address",
+                                          "type": null
+                                        },
+                                        "id": 4363,
+                                        "name": "ElementaryTypeName",
+                                        "src": "558:7:20"
+                                      }
+                                    ],
+                                    "id": 4364,
+                                    "name": "ElementaryTypeNameExpression",
+                                    "src": "558:7:20"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "hexvalue": "30",
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "subdenomination": null,
+                                      "token": "number",
+                                      "type": "int_const 0",
+                                      "value": "0"
+                                    },
+                                    "id": 4365,
+                                    "name": "Literal",
+                                    "src": "566:1:20"
+                                  }
+                                ],
+                                "id": 4366,
+                                "name": "FunctionCall",
+                                "src": "558:10:20"
+                              }
+                            ],
+                            "id": 4367,
+                            "name": "BinaryOperation",
+                            "src": "535:33:20"
+                          }
+                        ],
+                        "id": 4368,
+                        "name": "FunctionCall",
+                        "src": "527:42:20"
+                      }
+                    ],
+                    "id": 4369,
+                    "name": "ExpressionStatement",
+                    "src": "527:42:20"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "contract IAddressProvider"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4353,
+                              "type": "contract IAddressProvider",
+                              "value": "a"
+                            },
+                            "id": 4370,
+                            "name": "Identifier",
+                            "src": "575:1:20"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4355,
+                              "type": "contract IAddressProvider",
+                              "value": "_addresses"
+                            },
+                            "id": 4371,
+                            "name": "Identifier",
+                            "src": "579:10:20"
+                          }
+                        ],
+                        "id": 4372,
+                        "name": "Assignment",
+                        "src": "575:14:20"
+                      }
+                    ],
+                    "id": 4373,
+                    "name": "ExpressionStatement",
+                    "src": "575:14:20"
+                  }
+                ],
+                "id": 4374,
+                "name": "Block",
+                "src": "521:73:20"
+              }
+            ],
+            "id": 4375,
+            "name": "FunctionDefinition",
+            "src": "473:121:20"
+          },
+          {
+            "attributes": {
+              "baseFunctions": [
+                14568
+              ],
+              "functionSelector": "89d224ec",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "annualizedBorrowRate",
+              "scope": 4457,
+              "stateMutability": "pure",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "Calculate the annualized borrow rate from the specified borrowing rate.\n@param _borrowRate rate for a 1 second interval specified in RAY accuracy.\n@return annualized rate"
+                },
+                "id": 4376,
+                "name": "StructuredDocumentation",
+                "src": "598:191:20"
+              },
+              {
+                "attributes": {
+                  "overrides": [
+                    null
+                  ]
+                },
+                "id": 4380,
+                "name": "OverrideSpecifier",
+                "src": "855:8:20"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_borrowRate",
+                      "overrides": null,
+                      "scope": 4390,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4377,
+                        "name": "ElementaryTypeName",
+                        "src": "822:7:20"
+                      }
+                    ],
+                    "id": 4378,
+                    "name": "VariableDeclaration",
+                    "src": "822:19:20"
+                  }
+                ],
+                "id": 4379,
+                "name": "ParameterList",
+                "src": "821:21:20"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 4390,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4381,
+                        "name": "ElementaryTypeName",
+                        "src": "873:7:20"
+                      }
+                    ],
+                    "id": 4382,
+                    "name": "VariableDeclaration",
+                    "src": "873:7:20"
+                  }
+                ],
+                "id": 4383,
+                "name": "ParameterList",
+                "src": "872:9:20"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 4383
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "uint256",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "rayPow",
+                              "referencedDeclaration": 18789,
+                              "type": "function (uint256,uint256) pure returns (uint256)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 4378,
+                                  "type": "uint256",
+                                  "value": "_borrowRate"
+                                },
+                                "id": 4384,
+                                "name": "Identifier",
+                                "src": "895:11:20"
+                              }
+                            ],
+                            "id": 4385,
+                            "name": "MemberAccess",
+                            "src": "895:18:20"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4350,
+                              "type": "uint256",
+                              "value": "_SECONDS_PER_YEAR"
+                            },
+                            "id": 4386,
+                            "name": "Identifier",
+                            "src": "914:17:20"
+                          }
+                        ],
+                        "id": 4387,
+                        "name": "FunctionCall",
+                        "src": "895:37:20"
+                      }
+                    ],
+                    "id": 4388,
+                    "name": "Return",
+                    "src": "888:44:20"
+                  }
+                ],
+                "id": 4389,
+                "name": "Block",
+                "src": "882:55:20"
+              }
+            ],
+            "id": 4390,
+            "name": "FunctionDefinition",
+            "src": "792:145:20"
+          },
+          {
+            "attributes": {
+              "baseFunctions": [
+                14577
+              ],
+              "functionSelector": "1c3405e2",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "calculateDebt",
+              "scope": 4457,
+              "stateMutability": "pure",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "Calculate the total debt from a specified base debt and cumulative rate.\n@param _baseDebt the base debt to be used. Can be a vault base debt or an aggregate base debt\n@param _cumulativeRate the cumulative rate in RAY accuracy.\n@return debt after applying the cumulative rate"
+                },
+                "id": 4391,
+                "name": "StructuredDocumentation",
+                "src": "941:299:20"
+              },
+              {
+                "attributes": {
+                  "overrides": [
+                    null
+                  ]
+                },
+                "id": 4397,
+                "name": "OverrideSpecifier",
+                "src": "1322:8:20"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_baseDebt",
+                      "overrides": null,
+                      "scope": 4407,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4392,
+                        "name": "ElementaryTypeName",
+                        "src": "1266:7:20"
+                      }
+                    ],
+                    "id": 4393,
+                    "name": "VariableDeclaration",
+                    "src": "1266:17:20"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_cumulativeRate",
+                      "overrides": null,
+                      "scope": 4407,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4394,
+                        "name": "ElementaryTypeName",
+                        "src": "1285:7:20"
+                      }
+                    ],
+                    "id": 4395,
+                    "name": "VariableDeclaration",
+                    "src": "1285:23:20"
+                  }
+                ],
+                "id": 4396,
+                "name": "ParameterList",
+                "src": "1265:44:20"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "debt",
+                      "overrides": null,
+                      "scope": 4407,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4398,
+                        "name": "ElementaryTypeName",
+                        "src": "1340:7:20"
+                      }
+                    ],
+                    "id": 4399,
+                    "name": "VariableDeclaration",
+                    "src": "1340:12:20"
+                  }
+                ],
+                "id": 4400,
+                "name": "ParameterList",
+                "src": "1339:14:20"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 4400
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "uint256",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "rayMul",
+                              "referencedDeclaration": 18671,
+                              "type": "function (uint256,uint256) pure returns (uint256)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 4393,
+                                  "type": "uint256",
+                                  "value": "_baseDebt"
+                                },
+                                "id": 4401,
+                                "name": "Identifier",
+                                "src": "1367:9:20"
+                              }
+                            ],
+                            "id": 4402,
+                            "name": "MemberAccess",
+                            "src": "1367:16:20"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4395,
+                              "type": "uint256",
+                              "value": "_cumulativeRate"
+                            },
+                            "id": 4403,
+                            "name": "Identifier",
+                            "src": "1384:15:20"
+                          }
+                        ],
+                        "id": 4404,
+                        "name": "FunctionCall",
+                        "src": "1367:33:20"
+                      }
+                    ],
+                    "id": 4405,
+                    "name": "Return",
+                    "src": "1360:40:20"
+                  }
+                ],
+                "id": 4406,
+                "name": "Block",
+                "src": "1354:51:20"
+              }
+            ],
+            "id": 4407,
+            "name": "FunctionDefinition",
+            "src": "1243:162:20"
+          },
+          {
+            "attributes": {
+              "baseFunctions": [
+                14586
+              ],
+              "functionSelector": "3a282c0a",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "calculateBaseDebt",
+              "scope": 4457,
+              "stateMutability": "pure",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "Calculate the base debt from a specified total debt and cumulative rate.\n@param _debt the total debt to be used.\n@param _cumulativeRate the cumulative rate in RAY accuracy.\n@return baseDebt the new base debt"
+                },
+                "id": 4408,
+                "name": "StructuredDocumentation",
+                "src": "1409:232:20"
+              },
+              {
+                "attributes": {
+                  "overrides": [
+                    null
+                  ]
+                },
+                "id": 4414,
+                "name": "OverrideSpecifier",
+                "src": "1723:8:20"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_debt",
+                      "overrides": null,
+                      "scope": 4424,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4409,
+                        "name": "ElementaryTypeName",
+                        "src": "1671:7:20"
+                      }
+                    ],
+                    "id": 4410,
+                    "name": "VariableDeclaration",
+                    "src": "1671:13:20"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_cumulativeRate",
+                      "overrides": null,
+                      "scope": 4424,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4411,
+                        "name": "ElementaryTypeName",
+                        "src": "1686:7:20"
+                      }
+                    ],
+                    "id": 4412,
+                    "name": "VariableDeclaration",
+                    "src": "1686:23:20"
+                  }
+                ],
+                "id": 4413,
+                "name": "ParameterList",
+                "src": "1670:40:20"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "baseDebt",
+                      "overrides": null,
+                      "scope": 4424,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4415,
+                        "name": "ElementaryTypeName",
+                        "src": "1741:7:20"
+                      }
+                    ],
+                    "id": 4416,
+                    "name": "VariableDeclaration",
+                    "src": "1741:16:20"
+                  }
+                ],
+                "id": 4417,
+                "name": "ParameterList",
+                "src": "1740:18:20"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 4417
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "uint256",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "rayDiv",
+                              "referencedDeclaration": 18698,
+                              "type": "function (uint256,uint256) pure returns (uint256)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 4410,
+                                  "type": "uint256",
+                                  "value": "_debt"
+                                },
+                                "id": 4418,
+                                "name": "Identifier",
+                                "src": "1772:5:20"
+                              }
+                            ],
+                            "id": 4419,
+                            "name": "MemberAccess",
+                            "src": "1772:12:20"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4412,
+                              "type": "uint256",
+                              "value": "_cumulativeRate"
+                            },
+                            "id": 4420,
+                            "name": "Identifier",
+                            "src": "1785:15:20"
+                          }
+                        ],
+                        "id": 4421,
+                        "name": "FunctionCall",
+                        "src": "1772:29:20"
+                      }
+                    ],
+                    "id": 4422,
+                    "name": "Return",
+                    "src": "1765:36:20"
+                  }
+                ],
+                "id": 4423,
+                "name": "Block",
+                "src": "1759:47:20"
+              }
+            ],
+            "id": 4424,
+            "name": "FunctionDefinition",
+            "src": "1644:162:20"
+          },
+          {
+            "attributes": {
+              "baseFunctions": [
+                14597
+              ],
+              "functionSelector": "e7b5e7bd",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "calculateCumulativeRate",
+              "scope": 4457,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "Bring an existing cumulative rate forward in time\n@param _borrowRate rate for a 1 second interval specified in RAY accuracy to be applied\n@param _timeElapsed the time over whicht the borrow rate shall be applied\n@param _cumulativeRate the initial cumulative rate from which to apply the borrow rate\n@return new cumulative rate"
+                },
+                "id": 4425,
+                "name": "StructuredDocumentation",
+                "src": "1810:355:20"
+              },
+              {
+                "attributes": {
+                  "overrides": [
+                    null
+                  ]
+                },
+                "id": 4433,
+                "name": "OverrideSpecifier",
+                "src": "2297:8:20"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_borrowRate",
+                      "overrides": null,
+                      "scope": 4456,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4426,
+                        "name": "ElementaryTypeName",
+                        "src": "2206:7:20"
+                      }
+                    ],
+                    "id": 4427,
+                    "name": "VariableDeclaration",
+                    "src": "2206:19:20"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_cumulativeRate",
+                      "overrides": null,
+                      "scope": 4456,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4428,
+                        "name": "ElementaryTypeName",
+                        "src": "2231:7:20"
+                      }
+                    ],
+                    "id": 4429,
+                    "name": "VariableDeclaration",
+                    "src": "2231:23:20"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_timeElapsed",
+                      "overrides": null,
+                      "scope": 4456,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4430,
+                        "name": "ElementaryTypeName",
+                        "src": "2260:7:20"
+                      }
+                    ],
+                    "id": 4431,
+                    "name": "VariableDeclaration",
+                    "src": "2260:20:20"
+                  }
+                ],
+                "id": 4432,
+                "name": "ParameterList",
+                "src": "2200:84:20"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 4456,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4434,
+                        "name": "ElementaryTypeName",
+                        "src": "2315:7:20"
+                      }
+                    ],
+                    "id": 4435,
+                    "name": "VariableDeclaration",
+                    "src": "2315:7:20"
+                  }
+                ],
+                "id": 4436,
+                "name": "ParameterList",
+                "src": "2314:9:20"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "falseBody": null
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "==",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4431,
+                              "type": "uint256",
+                              "value": "_timeElapsed"
+                            },
+                            "id": 4437,
+                            "name": "Identifier",
+                            "src": "2334:12:20"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "30",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 0",
+                              "value": "0"
+                            },
+                            "id": 4438,
+                            "name": "Literal",
+                            "src": "2350:1:20"
+                          }
+                        ],
+                        "id": 4439,
+                        "name": "BinaryOperation",
+                        "src": "2334:17:20"
+                      },
+                      {
+                        "attributes": {
+                          "functionReturnParameters": 4436
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4429,
+                              "type": "uint256",
+                              "value": "_cumulativeRate"
+                            },
+                            "id": 4440,
+                            "name": "Identifier",
+                            "src": "2360:15:20"
+                          }
+                        ],
+                        "id": 4441,
+                        "name": "Return",
+                        "src": "2353:22:20"
+                      }
+                    ],
+                    "id": 4442,
+                    "name": "IfStatement",
+                    "src": "2330:45:20"
+                  },
+                  {
+                    "attributes": {
+                      "assignments": [
+                        4444
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "mutability": "mutable",
+                          "name": "cumulativeElapsed",
+                          "overrides": null,
+                          "scope": 4455,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "uint256",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint256",
+                              "type": "uint256"
+                            },
+                            "id": 4443,
+                            "name": "ElementaryTypeName",
+                            "src": "2381:7:20"
+                          }
+                        ],
+                        "id": 4444,
+                        "name": "VariableDeclaration",
+                        "src": "2381:25:20"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "uint256",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "rayPow",
+                              "referencedDeclaration": 18789,
+                              "type": "function (uint256,uint256) pure returns (uint256)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 4427,
+                                  "type": "uint256",
+                                  "value": "_borrowRate"
+                                },
+                                "id": 4445,
+                                "name": "Identifier",
+                                "src": "2409:11:20"
+                              }
+                            ],
+                            "id": 4446,
+                            "name": "MemberAccess",
+                            "src": "2409:18:20"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4431,
+                              "type": "uint256",
+                              "value": "_timeElapsed"
+                            },
+                            "id": 4447,
+                            "name": "Identifier",
+                            "src": "2428:12:20"
+                          }
+                        ],
+                        "id": 4448,
+                        "name": "FunctionCall",
+                        "src": "2409:32:20"
+                      }
+                    ],
+                    "id": 4449,
+                    "name": "VariableDeclarationStatement",
+                    "src": "2381:60:20"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 4436
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "uint256",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "rayMul",
+                              "referencedDeclaration": 18671,
+                              "type": "function (uint256,uint256) pure returns (uint256)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 4429,
+                                  "type": "uint256",
+                                  "value": "_cumulativeRate"
+                                },
+                                "id": 4450,
+                                "name": "Identifier",
+                                "src": "2454:15:20"
+                              }
+                            ],
+                            "id": 4451,
+                            "name": "MemberAccess",
+                            "src": "2454:22:20"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4444,
+                              "type": "uint256",
+                              "value": "cumulativeElapsed"
+                            },
+                            "id": 4452,
+                            "name": "Identifier",
+                            "src": "2477:17:20"
+                          }
+                        ],
+                        "id": 4453,
+                        "name": "FunctionCall",
+                        "src": "2454:41:20"
+                      }
+                    ],
+                    "id": 4454,
+                    "name": "Return",
+                    "src": "2447:48:20"
+                  }
+                ],
+                "id": 4455,
+                "name": "Block",
+                "src": "2324:176:20"
+              }
+            ],
+            "id": 4456,
+            "name": "FunctionDefinition",
+            "src": "2168:332:20"
+          }
+        ],
+        "id": 4457,
+        "name": "ContractDefinition",
+        "src": "270:2232:20"
+      }
+    ],
+    "id": 4458,
+    "name": "SourceUnit",
+    "src": "33:2470:20"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.7",
+  "updatedAt": "2025-02-28T14:09:34.602Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "annualizedBorrowRate(uint256)": {
+        "params": {
+          "_borrowRate": "rate for a 1 second interval specified in RAY accuracy."
+        },
+        "returns": {
+          "_0": "annualized rate"
+        }
+      },
+      "calculateBaseDebt(uint256,uint256)": {
+        "params": {
+          "_cumulativeRate": "the cumulative rate in RAY accuracy.",
+          "_debt": "the total debt to be used."
+        },
+        "returns": {
+          "baseDebt": "the new base debt"
+        }
+      },
+      "calculateCumulativeRate(uint256,uint256,uint256)": {
+        "params": {
+          "_borrowRate": "rate for a 1 second interval specified in RAY accuracy to be applied",
+          "_cumulativeRate": "the initial cumulative rate from which to apply the borrow rate",
+          "_timeElapsed": "the time over whicht the borrow rate shall be applied"
+        },
+        "returns": {
+          "_0": "new cumulative rate"
+        }
+      },
+      "calculateDebt(uint256,uint256)": {
+        "params": {
+          "_baseDebt": "the base debt to be used. Can be a vault base debt or an aggregate base debt",
+          "_cumulativeRate": "the cumulative rate in RAY accuracy."
+        },
+        "returns": {
+          "debt": "after applying the cumulative rate"
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "annualizedBorrowRate(uint256)": {
+        "notice": "Calculate the annualized borrow rate from the specified borrowing rate."
+      },
+      "calculateBaseDebt(uint256,uint256)": {
+        "notice": "Calculate the base debt from a specified total debt and cumulative rate."
+      },
+      "calculateCumulativeRate(uint256,uint256,uint256)": {
+        "notice": "Bring an existing cumulative rate forward in time"
+      },
+      "calculateDebt(uint256,uint256)": {
+        "notice": "Calculate the total debt from a specified base debt and cumulative rate."
+      }
+    },
+    "version": 1
+  }
+}

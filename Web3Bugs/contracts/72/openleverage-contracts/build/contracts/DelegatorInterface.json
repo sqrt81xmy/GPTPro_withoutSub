@@ -1,0 +1,3729 @@
+{
+  "contractName": "DelegatorInterface",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "oldImplementation",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "newImplementation",
+          "type": "address"
+        }
+      ],
+      "name": "NewImplementation",
+      "type": "event"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "fallback"
+    },
+    {
+      "inputs": [],
+      "name": "implementation",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "implementation_",
+          "type": "address"
+        }
+      ],
+      "name": "setImplementation",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "delegateToImplementation",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "delegateToViewImplementation",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oldImplementation\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"}],\"name\":\"NewImplementation\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"delegateToImplementation\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"delegateToViewImplementation\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"implementation_\",\"type\":\"address\"}],\"name\":\"setImplementation\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"delegateToImplementation(bytes)\":{\"details\":\"It returns to the external caller whatever the implementation returns or forwards reverts\",\"params\":{\"data\":\"The raw data to delegatecall\"},\"returns\":{\"_0\":\"The returned bytes from the delegatecall\"}},\"delegateToViewImplementation(bytes)\":{\"details\":\"It returns to the external caller whatever the implementation returns or forwards reverts  There are an additional 2 prefix uints from the wrapper returndata, which we ignore since we make an extra hop.\",\"params\":{\"data\":\"The raw data to delegatecall\"},\"returns\":{\"_0\":\"The returned bytes from the delegatecall\"}},\"setImplementation(address)\":{\"params\":{\"implementation_\":\"The address of the new implementation for delegation\"}}},\"version\":1},\"userdoc\":{\"events\":{\"NewImplementation(address,address)\":{\"notice\":\"Emitted when implementation is changed\"}},\"kind\":\"user\",\"methods\":{\"delegateToImplementation(bytes)\":{\"notice\":\"Delegates execution to the implementation contract\"},\"delegateToViewImplementation(bytes)\":{\"notice\":\"Delegates execution to an implementation contract\"},\"implementation()\":{\"notice\":\"Implementation address for this contract\"},\"setImplementation(address)\":{\"notice\":\"Called by the admin to update the implementation of the delegator\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/DelegatorInterface.sol\":\"DelegatorInterface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/DelegatorInterface.sol\":{\"keccak256\":\"0xe60057c80b3695afdb3ffeebbe9df4a4b8a02a47bfc5e06ef4331d79aa19ab62\",\"license\":\"BUSL-1.1\",\"urls\":[\"bzz-raw://2e479b554c4570b08f4abcd22fb0fd2798ad79a523844a4b9eec1f78e4eb0718\",\"dweb:/ipfs/QmXWv19HDGcqEe2sYoA4AQFUaVx14guWLBq2yNaLnXXiKd\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: BUSL-1.1\npragma solidity 0.7.6;\n\n\nabstract contract DelegatorInterface {\n    /**\n     * Implementation address for this contract\n     */\n    address public implementation;\n\n    /**\n     * Emitted when implementation is changed\n     */\n    event NewImplementation(address oldImplementation, address newImplementation);\n\n    /**\n     * Called by the admin to update the implementation of the delegator\n     * @param implementation_ The address of the new implementation for delegation\n     */\n    function setImplementation(address implementation_) public virtual;\n\n\n    /**\n    * Internal method to delegate execution to another contract\n    * @dev It returns to the external caller whatever the implementation returns or forwards reverts\n    * @param callee The contract to delegatecall\n    * @param data The raw data to delegatecall\n    * @return The returned bytes from the delegatecall\n    */\n    function delegateTo(address callee, bytes memory data) internal returns (bytes memory) {\n        (bool success, bytes memory returnData) = callee.delegatecall(data);\n        assembly {\n            if eq(success, 0) {revert(add(returnData, 0x20), returndatasize())}\n        }\n        return returnData;\n    }\n\n    /**\n     * Delegates execution to the implementation contract\n     * @dev It returns to the external caller whatever the implementation returns or forwards reverts\n     * @param data The raw data to delegatecall\n     * @return The returned bytes from the delegatecall\n     */\n    function delegateToImplementation(bytes memory data) public returns (bytes memory) {\n        return delegateTo(implementation, data);\n    }\n\n    /**\n     * Delegates execution to an implementation contract\n     * @dev It returns to the external caller whatever the implementation returns or forwards reverts\n     *  There are an additional 2 prefix uints from the wrapper returndata, which we ignore since we make an extra hop.\n     * @param data The raw data to delegatecall\n     * @return The returned bytes from the delegatecall\n     */\n    function delegateToViewImplementation(bytes memory data) public view returns (bytes memory) {\n        (bool success, bytes memory returnData) = address(this).staticcall(abi.encodeWithSignature(\"delegateToImplementation(bytes)\", data));\n        assembly {\n            if eq(success, 0) {revert(add(returnData, 0x20), returndatasize())}\n        }\n        return abi.decode(returnData, (bytes));\n    }\n    /**\n    * Delegates execution to an implementation contract\n    * @dev It returns to the external caller whatever the implementation returns or forwards reverts\n    */\n    fallback() external payable {\n        _fallback();\n    }\n\n    receive() external payable {\n        _fallback();\n    }\n\n    function _fallback() internal {\n        // delegate all other functions to current implementation\n        if (msg.data.length > 0) {\n            (bool success,) = implementation.delegatecall(msg.data);\n            assembly {\n                let free_mem_ptr := mload(0x40)\n                returndatacopy(free_mem_ptr, 0, returndatasize())\n                switch success\n                case 0 {revert(free_mem_ptr, returndatasize())}\n                default {return (free_mem_ptr, returndatasize())}\n            }\n        }\n    }\n}\n",
+  "sourcePath": "/home/mingyue/Smartian/Web3Bugs/contracts/72/openleverage-contracts/contracts/DelegatorInterface.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/DelegatorInterface.sol",
+    "exportedSymbols": {
+      "DelegatorInterface": [
+        10319
+      ]
+    },
+    "id": 10320,
+    "license": "BUSL-1.1",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 10196,
+        "literals": [
+          "solidity",
+          "0.7",
+          ".6"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "37:22:51"
+      },
+      {
+        "abstract": true,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": false,
+        "id": 10319,
+        "linearizedBaseContracts": [
+          10319
+        ],
+        "name": "DelegatorInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "documentation": {
+              "id": 10197,
+              "nodeType": "StructuredDocumentation",
+              "src": "105:59:51",
+              "text": " Implementation address for this contract"
+            },
+            "functionSelector": "5c60da1b",
+            "id": 10199,
+            "mutability": "mutable",
+            "name": "implementation",
+            "nodeType": "VariableDeclaration",
+            "scope": 10319,
+            "src": "169:29:51",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 10198,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "169:7:51",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 10200,
+              "nodeType": "StructuredDocumentation",
+              "src": "205:57:51",
+              "text": " Emitted when implementation is changed"
+            },
+            "id": 10206,
+            "name": "NewImplementation",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 10205,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10202,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "oldImplementation",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10206,
+                  "src": "291:25:51",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10201,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "291:7:51",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10204,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "newImplementation",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10206,
+                  "src": "318:25:51",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10203,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "318:7:51",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "290:54:51"
+            },
+            "src": "267:78:51"
+          },
+          {
+            "documentation": {
+              "id": 10207,
+              "nodeType": "StructuredDocumentation",
+              "src": "351:167:51",
+              "text": " Called by the admin to update the implementation of the delegator\n @param implementation_ The address of the new implementation for delegation"
+            },
+            "functionSelector": "d784d426",
+            "id": 10212,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setImplementation",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10210,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10209,
+                  "mutability": "mutable",
+                  "name": "implementation_",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10212,
+                  "src": "550:23:51",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10208,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "550:7:51",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "549:25:51"
+            },
+            "returnParameters": {
+              "id": 10211,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "589:0:51"
+            },
+            "scope": 10319,
+            "src": "523:67:51",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 10234,
+              "nodeType": "Block",
+              "src": "1015:220:51",
+              "statements": [
+                {
+                  "assignments": [
+                    10223,
+                    10225
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 10223,
+                      "mutability": "mutable",
+                      "name": "success",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 10234,
+                      "src": "1026:12:51",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "typeName": {
+                        "id": 10222,
+                        "name": "bool",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1026:4:51",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      "visibility": "internal"
+                    },
+                    {
+                      "constant": false,
+                      "id": 10225,
+                      "mutability": "mutable",
+                      "name": "returnData",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 10234,
+                      "src": "1040:23:51",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_memory_ptr",
+                        "typeString": "bytes"
+                      },
+                      "typeName": {
+                        "id": 10224,
+                        "name": "bytes",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1040:5:51",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_storage_ptr",
+                          "typeString": "bytes"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 10230,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "id": 10228,
+                        "name": "data",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 10217,
+                        "src": "1087:4:51",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      ],
+                      "expression": {
+                        "id": 10226,
+                        "name": "callee",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 10215,
+                        "src": "1067:6:51",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "id": 10227,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "delegatecall",
+                      "nodeType": "MemberAccess",
+                      "src": "1067:19:51",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_baredelegatecall_nonpayable$_t_bytes_memory_ptr_$returns$_t_bool_$_t_bytes_memory_ptr_$",
+                        "typeString": "function (bytes memory) returns (bool,bytes memory)"
+                      }
+                    },
+                    "id": 10229,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1067:25:51",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_bool_$_t_bytes_memory_ptr_$",
+                      "typeString": "tuple(bool,bytes memory)"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1025:67:51"
+                },
+                {
+                  "AST": {
+                    "nodeType": "YulBlock",
+                    "src": "1111:91:51",
+                    "statements": [
+                      {
+                        "body": {
+                          "nodeType": "YulBlock",
+                          "src": "1143:49:51",
+                          "statements": [
+                            {
+                              "expression": {
+                                "arguments": [
+                                  {
+                                    "arguments": [
+                                      {
+                                        "name": "returnData",
+                                        "nodeType": "YulIdentifier",
+                                        "src": "1155:10:51"
+                                      },
+                                      {
+                                        "kind": "number",
+                                        "nodeType": "YulLiteral",
+                                        "src": "1167:4:51",
+                                        "type": "",
+                                        "value": "0x20"
+                                      }
+                                    ],
+                                    "functionName": {
+                                      "name": "add",
+                                      "nodeType": "YulIdentifier",
+                                      "src": "1151:3:51"
+                                    },
+                                    "nodeType": "YulFunctionCall",
+                                    "src": "1151:21:51"
+                                  },
+                                  {
+                                    "arguments": [],
+                                    "functionName": {
+                                      "name": "returndatasize",
+                                      "nodeType": "YulIdentifier",
+                                      "src": "1174:14:51"
+                                    },
+                                    "nodeType": "YulFunctionCall",
+                                    "src": "1174:16:51"
+                                  }
+                                ],
+                                "functionName": {
+                                  "name": "revert",
+                                  "nodeType": "YulIdentifier",
+                                  "src": "1144:6:51"
+                                },
+                                "nodeType": "YulFunctionCall",
+                                "src": "1144:47:51"
+                              },
+                              "nodeType": "YulExpressionStatement",
+                              "src": "1144:47:51"
+                            }
+                          ]
+                        },
+                        "condition": {
+                          "arguments": [
+                            {
+                              "name": "success",
+                              "nodeType": "YulIdentifier",
+                              "src": "1131:7:51"
+                            },
+                            {
+                              "kind": "number",
+                              "nodeType": "YulLiteral",
+                              "src": "1140:1:51",
+                              "type": "",
+                              "value": "0"
+                            }
+                          ],
+                          "functionName": {
+                            "name": "eq",
+                            "nodeType": "YulIdentifier",
+                            "src": "1128:2:51"
+                          },
+                          "nodeType": "YulFunctionCall",
+                          "src": "1128:14:51"
+                        },
+                        "nodeType": "YulIf",
+                        "src": "1125:2:51"
+                      }
+                    ]
+                  },
+                  "evmVersion": "istanbul",
+                  "externalReferences": [
+                    {
+                      "declaration": 10225,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "1155:10:51",
+                      "valueSize": 1
+                    },
+                    {
+                      "declaration": 10223,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "1131:7:51",
+                      "valueSize": 1
+                    }
+                  ],
+                  "id": 10231,
+                  "nodeType": "InlineAssembly",
+                  "src": "1102:100:51"
+                },
+                {
+                  "expression": {
+                    "id": 10232,
+                    "name": "returnData",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 10225,
+                    "src": "1218:10:51",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_memory_ptr",
+                      "typeString": "bytes memory"
+                    }
+                  },
+                  "functionReturnParameters": 10221,
+                  "id": 10233,
+                  "nodeType": "Return",
+                  "src": "1211:17:51"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 10213,
+              "nodeType": "StructuredDocumentation",
+              "src": "597:326:51",
+              "text": " Internal method to delegate execution to another contract\n @dev It returns to the external caller whatever the implementation returns or forwards reverts\n @param callee The contract to delegatecall\n @param data The raw data to delegatecall\n @return The returned bytes from the delegatecall"
+            },
+            "id": 10235,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "delegateTo",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10218,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10215,
+                  "mutability": "mutable",
+                  "name": "callee",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10235,
+                  "src": "948:14:51",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10214,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "948:7:51",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10217,
+                  "mutability": "mutable",
+                  "name": "data",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10235,
+                  "src": "964:17:51",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 10216,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "964:5:51",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "947:35:51"
+            },
+            "returnParameters": {
+              "id": 10221,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10220,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10235,
+                  "src": "1001:12:51",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 10219,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1001:5:51",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1000:14:51"
+            },
+            "scope": 10319,
+            "src": "928:307:51",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 10248,
+              "nodeType": "Block",
+              "src": "1604:56:51",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 10244,
+                        "name": "implementation",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 10199,
+                        "src": "1632:14:51",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 10245,
+                        "name": "data",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 10238,
+                        "src": "1648:4:51",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      ],
+                      "id": 10243,
+                      "name": "delegateTo",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 10235,
+                      "src": "1621:10:51",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_bytes_memory_ptr_$returns$_t_bytes_memory_ptr_$",
+                        "typeString": "function (address,bytes memory) returns (bytes memory)"
+                      }
+                    },
+                    "id": 10246,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1621:32:51",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_memory_ptr",
+                      "typeString": "bytes memory"
+                    }
+                  },
+                  "functionReturnParameters": 10242,
+                  "id": 10247,
+                  "nodeType": "Return",
+                  "src": "1614:39:51"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 10236,
+              "nodeType": "StructuredDocumentation",
+              "src": "1241:275:51",
+              "text": " Delegates execution to the implementation contract\n @dev It returns to the external caller whatever the implementation returns or forwards reverts\n @param data The raw data to delegatecall\n @return The returned bytes from the delegatecall"
+            },
+            "functionSelector": "0933c1ed",
+            "id": 10249,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "delegateToImplementation",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10239,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10238,
+                  "mutability": "mutable",
+                  "name": "data",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10249,
+                  "src": "1555:17:51",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 10237,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1555:5:51",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1554:19:51"
+            },
+            "returnParameters": {
+              "id": 10242,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10241,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10249,
+                  "src": "1590:12:51",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 10240,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1590:5:51",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1589:14:51"
+            },
+            "scope": 10319,
+            "src": "1521:139:51",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 10282,
+              "nodeType": "Block",
+              "src": "2157:306:51",
+              "statements": [
+                {
+                  "assignments": [
+                    10258,
+                    10260
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 10258,
+                      "mutability": "mutable",
+                      "name": "success",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 10282,
+                      "src": "2168:12:51",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "typeName": {
+                        "id": 10257,
+                        "name": "bool",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "2168:4:51",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      "visibility": "internal"
+                    },
+                    {
+                      "constant": false,
+                      "id": 10260,
+                      "mutability": "mutable",
+                      "name": "returnData",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 10282,
+                      "src": "2182:23:51",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_memory_ptr",
+                        "typeString": "bytes"
+                      },
+                      "typeName": {
+                        "id": 10259,
+                        "name": "bytes",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "2182:5:51",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_storage_ptr",
+                          "typeString": "bytes"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 10272,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "hexValue": "64656c6567617465546f496d706c656d656e746174696f6e28627974657329",
+                            "id": 10268,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "string",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "2258:33:51",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_stringliteral_0933c1ed98cdcde0cdd46a5db912a3041e9ac4aae2a78050ae668b916ea76606",
+                              "typeString": "literal_string \"delegateToImplementation(bytes)\""
+                            },
+                            "value": "delegateToImplementation(bytes)"
+                          },
+                          {
+                            "id": 10269,
+                            "name": "data",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 10252,
+                            "src": "2293:4:51",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bytes_memory_ptr",
+                              "typeString": "bytes memory"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_stringliteral_0933c1ed98cdcde0cdd46a5db912a3041e9ac4aae2a78050ae668b916ea76606",
+                              "typeString": "literal_string \"delegateToImplementation(bytes)\""
+                            },
+                            {
+                              "typeIdentifier": "t_bytes_memory_ptr",
+                              "typeString": "bytes memory"
+                            }
+                          ],
+                          "expression": {
+                            "id": 10266,
+                            "name": "abi",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967295,
+                            "src": "2234:3:51",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_abi",
+                              "typeString": "abi"
+                            }
+                          },
+                          "id": 10267,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberName": "encodeWithSignature",
+                          "nodeType": "MemberAccess",
+                          "src": "2234:23:51",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_abiencodewithsignature_pure$_t_string_memory_ptr_$returns$_t_bytes_memory_ptr_$",
+                            "typeString": "function (string memory) pure returns (bytes memory)"
+                          }
+                        },
+                        "id": 10270,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "2234:64:51",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      ],
+                      "expression": {
+                        "arguments": [
+                          {
+                            "id": 10263,
+                            "name": "this",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967268,
+                            "src": "2217:4:51",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_DelegatorInterface_$10319",
+                              "typeString": "contract DelegatorInterface"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_contract$_DelegatorInterface_$10319",
+                              "typeString": "contract DelegatorInterface"
+                            }
+                          ],
+                          "id": 10262,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "2209:7:51",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_address_$",
+                            "typeString": "type(address)"
+                          },
+                          "typeName": {
+                            "id": 10261,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "2209:7:51",
+                            "typeDescriptions": {}
+                          }
+                        },
+                        "id": 10264,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "2209:13:51",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      "id": 10265,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "staticcall",
+                      "nodeType": "MemberAccess",
+                      "src": "2209:24:51",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_barestaticcall_view$_t_bytes_memory_ptr_$returns$_t_bool_$_t_bytes_memory_ptr_$",
+                        "typeString": "function (bytes memory) view returns (bool,bytes memory)"
+                      }
+                    },
+                    "id": 10271,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2209:90:51",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_bool_$_t_bytes_memory_ptr_$",
+                      "typeString": "tuple(bool,bytes memory)"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2167:132:51"
+                },
+                {
+                  "AST": {
+                    "nodeType": "YulBlock",
+                    "src": "2318:91:51",
+                    "statements": [
+                      {
+                        "body": {
+                          "nodeType": "YulBlock",
+                          "src": "2350:49:51",
+                          "statements": [
+                            {
+                              "expression": {
+                                "arguments": [
+                                  {
+                                    "arguments": [
+                                      {
+                                        "name": "returnData",
+                                        "nodeType": "YulIdentifier",
+                                        "src": "2362:10:51"
+                                      },
+                                      {
+                                        "kind": "number",
+                                        "nodeType": "YulLiteral",
+                                        "src": "2374:4:51",
+                                        "type": "",
+                                        "value": "0x20"
+                                      }
+                                    ],
+                                    "functionName": {
+                                      "name": "add",
+                                      "nodeType": "YulIdentifier",
+                                      "src": "2358:3:51"
+                                    },
+                                    "nodeType": "YulFunctionCall",
+                                    "src": "2358:21:51"
+                                  },
+                                  {
+                                    "arguments": [],
+                                    "functionName": {
+                                      "name": "returndatasize",
+                                      "nodeType": "YulIdentifier",
+                                      "src": "2381:14:51"
+                                    },
+                                    "nodeType": "YulFunctionCall",
+                                    "src": "2381:16:51"
+                                  }
+                                ],
+                                "functionName": {
+                                  "name": "revert",
+                                  "nodeType": "YulIdentifier",
+                                  "src": "2351:6:51"
+                                },
+                                "nodeType": "YulFunctionCall",
+                                "src": "2351:47:51"
+                              },
+                              "nodeType": "YulExpressionStatement",
+                              "src": "2351:47:51"
+                            }
+                          ]
+                        },
+                        "condition": {
+                          "arguments": [
+                            {
+                              "name": "success",
+                              "nodeType": "YulIdentifier",
+                              "src": "2338:7:51"
+                            },
+                            {
+                              "kind": "number",
+                              "nodeType": "YulLiteral",
+                              "src": "2347:1:51",
+                              "type": "",
+                              "value": "0"
+                            }
+                          ],
+                          "functionName": {
+                            "name": "eq",
+                            "nodeType": "YulIdentifier",
+                            "src": "2335:2:51"
+                          },
+                          "nodeType": "YulFunctionCall",
+                          "src": "2335:14:51"
+                        },
+                        "nodeType": "YulIf",
+                        "src": "2332:2:51"
+                      }
+                    ]
+                  },
+                  "evmVersion": "istanbul",
+                  "externalReferences": [
+                    {
+                      "declaration": 10260,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "2362:10:51",
+                      "valueSize": 1
+                    },
+                    {
+                      "declaration": 10258,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "2338:7:51",
+                      "valueSize": 1
+                    }
+                  ],
+                  "id": 10273,
+                  "nodeType": "InlineAssembly",
+                  "src": "2309:100:51"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 10276,
+                        "name": "returnData",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 10260,
+                        "src": "2436:10:51",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      },
+                      {
+                        "components": [
+                          {
+                            "id": 10278,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "2449:5:51",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_bytes_storage_ptr_$",
+                              "typeString": "type(bytes storage pointer)"
+                            },
+                            "typeName": {
+                              "id": 10277,
+                              "name": "bytes",
+                              "nodeType": "ElementaryTypeName",
+                              "src": "2449:5:51",
+                              "typeDescriptions": {}
+                            }
+                          }
+                        ],
+                        "id": 10279,
+                        "isConstant": false,
+                        "isInlineArray": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "TupleExpression",
+                        "src": "2448:7:51",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_bytes_storage_ptr_$",
+                          "typeString": "type(bytes storage pointer)"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        },
+                        {
+                          "typeIdentifier": "t_type$_t_bytes_storage_ptr_$",
+                          "typeString": "type(bytes storage pointer)"
+                        }
+                      ],
+                      "expression": {
+                        "id": 10274,
+                        "name": "abi",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4294967295,
+                        "src": "2425:3:51",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_abi",
+                          "typeString": "abi"
+                        }
+                      },
+                      "id": 10275,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberName": "decode",
+                      "nodeType": "MemberAccess",
+                      "src": "2425:10:51",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_abidecode_pure$__$returns$__$",
+                        "typeString": "function () pure"
+                      }
+                    },
+                    "id": 10280,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2425:31:51",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_memory_ptr",
+                      "typeString": "bytes memory"
+                    }
+                  },
+                  "functionReturnParameters": 10256,
+                  "id": 10281,
+                  "nodeType": "Return",
+                  "src": "2418:38:51"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 10250,
+              "nodeType": "StructuredDocumentation",
+              "src": "1666:394:51",
+              "text": " Delegates execution to an implementation contract\n @dev It returns to the external caller whatever the implementation returns or forwards reverts\n  There are an additional 2 prefix uints from the wrapper returndata, which we ignore since we make an extra hop.\n @param data The raw data to delegatecall\n @return The returned bytes from the delegatecall"
+            },
+            "functionSelector": "4487152f",
+            "id": 10283,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "delegateToViewImplementation",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10253,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10252,
+                  "mutability": "mutable",
+                  "name": "data",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10283,
+                  "src": "2103:17:51",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 10251,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2103:5:51",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2102:19:51"
+            },
+            "returnParameters": {
+              "id": 10256,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10255,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10283,
+                  "src": "2143:12:51",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 10254,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2143:5:51",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2142:14:51"
+            },
+            "scope": 10319,
+            "src": "2065:398:51",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 10290,
+              "nodeType": "Block",
+              "src": "2668:28:51",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 10287,
+                      "name": "_fallback",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 10318,
+                      "src": "2678:9:51",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$__$returns$__$",
+                        "typeString": "function ()"
+                      }
+                    },
+                    "id": 10288,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2678:11:51",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 10289,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2678:11:51"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 10284,
+              "nodeType": "StructuredDocumentation",
+              "src": "2468:167:51",
+              "text": " Delegates execution to an implementation contract\n @dev It returns to the external caller whatever the implementation returns or forwards reverts"
+            },
+            "id": 10291,
+            "implemented": true,
+            "kind": "fallback",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10285,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2648:2:51"
+            },
+            "returnParameters": {
+              "id": 10286,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2668:0:51"
+            },
+            "scope": 10319,
+            "src": "2640:56:51",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 10297,
+              "nodeType": "Block",
+              "src": "2729:28:51",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 10294,
+                      "name": "_fallback",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 10318,
+                      "src": "2739:9:51",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$__$returns$__$",
+                        "typeString": "function ()"
+                      }
+                    },
+                    "id": 10295,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2739:11:51",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 10296,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2739:11:51"
+                }
+              ]
+            },
+            "id": 10298,
+            "implemented": true,
+            "kind": "receive",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10292,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2709:2:51"
+            },
+            "returnParameters": {
+              "id": 10293,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2729:0:51"
+            },
+            "scope": 10319,
+            "src": "2702:55:51",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 10317,
+              "nodeType": "Block",
+              "src": "2793:499:51",
+              "statements": [
+                {
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 10305,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "expression": {
+                        "expression": {
+                          "id": 10301,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "2873:3:51",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 10302,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "data",
+                        "nodeType": "MemberAccess",
+                        "src": "2873:8:51",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        }
+                      },
+                      "id": 10303,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "length",
+                      "nodeType": "MemberAccess",
+                      "src": "2873:15:51",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": ">",
+                    "rightExpression": {
+                      "hexValue": "30",
+                      "id": 10304,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "2891:1:51",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "2873:19:51",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 10316,
+                  "nodeType": "IfStatement",
+                  "src": "2869:417:51",
+                  "trueBody": {
+                    "id": 10315,
+                    "nodeType": "Block",
+                    "src": "2894:392:51",
+                    "statements": [
+                      {
+                        "assignments": [
+                          10307,
+                          null
+                        ],
+                        "declarations": [
+                          {
+                            "constant": false,
+                            "id": 10307,
+                            "mutability": "mutable",
+                            "name": "success",
+                            "nodeType": "VariableDeclaration",
+                            "scope": 10315,
+                            "src": "2909:12:51",
+                            "stateVariable": false,
+                            "storageLocation": "default",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            },
+                            "typeName": {
+                              "id": 10306,
+                              "name": "bool",
+                              "nodeType": "ElementaryTypeName",
+                              "src": "2909:4:51",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bool",
+                                "typeString": "bool"
+                              }
+                            },
+                            "visibility": "internal"
+                          },
+                          null
+                        ],
+                        "id": 10313,
+                        "initialValue": {
+                          "arguments": [
+                            {
+                              "expression": {
+                                "id": 10310,
+                                "name": "msg",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 4294967281,
+                                "src": "2954:3:51",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_magic_message",
+                                  "typeString": "msg"
+                                }
+                              },
+                              "id": 10311,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberName": "data",
+                              "nodeType": "MemberAccess",
+                              "src": "2954:8:51",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes_calldata_ptr",
+                                "typeString": "bytes calldata"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_bytes_calldata_ptr",
+                                "typeString": "bytes calldata"
+                              }
+                            ],
+                            "expression": {
+                              "id": 10308,
+                              "name": "implementation",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 10199,
+                              "src": "2926:14:51",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "id": 10309,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "delegatecall",
+                            "nodeType": "MemberAccess",
+                            "src": "2926:27:51",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_baredelegatecall_nonpayable$_t_bytes_memory_ptr_$returns$_t_bool_$_t_bytes_memory_ptr_$",
+                              "typeString": "function (bytes memory) returns (bool,bytes memory)"
+                            }
+                          },
+                          "id": 10312,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "2926:37:51",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$_t_bool_$_t_bytes_memory_ptr_$",
+                            "typeString": "tuple(bool,bytes memory)"
+                          }
+                        },
+                        "nodeType": "VariableDeclarationStatement",
+                        "src": "2908:55:51"
+                      },
+                      {
+                        "AST": {
+                          "nodeType": "YulBlock",
+                          "src": "2986:290:51",
+                          "statements": [
+                            {
+                              "nodeType": "YulVariableDeclaration",
+                              "src": "3004:31:51",
+                              "value": {
+                                "arguments": [
+                                  {
+                                    "kind": "number",
+                                    "nodeType": "YulLiteral",
+                                    "src": "3030:4:51",
+                                    "type": "",
+                                    "value": "0x40"
+                                  }
+                                ],
+                                "functionName": {
+                                  "name": "mload",
+                                  "nodeType": "YulIdentifier",
+                                  "src": "3024:5:51"
+                                },
+                                "nodeType": "YulFunctionCall",
+                                "src": "3024:11:51"
+                              },
+                              "variables": [
+                                {
+                                  "name": "free_mem_ptr",
+                                  "nodeType": "YulTypedName",
+                                  "src": "3008:12:51",
+                                  "type": ""
+                                }
+                              ]
+                            },
+                            {
+                              "expression": {
+                                "arguments": [
+                                  {
+                                    "name": "free_mem_ptr",
+                                    "nodeType": "YulIdentifier",
+                                    "src": "3067:12:51"
+                                  },
+                                  {
+                                    "kind": "number",
+                                    "nodeType": "YulLiteral",
+                                    "src": "3081:1:51",
+                                    "type": "",
+                                    "value": "0"
+                                  },
+                                  {
+                                    "arguments": [],
+                                    "functionName": {
+                                      "name": "returndatasize",
+                                      "nodeType": "YulIdentifier",
+                                      "src": "3084:14:51"
+                                    },
+                                    "nodeType": "YulFunctionCall",
+                                    "src": "3084:16:51"
+                                  }
+                                ],
+                                "functionName": {
+                                  "name": "returndatacopy",
+                                  "nodeType": "YulIdentifier",
+                                  "src": "3052:14:51"
+                                },
+                                "nodeType": "YulFunctionCall",
+                                "src": "3052:49:51"
+                              },
+                              "nodeType": "YulExpressionStatement",
+                              "src": "3052:49:51"
+                            },
+                            {
+                              "cases": [
+                                {
+                                  "body": {
+                                    "nodeType": "YulBlock",
+                                    "src": "3156:40:51",
+                                    "statements": [
+                                      {
+                                        "expression": {
+                                          "arguments": [
+                                            {
+                                              "name": "free_mem_ptr",
+                                              "nodeType": "YulIdentifier",
+                                              "src": "3164:12:51"
+                                            },
+                                            {
+                                              "arguments": [],
+                                              "functionName": {
+                                                "name": "returndatasize",
+                                                "nodeType": "YulIdentifier",
+                                                "src": "3178:14:51"
+                                              },
+                                              "nodeType": "YulFunctionCall",
+                                              "src": "3178:16:51"
+                                            }
+                                          ],
+                                          "functionName": {
+                                            "name": "revert",
+                                            "nodeType": "YulIdentifier",
+                                            "src": "3157:6:51"
+                                          },
+                                          "nodeType": "YulFunctionCall",
+                                          "src": "3157:38:51"
+                                        },
+                                        "nodeType": "YulExpressionStatement",
+                                        "src": "3157:38:51"
+                                      }
+                                    ]
+                                  },
+                                  "nodeType": "YulCase",
+                                  "src": "3149:47:51",
+                                  "value": {
+                                    "kind": "number",
+                                    "nodeType": "YulLiteral",
+                                    "src": "3154:1:51",
+                                    "type": "",
+                                    "value": "0"
+                                  }
+                                },
+                                {
+                                  "body": {
+                                    "nodeType": "YulBlock",
+                                    "src": "3221:41:51",
+                                    "statements": [
+                                      {
+                                        "expression": {
+                                          "arguments": [
+                                            {
+                                              "name": "free_mem_ptr",
+                                              "nodeType": "YulIdentifier",
+                                              "src": "3230:12:51"
+                                            },
+                                            {
+                                              "arguments": [],
+                                              "functionName": {
+                                                "name": "returndatasize",
+                                                "nodeType": "YulIdentifier",
+                                                "src": "3244:14:51"
+                                              },
+                                              "nodeType": "YulFunctionCall",
+                                              "src": "3244:16:51"
+                                            }
+                                          ],
+                                          "functionName": {
+                                            "name": "return",
+                                            "nodeType": "YulIdentifier",
+                                            "src": "3222:6:51"
+                                          },
+                                          "nodeType": "YulFunctionCall",
+                                          "src": "3222:39:51"
+                                        },
+                                        "nodeType": "YulExpressionStatement",
+                                        "src": "3222:39:51"
+                                      }
+                                    ]
+                                  },
+                                  "nodeType": "YulCase",
+                                  "src": "3213:49:51",
+                                  "value": "default"
+                                }
+                              ],
+                              "expression": {
+                                "name": "success",
+                                "nodeType": "YulIdentifier",
+                                "src": "3125:7:51"
+                              },
+                              "nodeType": "YulSwitch",
+                              "src": "3118:144:51"
+                            }
+                          ]
+                        },
+                        "evmVersion": "istanbul",
+                        "externalReferences": [
+                          {
+                            "declaration": 10307,
+                            "isOffset": false,
+                            "isSlot": false,
+                            "src": "3125:7:51",
+                            "valueSize": 1
+                          }
+                        ],
+                        "id": 10314,
+                        "nodeType": "InlineAssembly",
+                        "src": "2977:299:51"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "id": 10318,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_fallback",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10299,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2781:2:51"
+            },
+            "returnParameters": {
+              "id": 10300,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2793:0:51"
+            },
+            "scope": 10319,
+            "src": "2763:529:51",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 10320,
+        "src": "62:3232:51"
+      }
+    ],
+    "src": "37:3258:51"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/DelegatorInterface.sol",
+      "exportedSymbols": {
+        "DelegatorInterface": [
+          10319
+        ]
+      },
+      "license": "BUSL-1.1"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.7",
+            ".6"
+          ]
+        },
+        "id": 10196,
+        "name": "PragmaDirective",
+        "src": "37:22:51"
+      },
+      {
+        "attributes": {
+          "abstract": true,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            10319
+          ],
+          "name": "DelegatorInterface",
+          "scope": 10320
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "functionSelector": "5c60da1b",
+              "mutability": "mutable",
+              "name": "implementation",
+              "scope": 10319,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "address",
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "address",
+                  "stateMutability": "nonpayable",
+                  "type": "address"
+                },
+                "id": 10198,
+                "name": "ElementaryTypeName",
+                "src": "169:7:51"
+              },
+              {
+                "attributes": {
+                  "text": " Implementation address for this contract"
+                },
+                "id": 10197,
+                "name": "StructuredDocumentation",
+                "src": "105:59:51"
+              }
+            ],
+            "id": 10199,
+            "name": "VariableDeclaration",
+            "src": "169:29:51"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "name": "NewImplementation"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": " Emitted when implementation is changed"
+                },
+                "id": 10200,
+                "name": "StructuredDocumentation",
+                "src": "205:57:51"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "oldImplementation",
+                      "scope": 10206,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 10201,
+                        "name": "ElementaryTypeName",
+                        "src": "291:7:51"
+                      }
+                    ],
+                    "id": 10202,
+                    "name": "VariableDeclaration",
+                    "src": "291:25:51"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "newImplementation",
+                      "scope": 10206,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 10203,
+                        "name": "ElementaryTypeName",
+                        "src": "318:7:51"
+                      }
+                    ],
+                    "id": 10204,
+                    "name": "VariableDeclaration",
+                    "src": "318:25:51"
+                  }
+                ],
+                "id": 10205,
+                "name": "ParameterList",
+                "src": "290:54:51"
+              }
+            ],
+            "id": 10206,
+            "name": "EventDefinition",
+            "src": "267:78:51"
+          },
+          {
+            "attributes": {
+              "functionSelector": "d784d426",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setImplementation",
+              "scope": 10319,
+              "stateMutability": "nonpayable",
+              "virtual": true,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": " Called by the admin to update the implementation of the delegator\n @param implementation_ The address of the new implementation for delegation"
+                },
+                "id": 10207,
+                "name": "StructuredDocumentation",
+                "src": "351:167:51"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "implementation_",
+                      "scope": 10212,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 10208,
+                        "name": "ElementaryTypeName",
+                        "src": "550:7:51"
+                      }
+                    ],
+                    "id": 10209,
+                    "name": "VariableDeclaration",
+                    "src": "550:23:51"
+                  }
+                ],
+                "id": 10210,
+                "name": "ParameterList",
+                "src": "549:25:51"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 10211,
+                "name": "ParameterList",
+                "src": "589:0:51"
+              }
+            ],
+            "id": 10212,
+            "name": "FunctionDefinition",
+            "src": "523:67:51"
+          },
+          {
+            "attributes": {
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "delegateTo",
+              "scope": 10319,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": " Internal method to delegate execution to another contract\n @dev It returns to the external caller whatever the implementation returns or forwards reverts\n @param callee The contract to delegatecall\n @param data The raw data to delegatecall\n @return The returned bytes from the delegatecall"
+                },
+                "id": 10213,
+                "name": "StructuredDocumentation",
+                "src": "597:326:51"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "callee",
+                      "scope": 10235,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 10214,
+                        "name": "ElementaryTypeName",
+                        "src": "948:7:51"
+                      }
+                    ],
+                    "id": 10215,
+                    "name": "VariableDeclaration",
+                    "src": "948:14:51"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "data",
+                      "scope": 10235,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "bytes",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes"
+                        },
+                        "id": 10216,
+                        "name": "ElementaryTypeName",
+                        "src": "964:5:51"
+                      }
+                    ],
+                    "id": 10217,
+                    "name": "VariableDeclaration",
+                    "src": "964:17:51"
+                  }
+                ],
+                "id": 10218,
+                "name": "ParameterList",
+                "src": "947:35:51"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "scope": 10235,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "bytes",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes"
+                        },
+                        "id": 10219,
+                        "name": "ElementaryTypeName",
+                        "src": "1001:5:51"
+                      }
+                    ],
+                    "id": 10220,
+                    "name": "VariableDeclaration",
+                    "src": "1001:12:51"
+                  }
+                ],
+                "id": 10221,
+                "name": "ParameterList",
+                "src": "1000:14:51"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        10223,
+                        10225
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "mutability": "mutable",
+                          "name": "success",
+                          "scope": 10234,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "bool",
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "bool",
+                              "type": "bool"
+                            },
+                            "id": 10222,
+                            "name": "ElementaryTypeName",
+                            "src": "1026:4:51"
+                          }
+                        ],
+                        "id": 10223,
+                        "name": "VariableDeclaration",
+                        "src": "1026:12:51"
+                      },
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "mutability": "mutable",
+                          "name": "returnData",
+                          "scope": 10234,
+                          "stateVariable": false,
+                          "storageLocation": "memory",
+                          "type": "bytes",
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "bytes",
+                              "type": "bytes"
+                            },
+                            "id": 10224,
+                            "name": "ElementaryTypeName",
+                            "src": "1040:5:51"
+                          }
+                        ],
+                        "id": 10225,
+                        "name": "VariableDeclaration",
+                        "src": "1040:23:51"
+                      },
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple(bool,bytes memory)",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "delegatecall",
+                              "type": "function (bytes memory) returns (bool,bytes memory)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 10215,
+                                  "type": "address",
+                                  "value": "callee"
+                                },
+                                "id": 10226,
+                                "name": "Identifier",
+                                "src": "1067:6:51"
+                              }
+                            ],
+                            "id": 10227,
+                            "name": "MemberAccess",
+                            "src": "1067:19:51"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 10217,
+                              "type": "bytes memory",
+                              "value": "data"
+                            },
+                            "id": 10228,
+                            "name": "Identifier",
+                            "src": "1087:4:51"
+                          }
+                        ],
+                        "id": 10229,
+                        "name": "FunctionCall",
+                        "src": "1067:25:51"
+                      }
+                    ],
+                    "id": 10230,
+                    "name": "VariableDeclarationStatement",
+                    "src": "1025:67:51"
+                  },
+                  {
+                    "attributes": {
+                      "evmVersion": "istanbul",
+                      "externalReferences": [
+                        {
+                          "declaration": 10225,
+                          "isOffset": false,
+                          "isSlot": false,
+                          "src": "1155:10:51",
+                          "valueSize": 1
+                        },
+                        {
+                          "declaration": 10223,
+                          "isOffset": false,
+                          "isSlot": false,
+                          "src": "1131:7:51",
+                          "valueSize": 1
+                        }
+                      ],
+                      "operations": "{\n    if eq(success, 0)\n    {\n        revert(add(returnData, 0x20), returndatasize())\n    }\n}"
+                    },
+                    "children": [],
+                    "id": 10231,
+                    "name": "InlineAssembly",
+                    "src": "1102:100:51"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 10221
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 10225,
+                          "type": "bytes memory",
+                          "value": "returnData"
+                        },
+                        "id": 10232,
+                        "name": "Identifier",
+                        "src": "1218:10:51"
+                      }
+                    ],
+                    "id": 10233,
+                    "name": "Return",
+                    "src": "1211:17:51"
+                  }
+                ],
+                "id": 10234,
+                "name": "Block",
+                "src": "1015:220:51"
+              }
+            ],
+            "id": 10235,
+            "name": "FunctionDefinition",
+            "src": "928:307:51"
+          },
+          {
+            "attributes": {
+              "functionSelector": "0933c1ed",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "delegateToImplementation",
+              "scope": 10319,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": " Delegates execution to the implementation contract\n @dev It returns to the external caller whatever the implementation returns or forwards reverts\n @param data The raw data to delegatecall\n @return The returned bytes from the delegatecall"
+                },
+                "id": 10236,
+                "name": "StructuredDocumentation",
+                "src": "1241:275:51"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "data",
+                      "scope": 10249,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "bytes",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes"
+                        },
+                        "id": 10237,
+                        "name": "ElementaryTypeName",
+                        "src": "1555:5:51"
+                      }
+                    ],
+                    "id": 10238,
+                    "name": "VariableDeclaration",
+                    "src": "1555:17:51"
+                  }
+                ],
+                "id": 10239,
+                "name": "ParameterList",
+                "src": "1554:19:51"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "scope": 10249,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "bytes",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes"
+                        },
+                        "id": 10240,
+                        "name": "ElementaryTypeName",
+                        "src": "1590:5:51"
+                      }
+                    ],
+                    "id": 10241,
+                    "name": "VariableDeclaration",
+                    "src": "1590:12:51"
+                  }
+                ],
+                "id": 10242,
+                "name": "ParameterList",
+                "src": "1589:14:51"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 10242
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "bytes memory",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 10235,
+                              "type": "function (address,bytes memory) returns (bytes memory)",
+                              "value": "delegateTo"
+                            },
+                            "id": 10243,
+                            "name": "Identifier",
+                            "src": "1621:10:51"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 10199,
+                              "type": "address",
+                              "value": "implementation"
+                            },
+                            "id": 10244,
+                            "name": "Identifier",
+                            "src": "1632:14:51"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 10238,
+                              "type": "bytes memory",
+                              "value": "data"
+                            },
+                            "id": 10245,
+                            "name": "Identifier",
+                            "src": "1648:4:51"
+                          }
+                        ],
+                        "id": 10246,
+                        "name": "FunctionCall",
+                        "src": "1621:32:51"
+                      }
+                    ],
+                    "id": 10247,
+                    "name": "Return",
+                    "src": "1614:39:51"
+                  }
+                ],
+                "id": 10248,
+                "name": "Block",
+                "src": "1604:56:51"
+              }
+            ],
+            "id": 10249,
+            "name": "FunctionDefinition",
+            "src": "1521:139:51"
+          },
+          {
+            "attributes": {
+              "functionSelector": "4487152f",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "delegateToViewImplementation",
+              "scope": 10319,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": " Delegates execution to an implementation contract\n @dev It returns to the external caller whatever the implementation returns or forwards reverts\n  There are an additional 2 prefix uints from the wrapper returndata, which we ignore since we make an extra hop.\n @param data The raw data to delegatecall\n @return The returned bytes from the delegatecall"
+                },
+                "id": 10250,
+                "name": "StructuredDocumentation",
+                "src": "1666:394:51"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "data",
+                      "scope": 10283,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "bytes",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes"
+                        },
+                        "id": 10251,
+                        "name": "ElementaryTypeName",
+                        "src": "2103:5:51"
+                      }
+                    ],
+                    "id": 10252,
+                    "name": "VariableDeclaration",
+                    "src": "2103:17:51"
+                  }
+                ],
+                "id": 10253,
+                "name": "ParameterList",
+                "src": "2102:19:51"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "scope": 10283,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "bytes",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes"
+                        },
+                        "id": 10254,
+                        "name": "ElementaryTypeName",
+                        "src": "2143:5:51"
+                      }
+                    ],
+                    "id": 10255,
+                    "name": "VariableDeclaration",
+                    "src": "2143:12:51"
+                  }
+                ],
+                "id": 10256,
+                "name": "ParameterList",
+                "src": "2142:14:51"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        10258,
+                        10260
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "mutability": "mutable",
+                          "name": "success",
+                          "scope": 10282,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "bool",
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "bool",
+                              "type": "bool"
+                            },
+                            "id": 10257,
+                            "name": "ElementaryTypeName",
+                            "src": "2168:4:51"
+                          }
+                        ],
+                        "id": 10258,
+                        "name": "VariableDeclaration",
+                        "src": "2168:12:51"
+                      },
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "mutability": "mutable",
+                          "name": "returnData",
+                          "scope": 10282,
+                          "stateVariable": false,
+                          "storageLocation": "memory",
+                          "type": "bytes",
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "bytes",
+                              "type": "bytes"
+                            },
+                            "id": 10259,
+                            "name": "ElementaryTypeName",
+                            "src": "2182:5:51"
+                          }
+                        ],
+                        "id": 10260,
+                        "name": "VariableDeclaration",
+                        "src": "2182:23:51"
+                      },
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple(bool,bytes memory)",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "staticcall",
+                              "type": "function (bytes memory) view returns (bool,bytes memory)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "tryCall": false,
+                                  "type": "address payable",
+                                  "type_conversion": true
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_contract$_DelegatorInterface_$10319",
+                                          "typeString": "contract DelegatorInterface"
+                                        }
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "type": "type(address)"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "name": "address"
+                                        },
+                                        "id": 10261,
+                                        "name": "ElementaryTypeName",
+                                        "src": "2209:7:51"
+                                      }
+                                    ],
+                                    "id": 10262,
+                                    "name": "ElementaryTypeNameExpression",
+                                    "src": "2209:7:51"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 4294967268,
+                                      "type": "contract DelegatorInterface",
+                                      "value": "this"
+                                    },
+                                    "id": 10263,
+                                    "name": "Identifier",
+                                    "src": "2217:4:51"
+                                  }
+                                ],
+                                "id": 10264,
+                                "name": "FunctionCall",
+                                "src": "2209:13:51"
+                              }
+                            ],
+                            "id": 10265,
+                            "name": "MemberAccess",
+                            "src": "2209:24:51"
+                          },
+                          {
+                            "attributes": {
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "tryCall": false,
+                              "type": "bytes memory",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_stringliteral_0933c1ed98cdcde0cdd46a5db912a3041e9ac4aae2a78050ae668b916ea76606",
+                                      "typeString": "literal_string \"delegateToImplementation(bytes)\""
+                                    },
+                                    {
+                                      "typeIdentifier": "t_bytes_memory_ptr",
+                                      "typeString": "bytes memory"
+                                    }
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "member_name": "encodeWithSignature",
+                                  "type": "function (string memory) pure returns (bytes memory)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 4294967295,
+                                      "type": "abi",
+                                      "value": "abi"
+                                    },
+                                    "id": 10266,
+                                    "name": "Identifier",
+                                    "src": "2234:3:51"
+                                  }
+                                ],
+                                "id": 10267,
+                                "name": "MemberAccess",
+                                "src": "2234:23:51"
+                              },
+                              {
+                                "attributes": {
+                                  "hexvalue": "64656c6567617465546f496d706c656d656e746174696f6e28627974657329",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "token": "string",
+                                  "type": "literal_string \"delegateToImplementation(bytes)\"",
+                                  "value": "delegateToImplementation(bytes)"
+                                },
+                                "id": 10268,
+                                "name": "Literal",
+                                "src": "2258:33:51"
+                              },
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 10252,
+                                  "type": "bytes memory",
+                                  "value": "data"
+                                },
+                                "id": 10269,
+                                "name": "Identifier",
+                                "src": "2293:4:51"
+                              }
+                            ],
+                            "id": 10270,
+                            "name": "FunctionCall",
+                            "src": "2234:64:51"
+                          }
+                        ],
+                        "id": 10271,
+                        "name": "FunctionCall",
+                        "src": "2209:90:51"
+                      }
+                    ],
+                    "id": 10272,
+                    "name": "VariableDeclarationStatement",
+                    "src": "2167:132:51"
+                  },
+                  {
+                    "attributes": {
+                      "evmVersion": "istanbul",
+                      "externalReferences": [
+                        {
+                          "declaration": 10260,
+                          "isOffset": false,
+                          "isSlot": false,
+                          "src": "2362:10:51",
+                          "valueSize": 1
+                        },
+                        {
+                          "declaration": 10258,
+                          "isOffset": false,
+                          "isSlot": false,
+                          "src": "2338:7:51",
+                          "valueSize": 1
+                        }
+                      ],
+                      "operations": "{\n    if eq(success, 0)\n    {\n        revert(add(returnData, 0x20), returndatasize())\n    }\n}"
+                    },
+                    "children": [],
+                    "id": 10273,
+                    "name": "InlineAssembly",
+                    "src": "2309:100:51"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 10256
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "bytes memory",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                },
+                                {
+                                  "typeIdentifier": "t_type$_t_bytes_storage_ptr_$",
+                                  "typeString": "type(bytes storage pointer)"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "member_name": "decode",
+                              "type": "function () pure"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 4294967295,
+                                  "type": "abi",
+                                  "value": "abi"
+                                },
+                                "id": 10274,
+                                "name": "Identifier",
+                                "src": "2425:3:51"
+                              }
+                            ],
+                            "id": 10275,
+                            "name": "MemberAccess",
+                            "src": "2425:10:51"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 10260,
+                              "type": "bytes memory",
+                              "value": "returnData"
+                            },
+                            "id": 10276,
+                            "name": "Identifier",
+                            "src": "2436:10:51"
+                          },
+                          {
+                            "attributes": {
+                              "isConstant": false,
+                              "isInlineArray": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "type": "type(bytes storage pointer)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "type": "type(bytes storage pointer)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "name": "bytes"
+                                    },
+                                    "id": 10277,
+                                    "name": "ElementaryTypeName",
+                                    "src": "2449:5:51"
+                                  }
+                                ],
+                                "id": 10278,
+                                "name": "ElementaryTypeNameExpression",
+                                "src": "2449:5:51"
+                              }
+                            ],
+                            "id": 10279,
+                            "name": "TupleExpression",
+                            "src": "2448:7:51"
+                          }
+                        ],
+                        "id": 10280,
+                        "name": "FunctionCall",
+                        "src": "2425:31:51"
+                      }
+                    ],
+                    "id": 10281,
+                    "name": "Return",
+                    "src": "2418:38:51"
+                  }
+                ],
+                "id": 10282,
+                "name": "Block",
+                "src": "2157:306:51"
+              }
+            ],
+            "id": 10283,
+            "name": "FunctionDefinition",
+            "src": "2065:398:51"
+          },
+          {
+            "attributes": {
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "fallback",
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "scope": 10319,
+              "stateMutability": "payable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": " Delegates execution to an implementation contract\n @dev It returns to the external caller whatever the implementation returns or forwards reverts"
+                },
+                "id": 10284,
+                "name": "StructuredDocumentation",
+                "src": "2468:167:51"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 10285,
+                "name": "ParameterList",
+                "src": "2648:2:51"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 10286,
+                "name": "ParameterList",
+                "src": "2668:0:51"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "arguments": [
+                            null
+                          ],
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                null
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 10318,
+                              "type": "function ()",
+                              "value": "_fallback"
+                            },
+                            "id": 10287,
+                            "name": "Identifier",
+                            "src": "2678:9:51"
+                          }
+                        ],
+                        "id": 10288,
+                        "name": "FunctionCall",
+                        "src": "2678:11:51"
+                      }
+                    ],
+                    "id": 10289,
+                    "name": "ExpressionStatement",
+                    "src": "2678:11:51"
+                  }
+                ],
+                "id": 10290,
+                "name": "Block",
+                "src": "2668:28:51"
+              }
+            ],
+            "id": 10291,
+            "name": "FunctionDefinition",
+            "src": "2640:56:51"
+          },
+          {
+            "attributes": {
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "receive",
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "scope": 10319,
+              "stateMutability": "payable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 10292,
+                "name": "ParameterList",
+                "src": "2709:2:51"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 10293,
+                "name": "ParameterList",
+                "src": "2729:0:51"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "arguments": [
+                            null
+                          ],
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                null
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 10318,
+                              "type": "function ()",
+                              "value": "_fallback"
+                            },
+                            "id": 10294,
+                            "name": "Identifier",
+                            "src": "2739:9:51"
+                          }
+                        ],
+                        "id": 10295,
+                        "name": "FunctionCall",
+                        "src": "2739:11:51"
+                      }
+                    ],
+                    "id": 10296,
+                    "name": "ExpressionStatement",
+                    "src": "2739:11:51"
+                  }
+                ],
+                "id": 10297,
+                "name": "Block",
+                "src": "2729:28:51"
+              }
+            ],
+            "id": 10298,
+            "name": "FunctionDefinition",
+            "src": "2702:55:51"
+          },
+          {
+            "attributes": {
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "_fallback",
+              "scope": 10319,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 10299,
+                "name": "ParameterList",
+                "src": "2781:2:51"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 10300,
+                "name": "ParameterList",
+                "src": "2793:0:51"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {},
+                    "children": [
+                      {
+                        "attributes": {
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": ">",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "length",
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "data",
+                                  "type": "bytes calldata"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 4294967281,
+                                      "type": "msg",
+                                      "value": "msg"
+                                    },
+                                    "id": 10301,
+                                    "name": "Identifier",
+                                    "src": "2873:3:51"
+                                  }
+                                ],
+                                "id": 10302,
+                                "name": "MemberAccess",
+                                "src": "2873:8:51"
+                              }
+                            ],
+                            "id": 10303,
+                            "name": "MemberAccess",
+                            "src": "2873:15:51"
+                          },
+                          {
+                            "attributes": {
+                              "hexvalue": "30",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "token": "number",
+                              "type": "int_const 0",
+                              "value": "0"
+                            },
+                            "id": 10304,
+                            "name": "Literal",
+                            "src": "2891:1:51"
+                          }
+                        ],
+                        "id": 10305,
+                        "name": "BinaryOperation",
+                        "src": "2873:19:51"
+                      },
+                      {
+                        "children": [
+                          {
+                            "attributes": {
+                              "assignments": [
+                                10307,
+                                null
+                              ]
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "constant": false,
+                                  "mutability": "mutable",
+                                  "name": "success",
+                                  "scope": 10315,
+                                  "stateVariable": false,
+                                  "storageLocation": "default",
+                                  "type": "bool",
+                                  "visibility": "internal"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "name": "bool",
+                                      "type": "bool"
+                                    },
+                                    "id": 10306,
+                                    "name": "ElementaryTypeName",
+                                    "src": "2909:4:51"
+                                  }
+                                ],
+                                "id": 10307,
+                                "name": "VariableDeclaration",
+                                "src": "2909:12:51"
+                              },
+                              {
+                                "attributes": {
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "tryCall": false,
+                                  "type": "tuple(bool,bytes memory)",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_bytes_calldata_ptr",
+                                          "typeString": "bytes calldata"
+                                        }
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "delegatecall",
+                                      "type": "function (bytes memory) returns (bool,bytes memory)"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 10199,
+                                          "type": "address",
+                                          "value": "implementation"
+                                        },
+                                        "id": 10308,
+                                        "name": "Identifier",
+                                        "src": "2926:14:51"
+                                      }
+                                    ],
+                                    "id": 10309,
+                                    "name": "MemberAccess",
+                                    "src": "2926:27:51"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "data",
+                                      "type": "bytes calldata"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 4294967281,
+                                          "type": "msg",
+                                          "value": "msg"
+                                        },
+                                        "id": 10310,
+                                        "name": "Identifier",
+                                        "src": "2954:3:51"
+                                      }
+                                    ],
+                                    "id": 10311,
+                                    "name": "MemberAccess",
+                                    "src": "2954:8:51"
+                                  }
+                                ],
+                                "id": 10312,
+                                "name": "FunctionCall",
+                                "src": "2926:37:51"
+                              }
+                            ],
+                            "id": 10313,
+                            "name": "VariableDeclarationStatement",
+                            "src": "2908:55:51"
+                          },
+                          {
+                            "attributes": {
+                              "evmVersion": "istanbul",
+                              "externalReferences": [
+                                {
+                                  "declaration": 10307,
+                                  "isOffset": false,
+                                  "isSlot": false,
+                                  "src": "3125:7:51",
+                                  "valueSize": 1
+                                }
+                              ],
+                              "operations": "{\n    let free_mem_ptr := mload(0x40)\n    returndatacopy(free_mem_ptr, 0, returndatasize())\n    switch success\n    case 0 {\n        revert(free_mem_ptr, returndatasize())\n    }\n    default {\n        return(free_mem_ptr, returndatasize())\n    }\n}"
+                            },
+                            "children": [],
+                            "id": 10314,
+                            "name": "InlineAssembly",
+                            "src": "2977:299:51"
+                          }
+                        ],
+                        "id": 10315,
+                        "name": "Block",
+                        "src": "2894:392:51"
+                      }
+                    ],
+                    "id": 10316,
+                    "name": "IfStatement",
+                    "src": "2869:417:51"
+                  }
+                ],
+                "id": 10317,
+                "name": "Block",
+                "src": "2793:499:51"
+              }
+            ],
+            "id": 10318,
+            "name": "FunctionDefinition",
+            "src": "2763:529:51"
+          }
+        ],
+        "id": 10319,
+        "name": "ContractDefinition",
+        "src": "62:3232:51"
+      }
+    ],
+    "id": 10320,
+    "name": "SourceUnit",
+    "src": "37:3258:51"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.7.6+commit.7338295f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2025-02-26T03:47:59.379Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "delegateToImplementation(bytes)": {
+        "details": "It returns to the external caller whatever the implementation returns or forwards reverts",
+        "params": {
+          "data": "The raw data to delegatecall"
+        },
+        "returns": {
+          "_0": "The returned bytes from the delegatecall"
+        }
+      },
+      "delegateToViewImplementation(bytes)": {
+        "details": "It returns to the external caller whatever the implementation returns or forwards reverts  There are an additional 2 prefix uints from the wrapper returndata, which we ignore since we make an extra hop.",
+        "params": {
+          "data": "The raw data to delegatecall"
+        },
+        "returns": {
+          "_0": "The returned bytes from the delegatecall"
+        }
+      },
+      "setImplementation(address)": {
+        "params": {
+          "implementation_": "The address of the new implementation for delegation"
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "events": {
+      "NewImplementation(address,address)": {
+        "notice": "Emitted when implementation is changed"
+      }
+    },
+    "kind": "user",
+    "methods": {
+      "delegateToImplementation(bytes)": {
+        "notice": "Delegates execution to the implementation contract"
+      },
+      "delegateToViewImplementation(bytes)": {
+        "notice": "Delegates execution to an implementation contract"
+      },
+      "implementation()": {
+        "notice": "Implementation address for this contract"
+      },
+      "setImplementation(address)": {
+        "notice": "Called by the admin to update the implementation of the delegator"
+      }
+    },
+    "version": 1
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "MockVoting",
+  "sourceName": "contracts/mocks/curve/MockVoting.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "gaugeWeights",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "gauge",
+          "type": "address"
+        }
+      ],
+      "name": "get_gauge_weight",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "gauge",
+          "type": "address"
+        }
+      ],
+      "name": "last_user_vote",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "voteId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "support",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "name": "vote",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "gauge",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "weight",
+          "type": "uint256"
+        }
+      ],
+      "name": "vote_for_gauge_weights",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        }
+      ],
+      "name": "vote_user_power",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "gauge",
+          "type": "address"
+        }
+      ],
+      "name": "vote_user_slopes",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "slope",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "power",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "end",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct MockVoting.VotedSlope",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "votesAgainst",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "votesFor",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b50610407806100206000396000f3fe608060405234801561001057600080fd5b50600436106100a35760003560e01c80637e418fa011610076578063d6f6ab191161005b578063d6f6ab1914610190578063d7136328146101b0578063df133bca146101c557600080fd5b80637e418fa01461015a578063b7f3b5971461017057600080fd5b80630f467f98146100a857806323b4a998146100e2578063411e74b5146101105780634e791a3a14610124575b600080fd5b6100bb6100b63660046102cd565b6101d8565b60408051825181526020808401519082015291810151908201526060015b60405180910390f35b6101026100f0366004610300565b60026020526000908152604090205481565b6040519081526020016100d9565b61010261011e366004610319565b50600090565b610102610132366004610319565b73ffffffffffffffffffffffffffffffffffffffff1660009081526020819052604090205490565b6101026101683660046102cd565b600092915050565b61010261017e366004610300565b60016020526000908152604090205481565b61010261019e366004610319565b60006020819052908152604090205481565b6101c36101be36600461033b565b610222565b005b6101c36101d3366004610375565b610260565b6101fc60405180606001604052806000815260200160008152602001600081525090565b604051806060016040528060008152602001600081526020016000815250905092915050565b73ffffffffffffffffffffffffffffffffffffffff8216600090815260208190526040812080548392906102579084906103c7565b90915550505050565b811561028a576000838152600160205260408120805491610280836103df565b9190505550505050565b6000838152600260205260408120805491610280836103df565b803573ffffffffffffffffffffffffffffffffffffffff811681146102c857600080fd5b919050565b600080604083850312156102e057600080fd5b6102e9836102a4565b91506102f7602084016102a4565b90509250929050565b60006020828403121561031257600080fd5b5035919050565b60006020828403121561032b57600080fd5b610334826102a4565b9392505050565b6000806040838503121561034e57600080fd5b610357836102a4565b946020939093013593505050565b803580151581146102c857600080fd5b60008060006060848603121561038a57600080fd5b8335925061039a60208501610365565b91506103a860408501610365565b90509250925092565b634e487b7160e01b600052601160045260246000fd5b600082198211156103da576103da6103b1565b500190565b60006000198214156103f3576103f36103b1565b506001019056fea164736f6c634300080b000a",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100a35760003560e01c80637e418fa011610076578063d6f6ab191161005b578063d6f6ab1914610190578063d7136328146101b0578063df133bca146101c557600080fd5b80637e418fa01461015a578063b7f3b5971461017057600080fd5b80630f467f98146100a857806323b4a998146100e2578063411e74b5146101105780634e791a3a14610124575b600080fd5b6100bb6100b63660046102cd565b6101d8565b60408051825181526020808401519082015291810151908201526060015b60405180910390f35b6101026100f0366004610300565b60026020526000908152604090205481565b6040519081526020016100d9565b61010261011e366004610319565b50600090565b610102610132366004610319565b73ffffffffffffffffffffffffffffffffffffffff1660009081526020819052604090205490565b6101026101683660046102cd565b600092915050565b61010261017e366004610300565b60016020526000908152604090205481565b61010261019e366004610319565b60006020819052908152604090205481565b6101c36101be36600461033b565b610222565b005b6101c36101d3366004610375565b610260565b6101fc60405180606001604052806000815260200160008152602001600081525090565b604051806060016040528060008152602001600081526020016000815250905092915050565b73ffffffffffffffffffffffffffffffffffffffff8216600090815260208190526040812080548392906102579084906103c7565b90915550505050565b811561028a576000838152600160205260408120805491610280836103df565b9190505550505050565b6000838152600260205260408120805491610280836103df565b803573ffffffffffffffffffffffffffffffffffffffff811681146102c857600080fd5b919050565b600080604083850312156102e057600080fd5b6102e9836102a4565b91506102f7602084016102a4565b90509250929050565b60006020828403121561031257600080fd5b5035919050565b60006020828403121561032b57600080fd5b610334826102a4565b9392505050565b6000806040838503121561034e57600080fd5b610357836102a4565b946020939093013593505050565b803580151581146102c857600080fd5b60008060006060848603121561038a57600080fd5b8335925061039a60208501610365565b91506103a860408501610365565b90509250925092565b634e487b7160e01b600052601160045260246000fd5b600082198211156103da576103da6103b1565b500190565b60006000198214156103f3576103f36103b1565b506001019056fea164736f6c634300080b000a",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
